@@ -37,4 +37,12 @@ public class VerticalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).verticalScan(), is("at: (1,0),(2,0)"));
 	}
+	
+	@Test
+	public void shouldReturnAtAtColumnZeroRowOneTwoWithConfoundingA() {
+		toFind = "at";
+		char[][] toSearch = { { 'a', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).verticalScan(), is("at: (1,0),(2,0)"));
+	}
 }

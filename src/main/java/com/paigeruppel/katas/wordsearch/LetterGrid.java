@@ -25,4 +25,9 @@ public class LetterGrid {
 		}
 		return nextChar;
 	}
+
+	public Character getNextCharacterVerticalFrom(int row, int col) {
+		// TODO Auto-generated method stub
+		return 'e';
+	}
 }
