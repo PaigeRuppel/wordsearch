@@ -29,4 +29,12 @@ public class VerticalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).verticalScan(), is("cat: (0,0),(1,0),(2,0)"));
 	}
+	
+	@Test
+	public void shouldReturnAtAtColumnZeroRowOneTwo() {
+		toFind = "at";
+		char[][] toSearch = { { 'x', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).verticalScan(), is("at: (1,0),(2,0)"));
+	}
 }

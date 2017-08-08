@@ -15,14 +15,18 @@ public class VerticalFinder {
 	}
 
 	public String verticalScan() {
+		int ind = 0;
 
 		for (int col = 0; col < grid.colLength; col++) {
+			for (int row = 0; row < grid.rowLength; row++) {
+				if (grid.getCharacterAt(row, col) == toFind.charAt(ind)) {
+					answer.buildAnswerMap(toFind.charAt(ind), "(" + row + "," + col + ")");
+					if (ind < toFind.length() - 1) {
+						ind++;
+					}
+				}
 
-			if (grid.getCharacterAt(0, col) == toFind.charAt(0)) {
-				answer.buildAnswerMap(toFind.charAt(0), "(0,"+ col + ")");
-				answer.buildAnswerMap(toFind.charAt(1), "(1,"+ col + ")");
-				answer.buildAnswerMap(toFind.charAt(2), "(2,"+ col + ")");
- 			}
+			}
 
 		}
 		return answer.generate();
