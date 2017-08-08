@@ -9,41 +9,50 @@ import com.paigeruppel.katas.wordsearch.HorizontalFinder;
 
 public class HorizontalFinderTest {
 
-	public HorizontalFinder createTest(String toFind, char[][]toSearch) {
-		return new HorizontalFinder(toFind, toSearch);
+	private LetterGrid grid;
+	private String toFind;
+
+	public HorizontalFinder createTest(String toFind, LetterGrid grid) {
+		return new HorizontalFinder(toFind, grid);
 	}
+
 	@Test
 	public void shouldReturnCatAtRowOneColumnZeroOneTwo() {
-		String toFind = "cat";
+		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'c', 'a', 't' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toFind, toSearch).horizontalScan(), is("cat:(1,0)(1,1)(1,2)"));
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).horizontalScan(), is("cat:(1,0)(1,1)(1,2)"));
 	}
 
 	@Test
 	public void shouldReturnCatAtRowZeroColumnZeroOneTwo() {
-		String toFind = "cat";
+		toFind = "cat";
 		char[][] toSearch = { { 'c', 'a', 't' }, { 'x', 'x', 'x' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toFind, toSearch).horizontalScan(), is("cat:(0,0)(0,1)(0,2)"));
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).horizontalScan(), is("cat:(0,0)(0,1)(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnLaAtRowZeroColumnOneTwo() {
-		String toFind = "la";
+		toFind = "la";
 		char[][] toSearch = { { 'x', 'l', 'a' }, { 'x', 'x', 'x' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toFind, toSearch).horizontalScan(), is("la:(0,1)(0,2)"));
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).horizontalScan(), is("la:(0,1)(0,2)"));
 	}
-	
+
 	@Test
 	public void shouldReturnLaAtRowOneColumnOneTwoWithConfoundingL() {
-		String toFind = "la";
+		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'l', 'a' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toFind, toSearch).horizontalScan(), is("la:(1,1)(1,2)"));
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).horizontalScan(), is("la:(1,1)(1,2)"));
 	}
-	
+
 	@Test
 	public void shouldReturnLaAtRowOneColumnOneTwoWithTwoConfoundingL() {
-		String toFind = "la";
+		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'l', 'l', 'a' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toFind, toSearch).horizontalScan(), is("la:(1,1)(1,2)"));
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).horizontalScan(), is("la:(1,1)(1,2)"));
 	}
 }

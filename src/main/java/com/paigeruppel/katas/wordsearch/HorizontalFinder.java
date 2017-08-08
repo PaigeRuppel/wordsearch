@@ -4,18 +4,14 @@ package com.paigeruppel.katas.wordsearch;
 public class HorizontalFinder {
 
 	private String toFind;
-	private char[][] toSearch;
+	private LetterGrid grid;
 	int maxInd;
 
 	private String answer;
 
-	public char[][] getToSearch() {
-		return toSearch;
-	}
-
-	public HorizontalFinder(String toFind, char[][] toSearch) {
+	public HorizontalFinder(String toFind, LetterGrid grid) {
 		this.toFind = toFind;
-		this.toSearch = toSearch;
+		this.grid = grid;
 		maxInd = toFind.length() - 1;
 		resetAnswer();
 	}
@@ -26,9 +22,9 @@ public class HorizontalFinder {
 	public String horizontalScan() {
 		int ind = 0;
 
-		for (int row = 0; row < toSearch.length; row++) {
-			for (int col = 0; col < toSearch[row].length; col++) {
-				if (toSearch[row][col] == toFind.charAt(ind)) {
+		for (int row = 0; row < grid.rowLength; row++) {
+			for (int col = 0; col < grid.colLength; col++) {
+				if (grid.getCharacterAt(row, col) == toFind.charAt(ind)) {
 					answer += coords(row, col);
 					if (ind == maxInd) {
 						return answer;
@@ -38,7 +34,7 @@ public class HorizontalFinder {
 				} else {
 					resetAnswer();
 					ind = 0;
-					if (toSearch[row][col] == toFind.charAt(ind)) {
+					if (grid.getCharacterAt(row, col)  == toFind.charAt(ind)) {
 						answer += coords(row, col);
 						if (ind == maxInd) {
 							return answer;
