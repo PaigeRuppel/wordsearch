@@ -17,16 +17,22 @@ public class LetterGrid {
 	}
 
 	public Character getNextCharacterHorizontalFrom(int row, int col) {
-		Character nextChar;
+		Character nextHorChar;
 		if (col + 1 < toSearch[row].length) {
-			nextChar = toSearch[row][col+1];
+			nextHorChar = toSearch[row][col + 1];
 		} else {
-			nextChar = '0';
+			nextHorChar = '0';
 		}
-		return nextChar;
+		return nextHorChar;
 	}
 
 	public Character getNextCharacterVerticalFrom(int row, int col) {
-		return toSearch[row+1][col];
+		Character nextVerChar;
+		if (row + 1 < toSearch.length) {
+			nextVerChar = toSearch[row + 1][col];
+		} else {
+			nextVerChar = '0';
+		}
+		return nextVerChar;
 	}
 }

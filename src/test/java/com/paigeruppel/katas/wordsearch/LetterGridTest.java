@@ -50,4 +50,9 @@ public class LetterGridTest {
 	public void shouldReturnDFromLookAtNextVerticalPositionFromZeroZero() {
 		assertThat(underTest.getNextCharacterVerticalFrom(0,0), is('d'));
 	}
+	
+	@Test
+	public void shouldReturn0FromLookAtNextVerticalPositionFromTwoZero() {
+		assertThat(underTest.getNextCharacterVerticalFrom(2,0), is('0'));
+	}
 }
