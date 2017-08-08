@@ -57,10 +57,18 @@ public class HorizontalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnLabAtRowTwoColumnOneTwoWithConfoundingLa() {
+	public void shouldReturnLabAtRowTwoColumnZeroOneTwoWithConfoundingLa() {
 		toFind = "lab";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'l', 'l', 'a' }, { 'l', 'a', 'b' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).horizontalScan(), is("lab:(2,0)(2,1)(2,2)"));
+	}
+	
+	@Test
+	public void shouldReturnLabAtRowTwoColumnTwoOneZeroWithConfoundingLa() {
+		toFind = "lab";
+		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'x', 'x' }, { 'b', 'a', 'l' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).horizontalScan(), is("lab:(2,2)(2,1)(2,0)"));
 	}
 }
