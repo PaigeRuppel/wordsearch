@@ -6,7 +6,7 @@ import java.util.Map;
 public class AnswerBuilder {
 
 	private String toFind;
-	private Map<Character, String> answerMap = new HashMap<>();
+	protected Map<Character, String> answerMap = new HashMap<>();
 
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
@@ -21,9 +21,13 @@ public class AnswerBuilder {
 	}
 
 	public String generate() {
-		String answer = toFind + ":";
+		String answer = toFind + ": ";
 		for (int i = 0; i < toFind.length(); i++) {
-			answer += answerMap.get(toFind.charAt(i));
+			if (i < toFind.length() - 1) {
+				answer += answerMap.get(toFind.charAt(i)) + ",";
+			} else {
+				answer += answerMap.get(toFind.charAt(i));
+			}
 		}
 		return answer;
 	}
