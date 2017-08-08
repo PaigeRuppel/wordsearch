@@ -45,4 +45,20 @@ public class VerticalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).verticalScan(), is("at: (1,0),(2,0)"));
 	}
+	
+	@Test
+	public void shouldReturnAtFitColumnTwoRowZeroOneTwoWithConfoundingFi() {
+		toFind = "fit";
+		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).verticalScan(), is("fit: (0,2),(1,2),(2,2)"));
+	}
+	
+	@Test
+	public void shouldReturnAtFitColumnTwoRowwoOneZeroWithConfoundingFi() {
+		toFind = "fit";
+		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).verticalScan(), is("fit: (2,2),(1,2),(0,2)"));
+	}
 }

@@ -30,8 +30,6 @@ public class HorizontalFinder {
 						}
 					}
 				}
-				answer.reset();
-				ind = 0;
 			}
 			tries++;
 			answer.reverseWord();

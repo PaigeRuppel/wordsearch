@@ -1,5 +1,6 @@
 package com.paigeruppel.katas.wordsearch;
 
+//To satisfy the second user story
 public class VerticalFinder {
 
 	private LetterGrid grid;
