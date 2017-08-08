@@ -15,25 +15,30 @@ public class VerticalFinder {
 
 	public String verticalScan() {
 		int ind = 0;
+		int tries = 0;
 
-		for (int col = 0; col < grid.colLength; col++) {
-			for (int row = 0; row < grid.rowLength; row++) {
-				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
-					if (answer.maxInd(ind)) {
-						return answer.generate();
-					} else {
-						ind = answer.increment(ind);
-						if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
-							answer.reset();
-							ind = 0;
+		while (tries < 2) {
+			for (int col = 0; col < grid.colLength; col++) {
+				for (int row = 0; row < grid.rowLength; row++) {
+					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
+						answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+						if (answer.maxInd(ind)) {
+							return answer.generate();
+						} else {
+							ind = answer.increment(ind);
+							if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
+								answer.reset();
+								ind = 0;
+							}
 						}
+
 					}
 
 				}
 
 			}
-
+			answer.reverseWord();
+			tries++;
 		}
 		return answer.generate();
 	}
