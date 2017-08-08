@@ -22,15 +22,14 @@ public class HorizontalFinder {
 	public String horizontalScan() {
 		int ind = 0;
 		char currentChar = '0';
-		boolean answerFound = false;
-		while (answerFound == false) {
+		int tries = 0;
+		while (tries < 2) {
 			for (int row = 0; row < grid.rowLength; row++) {
 				for (int col = 0; col < grid.colLength; col++) {
 					currentChar = toFind.charAt(ind);
 					if (grid.getCharacterAt(row, col) == currentChar) {
 						answer.buildAnswerMap(currentChar, coords(row, col));
 						if (ind == maxInd) {
-							answerFound = true;
 							return answer.generate();
 						} else {
 							ind = increment(ind);
@@ -44,9 +43,10 @@ public class HorizontalFinder {
 				answer.reset();
 				ind = 0;
 			}
+			tries++;
 			toFind = new StringBuilder(toFind).reverse().toString();
 		}
-		return answer.generate();
+		return "not found";
 	}
 
 	private int increment(int ind) {

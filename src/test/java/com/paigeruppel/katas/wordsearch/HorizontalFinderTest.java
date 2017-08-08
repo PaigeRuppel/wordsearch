@@ -71,4 +71,12 @@ public class HorizontalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).horizontalScan(), is("lab: (2,2),(2,1),(2,0)"));
 	}
+	
+	@Test
+	public void shouldReturnNotFoundForCat() {
+		toFind = "cat";
+		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'x', 'x' }, { 'b', 'a', 'l' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).horizontalScan(), is("not found"));
+	}
 }
