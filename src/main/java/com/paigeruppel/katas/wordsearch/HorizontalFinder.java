@@ -7,13 +7,13 @@ public class HorizontalFinder {
 	private LetterGrid grid;
 	int maxInd;
 
-	private String answer;
+	private AnswerBuilder answer;
 
 	public HorizontalFinder(String toFind, LetterGrid grid) {
 		this.toFind = toFind;
 		this.grid = grid;
 		maxInd = toFind.length() - 1;
-		resetAnswer();
+		answer = new AnswerBuilder(toFind);
 	}
 
 	public HorizontalFinder() {
@@ -21,41 +21,35 @@ public class HorizontalFinder {
 
 	public String horizontalScan() {
 		int ind = 0;
+		char currentChar = '0';
 		boolean answerFound = false;
 		boolean reversed = false;
-		
-		while(answerFound == false) {
-		for (int row = 0; row < grid.rowLength; row++) {
-			for (int col = 0; col < grid.colLength; col++) {
-				if (grid.getCharacterAt(row, col) == toFind.charAt(ind)) {
-					answer += coords(row, col);
-					if (ind == maxInd) {
-						answerFound = true;
-						if (reversed) {
-							answer = new StringBuilder(answer).reverse().toString();
-							toFind = new StringBuilder(toFind).reverse().toString();
-						}
-						return toFind + ":" + answer;
-					} else {
-						ind = increment(ind);
-						if (grid.getNextCharacterHorizontalFrom(row, col) != toFind.charAt(ind)) {
-							resetAnswer();
-							ind = 0;
+
+		while (answerFound == false) {
+			for (int row = 0; row < grid.rowLength; row++) {
+				for (int col = 0; col < grid.colLength; col++) {
+					currentChar = toFind.charAt(ind);
+					if (grid.getCharacterAt(row, col) == currentChar) {
+						answer.buildAnswerMap(currentChar, coords(row, col));
+						if (ind == maxInd) {
+							answerFound = true;
+							return answer.generate();
+						} else {
+							ind = increment(ind);
+							if (grid.getNextCharacterHorizontalFrom(row, col) != toFind.charAt(ind)) {
+								answer.reset();
+								ind = 0;
+							}
 						}
 					}
 				}
+				answer.reset();
+				ind = 0;
 			}
-			resetAnswer();
-			ind = 0;
+			toFind = new StringBuilder(toFind).reverse().toString();
+			reversed = true;
 		}
-		toFind = new StringBuilder(toFind).reverse().toString();
-		reversed = true;
-		}
-		return answer;
-	}
-
-	private void resetAnswer() {
-		answer = "";
+		return answer.generate();
 	}
 
 	private int increment(int ind) {

@@ -4,13 +4,13 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
-
-import com.paigeruppel.katas.wordsearch.HorizontalFinder;
+import org.mockito.Mock;
 
 public class HorizontalFinderTest {
 
 	private LetterGrid grid;
 	private String toFind;
+
 
 	public HorizontalFinder createTest(String toFind, LetterGrid grid) {
 		return new HorizontalFinder(toFind, grid);
