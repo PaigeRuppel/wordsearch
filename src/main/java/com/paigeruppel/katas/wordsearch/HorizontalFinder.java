@@ -3,20 +3,12 @@ package com.paigeruppel.katas.wordsearch;
 // To satisfy the first user story
 public class HorizontalFinder {
 
-	private String toFind;
 	private LetterGrid grid;
-	int maxInd;
-
 	private AnswerBuilder answer;
 
 	public HorizontalFinder(String toFind, LetterGrid grid) {
-		this.toFind = toFind;
 		this.grid = grid;
-
-		answer = new AnswerBuilder(this.toFind);
-	}
-
-	public HorizontalFinder() {
+		answer = new AnswerBuilder(toFind);
 	}
 
 	public String horizontalScan() {
