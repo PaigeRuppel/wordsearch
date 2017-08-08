@@ -27,7 +27,6 @@ public class LetterGrid {
 	}
 
 	public Character getNextCharacterVerticalFrom(int row, int col) {
-		// TODO Auto-generated method stub
-		return 'e';
+		return toSearch[row+1][col];
 	}
 }
