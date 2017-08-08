@@ -9,6 +9,6 @@ public class LetterGrid {
 	}
 	
 	public Character getCharacterAt(int row, int col) {
-		return 'a';
+		return toSearch[row][col];
 	}
 }
