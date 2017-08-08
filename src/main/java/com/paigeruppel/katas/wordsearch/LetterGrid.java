@@ -12,8 +12,8 @@ public class LetterGrid {
 		return toSearch[row][col];
 	}
 
-	public Character getNextCharacterHorizontalFrom(int i, int j) {
+	public Character getNextCharacterHorizontalFrom(int row, int col) {
 		// TODO Auto-generated method stub
-		return 'c';
+		return toSearch[row][col+1];
 	}
 }

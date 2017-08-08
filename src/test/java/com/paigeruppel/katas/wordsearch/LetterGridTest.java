@@ -30,4 +30,9 @@ public class LetterGridTest {
 	public void shouldReturnCFromLookAtNextHorizontalPositionFromZeroOne() {
 		assertThat(underTest.getNextCharacterHorizontalFrom(0,1), is('c'));
 	}
+	
+	@Test
+	public void shouldReturnFFromLookAtNextHorizontalPositionFromOneOne() {
+		assertThat(underTest.getNextCharacterHorizontalFrom(1,1), is('f'));
+	}
 }
