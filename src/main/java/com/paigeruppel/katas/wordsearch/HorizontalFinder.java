@@ -23,8 +23,6 @@ public class HorizontalFinder {
 		int ind = 0;
 		char currentChar = '0';
 		boolean answerFound = false;
-		boolean reversed = false;
-
 		while (answerFound == false) {
 			for (int row = 0; row < grid.rowLength; row++) {
 				for (int col = 0; col < grid.colLength; col++) {
@@ -47,7 +45,6 @@ public class HorizontalFinder {
 				ind = 0;
 			}
 			toFind = new StringBuilder(toFind).reverse().toString();
-			reversed = true;
 		}
 		return answer.generate();
 	}

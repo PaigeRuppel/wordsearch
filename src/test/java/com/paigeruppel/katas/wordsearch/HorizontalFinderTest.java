@@ -21,7 +21,7 @@ public class HorizontalFinderTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'c', 'a', 't' }, { 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).horizontalScan(), is("cat:(1,0)(1,1)(1,2)"));
+		assertThat(createTest(toFind, grid).horizontalScan(), is("cat: (1,0),(1,1),(1,2)"));
 	}
 
 	@Test
@@ -29,7 +29,7 @@ public class HorizontalFinderTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'c', 'a', 't' }, { 'x', 'x', 'x' }, { 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).horizontalScan(), is("cat:(0,0)(0,1)(0,2)"));
+		assertThat(createTest(toFind, grid).horizontalScan(), is("cat: (0,0),(0,1),(0,2)"));
 	}
 
 	@Test
@@ -37,7 +37,7 @@ public class HorizontalFinderTest {
 		toFind = "la";
 		char[][] toSearch = { { 'x', 'l', 'a' }, { 'x', 'x', 'x' }, { 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).horizontalScan(), is("la:(0,1)(0,2)"));
+		assertThat(createTest(toFind, grid).horizontalScan(), is("la: (0,1),(0,2)"));
 	}
 
 	@Test
@@ -45,7 +45,7 @@ public class HorizontalFinderTest {
 		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'l', 'a' }, { 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).horizontalScan(), is("la:(1,1)(1,2)"));
+		assertThat(createTest(toFind, grid).horizontalScan(), is("la: (1,1),(1,2)"));
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class HorizontalFinderTest {
 		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'l', 'l', 'a' }, { 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).horizontalScan(), is("la:(1,1)(1,2)"));
+		assertThat(createTest(toFind, grid).horizontalScan(), is("la: (1,1),(1,2)"));
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class HorizontalFinderTest {
 		toFind = "lab";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'l', 'l', 'a' }, { 'l', 'a', 'b' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).horizontalScan(), is("lab:(2,0)(2,1)(2,2)"));
+		assertThat(createTest(toFind, grid).horizontalScan(), is("lab: (2,0),(2,1),(2,2)"));
 	}
 	
 	@Test
@@ -69,6 +69,6 @@ public class HorizontalFinderTest {
 		toFind = "lab";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'x', 'x' }, { 'b', 'a', 'l' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).horizontalScan(), is("lab:(2,2)(2,1)(2,0)"));
+		assertThat(createTest(toFind, grid).horizontalScan(), is("lab: (2,2),(2,1),(2,0)"));
 	}
 }
