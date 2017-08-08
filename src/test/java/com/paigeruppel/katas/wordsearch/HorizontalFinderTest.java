@@ -39,4 +39,11 @@ public class HorizontalFinderTest {
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'l', 'a' }, { 'x', 'x', 'x' } };
 		assertThat(createTest(toFind, toSearch).horizontalScan(), is("la:(1,1)(1,2)"));
 	}
+	
+	@Test
+	public void shouldReturnLaAtRowOneColumnOneTwoWithTwoConfoundingL() {
+		String toFind = "la";
+		char[][] toSearch = { { 'l', 'x', 'x' }, { 'l', 'l', 'a' }, { 'x', 'x', 'x' } };
+		assertThat(createTest(toFind, toSearch).horizontalScan(), is("la:(1,1)(1,2)"));
+	}
 }

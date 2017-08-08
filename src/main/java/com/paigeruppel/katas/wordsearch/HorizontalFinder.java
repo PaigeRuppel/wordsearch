@@ -1,5 +1,8 @@
 package com.paigeruppel.katas.wordsearch;
 
+import java.util.HashMap;
+import java.util.Map;
+
 // To satisfy the first user story
 public class HorizontalFinder {
 
@@ -7,19 +10,20 @@ public class HorizontalFinder {
 	private char[][] toSearch;
 	int maxInd;
 
+	private String answer;
+
 	public HorizontalFinder(String toFind, char[][] toSearch) {
 		this.toFind = toFind;
 		this.toSearch = toSearch;
 		maxInd = toFind.length() - 1;
+		resetAnswer();
 	}
 
 	public String horizontalScan() {
-		String answer = toFind + ":";
 		int ind = 0;
 
 		for (int row = 0; row < toSearch.length; row++) {
 			for (int col = 0; col < toSearch[row].length; col++) {
-
 				if (toSearch[row][col] == toFind.charAt(ind)) {
 					answer += coords(row, col);
 					if (ind == maxInd) {
@@ -27,13 +31,27 @@ public class HorizontalFinder {
 					} else {
 						ind = increment(ind);
 					}
+				} else {
+					resetAnswer();
+					ind = 0;
+					if (toSearch[row][col] == toFind.charAt(ind)) {
+						answer += coords(row, col);
+						if (ind == maxInd) {
+							return answer;
+						} else {
+							ind = increment(ind);
+						}
+					}
 				}
-
 			}
-			answer = toFind + ":";
+			resetAnswer();
 			ind = 0;
 		}
 		return answer;
+	}
+
+	private void resetAnswer() {
+		answer = toFind + ":";
 	}
 
 	private int increment(int ind) {
