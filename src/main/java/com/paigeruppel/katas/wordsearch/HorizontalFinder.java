@@ -30,16 +30,9 @@ public class HorizontalFinder {
 						return answer;
 					} else {
 						ind = increment(ind);
-					}
-				} else {
-					resetAnswer();
-					ind = 0;
-					if (grid.getCharacterAt(row, col)  == toFind.charAt(ind)) {
-						answer += coords(row, col);
-						if (ind == maxInd) {
-							return answer;
-						} else {
-							ind = increment(ind);
+						if (grid.getNextCharacterHorizontalFrom(row, col) != toFind.charAt(ind)) {
+							resetAnswer();
+							ind = 0;
 						}
 					}
 				}

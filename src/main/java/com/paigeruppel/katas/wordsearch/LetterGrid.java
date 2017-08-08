@@ -3,8 +3,8 @@ package com.paigeruppel.katas.wordsearch;
 public class LetterGrid {
 
 	private char[][] toSearch;
-	public int rowLength;
-	public int colLength;
+	protected int rowLength;
+	protected int colLength;
 
 	public LetterGrid(char[][] toSearch) {
 		this.toSearch = toSearch;
