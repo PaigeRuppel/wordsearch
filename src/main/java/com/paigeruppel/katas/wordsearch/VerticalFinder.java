@@ -20,8 +20,8 @@ public class VerticalFinder {
 		for (int col = 0; col < grid.colLength; col++) {
 			for (int row = 0; row < grid.rowLength; row++) {
 				if (grid.getCharacterAt(row, col) == toFind.charAt(ind)) {
-					answer.buildAnswerMap(toFind.charAt(ind), "(" + row + "," + col + ")");
-					if (ind < toFind.length() - 1) {
+					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+					if (!answer.maxInd(ind)) {
 						ind++;
 					}
 				}
