@@ -61,4 +61,12 @@ public class VerticalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).verticalScan(), is("fit: (2,2),(1,2),(0,2)"));
 	}
+	
+	@Test
+	public void shouldReturnNotFoundForBit() {
+		toFind = "bit";
+		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).verticalScan(), is("not found"));
+	}
 }

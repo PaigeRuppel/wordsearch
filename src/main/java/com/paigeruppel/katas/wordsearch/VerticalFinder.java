@@ -31,15 +31,12 @@ public class VerticalFinder {
 								ind = 0;
 							}
 						}
-
 					}
-
 				}
-
 			}
 			answer.reverseWord();
 			tries++;
 		}
-		return answer.generate();
+		return "not found";
 	}
 }
