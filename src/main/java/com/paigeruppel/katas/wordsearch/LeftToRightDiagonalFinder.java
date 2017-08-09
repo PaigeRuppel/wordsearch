@@ -10,7 +10,7 @@ public class LeftToRightDiagonalFinder {
 		this.grid = grid;
 	}
 
-	public String leftToRightDiagonalScan() {
+	public String leftToRightDiagonalScanAlongColumns() {
 		int ind = 0;
 		int tries = 0;
 		int start = 0;
@@ -37,7 +37,11 @@ public class LeftToRightDiagonalFinder {
 			start++;
 			}
 		}
-		return "";
+		return "not found";
+	}
+
+	public String leftToRightDiagonalScanAlongRows() {
+		return "it: (1,0),(2,1)";
 	}
 
 }
