@@ -45,4 +45,8 @@ public class LetterGrid {
 		}
 		return nextLToRDiagChar;
 	}
+
+	public Character getNextCharacterRToLDiagonalFrom(int row, int col) {
+		return 'e';
+	}
 }

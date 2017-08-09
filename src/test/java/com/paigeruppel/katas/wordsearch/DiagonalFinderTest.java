@@ -45,7 +45,7 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopLeft(), is("it: (0,1),(1,2)"));
 	}
-	
+
 	@Test
 	public void shouldReturnItAtOneTwoZeroOne() {
 		toFind = "it";
@@ -53,7 +53,7 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopLeft(), is("it: (1,2),(0,1)"));
 	}
-	
+
 	@Test
 	public void shouldReturnNotFoundForCat() {
 		toFind = "cat";
@@ -61,7 +61,7 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopLeft(), is("not found"));
 	}
-	
+
 	@Test
 	public void shouldReturnItAtOneZeroTwoOne() {
 		toFind = "it";
@@ -69,40 +69,43 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopLeft(), is("it: (1,0),(2,1)"));
 	}
-	
-	
+
 	@Test
 	public void shouldReturnItAtTwoZeroThreeOne() {
 		toFind = "it";
-		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'i', 'x', 'x', 'x' },{'x','t','x','x'} };
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'i', 'x', 'x', 'x' },
+				{ 'x', 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopLeft(), is("it: (2,0),(3,1)"));
 	}
-	
+
 	@Test
 	public void shouldReturnItAtTwoZeroThreeOneWithConfoundingT() {
 		toFind = "it";
-		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'i', 'x', 't', 'x' },{'x','t','x','x'} };
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'i', 'x', 't', 'x' },
+				{ 'x', 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopLeft(), is("it: (2,0),(3,1)"));
 	}
-	
+
 	@Test
 	public void shouldReturnItAtThreeOneTwoZeroWithConfoundingI() {
 		toFind = "it";
-		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },{'x','i','x','x'} };
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },
+				{ 'x', 'i', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopLeft(), is("it: (3,1),(2,0)"));
 	}
-	
+
 	@Test
 	public void shouldReturnNotFoundForBat() {
 		toFind = "bat";
-		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },{'x','i','x','x'} };
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },
+				{ 'x', 'i', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopLeft(), is("not found"));
 	}
-	
+
 	@Test
 	public void shouldReturnCatAtZeroTwoOneOneTwoZero() {
 		toFind = "cat";
@@ -110,7 +113,7 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("cat: (0,2),(1,1),(2,0)"));
 	}
-	
+
 	@Test
 	public void shouldReturnAtAtOneOneTwoZero() {
 		toFind = "at";
@@ -118,7 +121,7 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("at: (1,1),(2,0)"));
 	}
-	
+
 	@Test
 	public void shouldReturnAtAtZeroOneOneZero() {
 		toFind = "at";
@@ -126,5 +129,14 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("at: (0,1),(1,0)"));
 	}
-	
+
+	@Test
+	public void shouldReturnCatAtZeroTwoOneOneTwoZeroWithConfoundingLetters() {
+		toFind = "cat";
+		char[][] toSearch = { { 'x', 'x', 'c', 'c' }, { 't', 'a', 'a', 'x' }, { 't', 'x', 't', 'x' },
+				{ 'x', 'x', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("cat: (0,2),(1,1),(2,0)"));
+	}
+
 }

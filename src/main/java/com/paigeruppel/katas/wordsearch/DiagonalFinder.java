@@ -85,6 +85,9 @@ public class DiagonalFinder {
 					return answer.generate();
 				} else {
 					ind++;
+					if (grid.getNextCharacterRToLDiagonalFrom(row, col) == answer.currentChar(ind)) {
+						
+					}
 				}
 			}
 		}
