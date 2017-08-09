@@ -80,4 +80,9 @@ public class LetterGridTest {
 	public void shouldReturnEFromLookAtNextRToLDiagonalPositionFromZeroTwo() {
 		assertThat(underTest.getNextCharacterRToLDiagonalFrom(0,2), is('e'));
 	}
+	
+	@Test
+	public void shouldReturnDFromLookAtNextRToLDiagonalPositionFromZeroOne() {
+		assertThat(underTest.getNextCharacterRToLDiagonalFrom(0,1), is('d'));
+	}
 }
