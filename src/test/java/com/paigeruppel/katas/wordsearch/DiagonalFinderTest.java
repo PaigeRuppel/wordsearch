@@ -118,4 +118,13 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("at: (1,1),(2,0)"));
 	}
+	
+	@Test
+	public void shouldReturnAtAtZeroOneOneZero() {
+		toFind = "at";
+		char[][] toSearch = { { 'x', 'a', 'x' }, { 't', 'x', 'x' }, { 'x', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("at: (0,1),(1,0)"));
+	}
+	
 }
