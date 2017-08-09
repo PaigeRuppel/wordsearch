@@ -14,7 +14,7 @@ public class DiagonalFinder {
 	private int tries;
 	private int start;
 
-	public String scanAlongColumnsLeftToRight() {
+	public String scanAlongColumnsFromTopLeft() {
 		ind = 0;
 		tries = 0;
 		start = 0;
@@ -35,7 +35,7 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-	public String scanAlongRowsTopToBottom() {
+	public String scanAlongRowsFromTopLeft() {
 		start = 1; // since row zero is scanned in alongColumn method
 		ind = 0;
 		tries = 0;
@@ -71,5 +71,25 @@ public class DiagonalFinder {
 			answer.reset();
 			ind = 0;
 		}
+	}
+
+	public String scanAlongColumnsFromTopRight() {
+		start = grid.colLength - 1;
+		ind = 0;
+		
+		while (start > 0) {
+		for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
+			if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
+				answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+				if (answer.maxInd(ind)) {
+					return answer.generate();
+				} else {
+					ind++;
+				}
+			}
+		}
+		start--;
+		}
+		return "";
 	}
 }
