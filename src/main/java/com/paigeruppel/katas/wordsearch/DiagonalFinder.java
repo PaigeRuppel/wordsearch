@@ -1,11 +1,11 @@
 package com.paigeruppel.katas.wordsearch;
 
-public class LeftToRightDiagonalFinder {
+public class DiagonalFinder {
 
 	private AnswerBuilder answer;
 	private LetterGrid grid;
 
-	public LeftToRightDiagonalFinder(String toFind, LetterGrid grid) {
+	public DiagonalFinder(String toFind, LetterGrid grid) {
 		answer = new AnswerBuilder(toFind);
 		this.grid = grid;
 	}
@@ -14,7 +14,7 @@ public class LeftToRightDiagonalFinder {
 	private int tries;
 	private int start;
 
-	public String scanAlongColumns() {
+	public String scanAlongColumnsLeftToRight() {
 		ind = 0;
 		tries = 0;
 		start = 0;
@@ -35,7 +35,7 @@ public class LeftToRightDiagonalFinder {
 		return "not found";
 	}
 
-	public String scanAlongRows() {
+	public String scanAlongRowsTopToBottom() {
 		start = 1; // since row zero is scanned in alongColumn method
 		ind = 0;
 		tries = 0;
@@ -53,7 +53,7 @@ public class LeftToRightDiagonalFinder {
 			}
 			checkPositionAndContinueOrReverseWord();
 		}
-		return "";
+		return "not found";
 	}
 
 	private void checkPositionAndContinueOrReverseWord() {
