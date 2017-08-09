@@ -65,4 +65,9 @@ public class LetterGridTest {
 	public void shouldReturnFFromLookAtNextLToRDiagonalPositionFromZeroOne() {
 		assertThat(underTest.getNextCharacterLToRDiagonalFrom(0,1), is('f'));
 	}
+	
+	@Test
+	public void shouldReturn0FromLookAtNextLToRDiagonalPositionFromZeroTwo() {
+		assertThat(underTest.getNextCharacterLToRDiagonalFrom(0,2), is('0'));
+	}
 }
