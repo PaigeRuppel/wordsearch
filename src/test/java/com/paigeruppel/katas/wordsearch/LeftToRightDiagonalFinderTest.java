@@ -86,4 +86,12 @@ public class LeftToRightDiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRows(), is("it: (2,0),(3,1)"));
 	}
+	
+	@Test
+	public void shouldReturnItAtThreeOneTwoZeroWithConfoundingI() {
+		toFind = "it";
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },{'x','i','x','x'} };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongRows(), is("it: (3,1),(2,0)"));
+	}
 }

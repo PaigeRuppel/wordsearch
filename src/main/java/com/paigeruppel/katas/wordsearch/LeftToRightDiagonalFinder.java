@@ -29,7 +29,7 @@ public class LeftToRightDiagonalFinder {
 							col++;
 						}
 					}
-					
+
 				}
 			}
 			if (start == grid.colLength - 1) {
@@ -46,7 +46,8 @@ public class LeftToRightDiagonalFinder {
 	public String scanAlongRows() {
 		int start = 1; // since row zero is scanned in alongColumn method
 		int ind = 0;
-		while (start < grid.rowLength) {
+		int tries = 0;
+		while (tries < 2) {
 			for (int row = start, col = 0; row < grid.rowLength && col < grid.colLength; col++) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
@@ -56,15 +57,20 @@ public class LeftToRightDiagonalFinder {
 						ind++;
 						if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(ind)) {
 							answer.reset();
-							ind=0;
+							ind = 0;
 						} else {
 							row++;
 						}
 					}
 				}
 			}
-			start++;
-
+			if (start == grid.rowLength - 1) {
+				start = 0;
+				answer.reverseWord();
+				tries++;
+			} else {
+				start++;
+			}
 		}
 		return "";
 	}
