@@ -82,7 +82,22 @@ public class DiagonalFinder {
 	}
 
 	public Object scanAlongRowsFromTopRight() {
-		return "cat: (2,0),(1,1),(0,2)";
+		start = 0;
+		ind = 0;
+		
+		for (int row = 1, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
+			if (grid.getCharacterAt(row, col) == answer.currentChar(ind) ) {
+				answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+				
+				if (answer.maxInd(ind)) {
+					return answer.generate();
+				} else {
+					ind++;
+				}
+			}
+		}
+		
+		return "";
 	}
 
 	private void checkPositionAndDecrementStartOrReverseWord() {

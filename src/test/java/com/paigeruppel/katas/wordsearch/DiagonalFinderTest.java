@@ -163,7 +163,16 @@ public class DiagonalFinderTest {
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'c' }, { 'x', 'x', 'a', 'x' },
 				{ 'x', 't', 'x', 'x', } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("cat: (2,0),(1,1),(0,2)"));
+		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("cat: (1,3),(2,2),(3,1)"));
+	}
+	
+	@Test
+	public void shouldReturnItAtOneThreeTwoTwoZeroOne() {
+		toFind = "it";
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'i', 'x' },
+				{ 'x', 't', 'x', 'x', } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("it: (2,2),(3,1)"));
 	}
 
 }
