@@ -21,7 +21,7 @@ public class LeftToRightDiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).leftToRightDiagonalScan(), is("cat: (0,0),(1,1),(2,2)"));
 	}
-	
+
 	@Test
 	public void shouldReturnItAtOneOneTwoTwo() {
 		toFind = "it";
@@ -29,10 +29,19 @@ public class LeftToRightDiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).leftToRightDiagonalScan(), is("it: (1,1),(2,2)"));
 	}
+
 	@Test
 	public void shouldReturnItAtZeroOneOneTwo() {
 		toFind = "it";
 		char[][] toSearch = { { 'x', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).leftToRightDiagonalScan(), is("it: (0,1),(1,2)"));
+	}
+
+	@Test
+	public void shouldReturnItAtZeroOneOneTwoWithConfoundingI() {
+		toFind = "it";
+		char[][] toSearch = { { 'i', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).leftToRightDiagonalScan(), is("it: (0,1),(1,2)"));
 	}
