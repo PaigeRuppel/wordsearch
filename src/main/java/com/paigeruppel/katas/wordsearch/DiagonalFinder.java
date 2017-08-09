@@ -26,11 +26,11 @@ public class DiagonalFinder {
 						return answer.generate();
 					} else {
 						ind++;
-						resetIfNextCharNotPresent(row, col);
+						resetIfNextLToRDiagCharNotPresent(row, col);
 					}
 				}
 			}
-			checkPositionAndContinueOrReverseWord();
+			checkPositionAndIncrementStartOrReverseWord();
 		}
 		return "not found";
 	}
@@ -47,16 +47,47 @@ public class DiagonalFinder {
 						return answer.generate();
 					} else {
 						ind++;
-						resetIfNextCharNotPresent(row, col);
+						resetIfNextLToRDiagCharNotPresent(row, col);
 					}
 				}
 			}
-			checkPositionAndContinueOrReverseWord();
+			checkPositionAndIncrementStartOrReverseWord();
 		}
 		return "not found";
 	}
 
-	private void checkPositionAndContinueOrReverseWord() {
+
+	public String scanAlongColumnsFromTopRight() {
+		start = grid.colLength - 1;
+		ind = 0;
+
+		while (tries < 2) {
+			for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
+				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
+					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+					if (answer.maxInd(ind)) {
+						return answer.generate();
+					} else {
+						ind++;
+						if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(ind)) {
+							answer.reset();
+							ind = 0;
+						}
+					}
+				}
+			}
+			if (start == 0) {
+				start = grid.colLength - 1;
+				answer.reverseWord();
+				tries++;
+			} else {
+				start--;
+			}
+		}
+		return "";
+	}
+	
+	private void checkPositionAndIncrementStartOrReverseWord() {
 		if (start == grid.colLength - 1) {
 			start = 0;
 			answer.reverseWord();
@@ -65,34 +96,11 @@ public class DiagonalFinder {
 			start++;
 		}
 	}
-
-	private void resetIfNextCharNotPresent(int row, int col) {
+	
+	private void resetIfNextLToRDiagCharNotPresent(int row, int col) {
 		if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(ind)) {
 			answer.reset();
 			ind = 0;
 		}
-	}
-
-	public String scanAlongColumnsFromTopRight() {
-		start = grid.colLength - 1;
-		ind = 0;
-		
-		while (start > 0) {
-		for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
-			if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-				answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
-				if (answer.maxInd(ind)) {
-					return answer.generate();
-				} else {
-					ind++;
-					if (grid.getNextCharacterRToLDiagonalFrom(row, col) == answer.currentChar(ind)) {
-						
-					}
-				}
-			}
-		}
-		start--;
-		}
-		return "";
 	}
 }

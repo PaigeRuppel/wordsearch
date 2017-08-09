@@ -139,4 +139,13 @@ public class DiagonalFinderTest {
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("cat: (0,2),(1,1),(2,0)"));
 	}
 
+	@Test
+	public void shouldReturnCatAtTwoZeroOneOneZeroTwoWithConfoundingLetters() {
+		toFind = "cat";
+		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
+				{ 'x', 'x', 'x', 'x', } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("cat: (2,0),(1,1),(0,2)"));
+	}
+
 }
