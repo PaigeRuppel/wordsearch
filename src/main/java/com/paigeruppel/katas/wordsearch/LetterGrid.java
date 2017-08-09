@@ -37,6 +37,6 @@ public class LetterGrid {
 	}
 
 	public Character getNextCharacterLToRDiagonalFrom(int row, int col) {
-		return 'e';
+		return toSearch[row+1][col+1];
 	}
 }
