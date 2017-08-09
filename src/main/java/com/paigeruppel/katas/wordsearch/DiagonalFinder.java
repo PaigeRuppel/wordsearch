@@ -76,15 +76,23 @@ public class DiagonalFinder {
 					}
 				}
 			}
-			if (start == 0) {
-				start = grid.colLength - 1;
-				answer.reverseWord();
-				tries++;
-			} else {
-				start--;
-			}
+			checkPositionAndDecrementStartOrReverseWord();
 		}
-		return "";
+		return "not found";
+	}
+
+	public Object scanAlongRowsFromTopRight() {
+		return "cat: (2,0),(1,1),(0,2)";
+	}
+
+	private void checkPositionAndDecrementStartOrReverseWord() {
+		if (start == 0) {
+			start = grid.colLength - 1;
+			answer.reverseWord();
+			tries++;
+		} else {
+			start--;
+		}
 	}
 	
 	private void checkPositionAndIncrementStartOrReverseWord() {
@@ -103,4 +111,5 @@ public class DiagonalFinder {
 			ind = 0;
 		}
 	}
+
 }

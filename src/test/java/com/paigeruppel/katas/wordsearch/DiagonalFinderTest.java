@@ -147,5 +147,23 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("cat: (2,0),(1,1),(0,2)"));
 	}
+	
+	@Test
+	public void shouldReturnNotFoundForCog() {
+		toFind = "cog";
+		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
+				{ 'x', 'x', 'x', 'x', } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("not found"));
+	}
+	
+	@Test
+	public void shouldReturnCatAtOneThreeTwoTwoZeroOne() {
+		toFind = "cat";
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'c' }, { 'x', 'x', 'a', 'x' },
+				{ 'x', 't', 'x', 'x', } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("cat: (2,0),(1,1),(0,2)"));
+	}
 
 }
