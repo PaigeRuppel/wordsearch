@@ -11,19 +11,23 @@ public class LeftToRightDiagonalFinder {
 	}
 
 	public String leftToRightDiagonalScan() {
-//		int col = 0;
+		// int col = 0;
 		int ind = 0;
-		for (int row = 0, col = 0; row < grid.rowLength; row++, col++) {
-			if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-				answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
-				
-				if (answer.maxInd(ind)) {
-				return answer.generate();
-				} else {
-					ind++;
-				}
-		}
+		int start = 0;
+		while (start < grid.colLength) {
+			for (int row = 0, col = start; row < grid.rowLength; row++, col++) {
+				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
+					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
 
+					if (answer.maxInd(ind)) {
+						return answer.generate();
+					} else {
+						ind++;
+					}
+				}
+
+			}
+			start++;
 		}
 		return "";
 	}
