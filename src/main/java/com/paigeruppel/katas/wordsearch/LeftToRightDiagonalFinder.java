@@ -10,12 +10,12 @@ public class LeftToRightDiagonalFinder {
 		this.grid = grid;
 	}
 
-	public String leftToRightDiagonalScanAlongColumns() {
+	public String scanAlongColumns() {
 		int ind = 0;
 		int tries = 0;
 		int start = 0;
 		while (tries < 2) {
-			for (int row = 0, col = start; row < grid.rowLength && col < grid.colLength; row++, col++) {
+			for (int row = 0, col = start; row < grid.rowLength && col < grid.colLength; row++) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
 					if (answer.maxInd(ind)) {
@@ -25,8 +25,11 @@ public class LeftToRightDiagonalFinder {
 						if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(ind)) {
 							answer.reset();
 							ind = 0;
+						} else {
+							col++;
 						}
 					}
+					
 				}
 			}
 			if (start == grid.colLength - 1) {
@@ -34,14 +37,36 @@ public class LeftToRightDiagonalFinder {
 				answer.reverseWord();
 				tries++;
 			} else {
-			start++;
+				start++;
 			}
 		}
 		return "not found";
 	}
 
-	public String leftToRightDiagonalScanAlongRows() {
-		return "it: (1,0),(2,1)";
+	public String scanAlongRows() {
+		int start = 1; // since row zero is scanned in alongColumn method
+		int ind = 0;
+		while (start < grid.rowLength) {
+			for (int row = start, col = 0; row < grid.rowLength && col < grid.colLength; col++) {
+				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
+					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+					if (answer.maxInd(ind)) {
+						return answer.generate();
+					} else {
+						ind++;
+						if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(ind)) {
+							answer.reset();
+							ind=0;
+						} else {
+							row++;
+						}
+					}
+				}
+			}
+			start++;
+
+		}
+		return "";
 	}
 
 }

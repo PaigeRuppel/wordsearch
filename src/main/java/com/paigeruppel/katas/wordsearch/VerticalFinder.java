@@ -13,7 +13,7 @@ public class VerticalFinder {
 		answer = new AnswerBuilder(toFind);
 	}
 
-	public String verticalScan() {
+	public String scan() {
 		int ind = 0;
 		int tries = 0;
 

@@ -11,7 +11,7 @@ public class HorizontalFinder {
 		answer = new AnswerBuilder(toFind);
 	}
 
-	public String horizontalScan() {
+	public String scan() {
 		int ind = 0;
 		int tries = 0;
 		while (tries < 2) {
