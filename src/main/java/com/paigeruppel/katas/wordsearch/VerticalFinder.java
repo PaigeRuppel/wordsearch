@@ -25,7 +25,7 @@ public class VerticalFinder {
 						if (answer.maxInd(ind)) {
 							return answer.generate();
 						} else {
-							ind = answer.increment(ind);
+							ind++;
 							if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
 								answer.reset();
 								ind = 0;

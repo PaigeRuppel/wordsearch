@@ -21,4 +21,12 @@ public class LeftToRightDiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).leftToRightDiagonalScan(), is("cat: (0,0),(1,1),(2,2)"));
 	}
+	
+	@Test
+	public void shouldReturnItAtOneOneTwoTwo() {
+		toFind = "it";
+		char[][] toSearch = { { 'x', 'x', 'x' }, { 'x', 'i', 'x' }, { 'x', 'x', 't' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).leftToRightDiagonalScan(), is("it: (1,1),(2,2)"));
+	}
 }
