@@ -47,6 +47,12 @@ public class LetterGrid {
 	}
 
 	public Character getNextCharacterRToLDiagonalFrom(int row, int col) {
-		return toSearch[row+1][col-1];
+		Character nextRToLDiagChar;
+		if (col - 1 > -1) {
+			nextRToLDiagChar = toSearch[row+1][col-1];
+		} else {
+			nextRToLDiagChar = '0';
+		}
+		return nextRToLDiagChar;
 	}
 }
