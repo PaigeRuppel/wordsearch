@@ -38,8 +38,8 @@ public class LetterGrid {
 
 	public Character getNextCharacterLToRDiagonalFrom(int row, int col) {
 		Character nextLToRDiagChar;
-		if (col+1 < toSearch[0].length) {
-			nextLToRDiagChar = toSearch[row+1][col+1];
+		if (col + 1 < toSearch[0].length && row + 1 < toSearch.length) {
+			nextLToRDiagChar = toSearch[row + 1][col + 1];
 		} else {
 			nextLToRDiagChar = '0';
 		}
