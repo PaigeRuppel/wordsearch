@@ -23,6 +23,10 @@ public class LeftToRightDiagonalFinder {
 						return answer.generate();
 					} else {
 						ind++;
+						if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(ind)) {
+							answer.reset();
+							ind = 0;
+						}
 					}
 				}
 
