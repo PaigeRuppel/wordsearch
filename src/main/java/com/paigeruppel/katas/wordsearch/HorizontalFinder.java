@@ -23,7 +23,7 @@ public class HorizontalFinder {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 						answer.buildAnswerList(ind, answer.coords(row, col));
 						if (answer.maxInd(ind)) {
-							return generatedAnswer();
+							return answer.generate(tries);
 						}
 						ind++;
 						resetIfNextHorizontalCharNotPresent(row, col);
@@ -43,12 +43,5 @@ public class HorizontalFinder {
 		}
 	}
 
-	private String generatedAnswer() {
-		if (tries == 0) {
-			return answer.generate();
-		} else {
-			return answer.generateReverse();
-		}
-	}
 
 }

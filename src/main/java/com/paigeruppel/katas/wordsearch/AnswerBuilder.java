@@ -45,18 +45,28 @@ public class AnswerBuilder {
 		return holder.charAt(ind);
 	}
 
-	public String generate() {
+	public String generate(int tries) {
 		String answer = toFind + ": ";
-		for (int i = 0; i < toFind.length(); i++) {
-			if (i < toFind.length() - 1) {
-				answer += answerList.get(i) + ",";
-			} else {
-				answer += answerList.get(i);
+		if (tries == 0) {
+			for (int i = 0; i < toFind.length(); i++) {
+				if (i < toFind.length() - 1) {
+					answer += answerList.get(i) + ",";
+				} else {
+					answer += answerList.get(i);
+				}
+			}
+		} else {
+			for (int i = toFind.length() - 1; i > -1; i--) {
+				if (i > 0) {
+					answer += answerList.get(i) + ",";
+				} else {
+					answer += answerList.get(i);
+				}
 			}
 		}
 		return answer;
 	}
-	
+
 	public String generateReverse() {
 		String answer = toFind + ": ";
 		for (int i = toFind.length() - 1; i > -1; i--) {
@@ -68,8 +78,6 @@ public class AnswerBuilder {
 		}
 		return answer;
 	}
-	
-	
 
 	public void reverseWord() {
 		holder = new StringBuilder(holder).reverse().toString();

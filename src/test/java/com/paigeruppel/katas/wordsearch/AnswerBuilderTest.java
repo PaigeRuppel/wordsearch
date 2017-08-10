@@ -24,7 +24,7 @@ public class AnswerBuilderTest {
 		underTest.buildAnswerList(0, "(0,0)");
 		underTest.buildAnswerList(1, "(0,1)");
 		underTest.buildAnswerList(2, "(0,2)");
-		assertThat(underTest.generate(), is("cat: (0,0),(0,1),(0,2)"));
+		assertThat(underTest.generate(0), is("cat: (0,0),(0,1),(0,2)"));
 	}
 	
 	@Test
@@ -33,7 +33,7 @@ public class AnswerBuilderTest {
 		underTest.buildAnswerList(0, "(1,0)");
 		underTest.buildAnswerList(1, "(1,1)");
 		underTest.buildAnswerList(2, "(1,2)");
-		assertThat(underTest.generate(), is("cat: (1,0),(1,1),(1,2)"));
+		assertThat(underTest.generate(0), is("cat: (1,0),(1,1),(1,2)"));
 	}
 	
 	@Test
@@ -43,6 +43,17 @@ public class AnswerBuilderTest {
 		underTest.buildAnswerList(1, "(1,1)");
 		underTest.buildAnswerList(2, "(1,2)");
 		underTest.buildAnswerList(3, "(1,3)");
-		assertThat(underTest.generate(), is("kata: (1,0),(1,1),(1,2),(1,3)"));
+		assertThat(underTest.generate(0), is("kata: (1,0),(1,1),(1,2),(1,3)"));
+	}
+	
+	//simulate reverse word
+	@Test
+	public void shouldReturnKataAtOneThreeOneTwoOneOneOneZero() {
+		underTest = new AnswerBuilder("kata");
+		underTest.buildAnswerList(0, "(1,0)");
+		underTest.buildAnswerList(1, "(1,1)");
+		underTest.buildAnswerList(2, "(1,2)");
+		underTest.buildAnswerList(3, "(1,3)");
+		assertThat(underTest.generate(1), is("kata: (1,3),(1,2),(1,1),(1,0)"));
 	}
 }

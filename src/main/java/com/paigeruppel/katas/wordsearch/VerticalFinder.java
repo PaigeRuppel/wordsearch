@@ -14,7 +14,7 @@ public class VerticalFinder {
 	}
 
 	private int ind;
-	private int tries;
+	protected int tries;
 
 	public String scan() {
 		ind = 0;
@@ -26,10 +26,11 @@ public class VerticalFinder {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 						answer.buildAnswerList(ind, answer.coords(row, col));
 						if (answer.maxInd(ind)) {
-							return generatedAnswer();
+							return answer.generate(tries);
+						} else {
+							ind++;
+							resetIfNextVerticalCharNotPresent(col, row);
 						}
-						ind++;
-						resetIfNextVerticalCharNotPresent(col, row);
 					}
 				}
 			}
@@ -46,11 +47,11 @@ public class VerticalFinder {
 		}
 	}
 
-	private String generatedAnswer() {
-		if (tries == 0) {
-			return answer.generate();
-		} else {
-			return answer.generateReverse();
-		}
-	}
+	// private String generatedAnswer() {
+	// if (tries == 0) {
+	// return answer.generate();
+	// } else {
+	// return answer.generateReverse();
+	// }
+	// }
 }
