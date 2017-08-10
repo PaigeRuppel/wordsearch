@@ -37,7 +37,7 @@ public class DiagonalFinder {
 
 
 	public String scanAlongRowsFromTopLeft() {
-		start = 1; // since row zero is scanned in alongColumn method
+		start = 1; 
 		ind = 0;
 		tries = 0;
 		while (tries < 2) {
@@ -69,10 +69,7 @@ public class DiagonalFinder {
 						return generatedAnswer();
 					} else {
 						ind++;
-						if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(ind)) {
-							answer.reset();
-							ind = 0;
-						}
+						resetIfNextRToLCharNotPresent(row, col);
 					}
 				}
 			}
@@ -80,6 +77,7 @@ public class DiagonalFinder {
 		}
 		return "not found";
 	}
+
 
 	public String scanAlongRowsFromTopRight() {
 		start = 1;
@@ -93,10 +91,7 @@ public class DiagonalFinder {
 						return generatedAnswer();
 					} else {
 						ind++;
-						if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(ind)) {
-							answer.reset();
-							ind = 0;
-						}
+						resetIfNextRToLCharNotPresent(row, col);
 					}
 				}
 			}
@@ -111,6 +106,13 @@ public class DiagonalFinder {
 			return answer.generate();
 		} else {
 			return answer.generateReverse();
+		}
+	}
+
+	private void resetIfNextRToLCharNotPresent(int row, int col) {
+		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(ind)) {
+			answer.reset();
+			ind = 0;
 		}
 	}
 
