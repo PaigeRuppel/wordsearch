@@ -21,7 +21,7 @@ public class VerticalFinder {
 			for (int col = 0; col < grid.colLength; col++) {
 				for (int row = 0; row < grid.rowLength; row++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-						answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+						answer.buildAnswerList(ind, answer.coords(row, col));
 						if (answer.maxInd(ind)) {
 							return answer.generate();
 						} else {

@@ -18,7 +18,7 @@ public class HorizontalFinder {
 			for (int row = 0; row < grid.rowLength; row++) {
 				for (int col = 0; col < grid.colLength; col++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-						answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+						answer.buildAnswerList(ind, answer.coords(row, col));
 						if (answer.maxInd(ind)) {
 							return answer.generate();
 						} else {

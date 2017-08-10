@@ -1,13 +1,12 @@
 package com.paigeruppel.katas.wordsearch;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class AnswerBuilder {
 
 	private String toFind;
 	private String holder;
-	protected Map<Character, String> answerMap = new HashMap<>();
+	protected ArrayList<String> answerList = new ArrayList<String>();
 	private int maxInd;
 
 	public AnswerBuilder(String toFind) {
@@ -16,12 +15,12 @@ public class AnswerBuilder {
 		maxInd = toFind.length() - 1;
 	}
 
-	public void buildAnswerMap(Character index, String coords) {
-		answerMap.put(index, coords);
+	public void buildAnswerList(Integer index, String coords) {
+		answerList.add(index, coords);
 	}
 
 	public void reset() {
-		answerMap.clear();
+		answerList.clear();
 	}
 
 	public String coords(int row, int col) {
@@ -50,15 +49,18 @@ public class AnswerBuilder {
 		String answer = toFind + ": ";
 		for (int i = 0; i < toFind.length(); i++) {
 			if (i < toFind.length() - 1) {
-				answer += answerMap.get(toFind.charAt(i)) + ",";
+				answer += answerList.get(i) + ",";
 			} else {
-				answer += answerMap.get(toFind.charAt(i));
+				answer += answerList.get(i);
 			}
 		}
 		return answer;
 	}
+	
+	
 
-	public void reverseWord() {
+	public boolean reverseWord() {
 		holder = new StringBuilder(holder).reverse().toString();
+		return true;
 	}
 }

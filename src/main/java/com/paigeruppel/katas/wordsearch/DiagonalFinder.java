@@ -21,7 +21,7 @@ public class DiagonalFinder {
 		while (tries < 2) {
 			for (int row = 0, col = start; row < grid.rowLength && col < grid.colLength; row++, col++) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+					answer.buildAnswerList(ind, answer.coords(row, col));
 					if (answer.maxInd(ind)) {
 						return answer.generate();
 					} else {
@@ -42,7 +42,7 @@ public class DiagonalFinder {
 		while (tries < 2) {
 			for (int row = start, col = 0; row < grid.rowLength && col < grid.colLength; row++, col++) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+					answer.buildAnswerList(ind, answer.coords(row, col));
 					if (answer.maxInd(ind)) {
 						return answer.generate();
 					} else {
@@ -64,7 +64,7 @@ public class DiagonalFinder {
 		while (tries < 2) {
 			for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+					answer.buildAnswerList(ind, answer.coords(row, col));
 					if (answer.maxInd(ind)) {
 						return answer.generate();
 					} else {
@@ -87,7 +87,7 @@ public class DiagonalFinder {
 		
 		for (int row = 1, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
 			if (grid.getCharacterAt(row, col) == answer.currentChar(ind) ) {
-				answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
+				answer.buildAnswerList(ind, answer.coords(row, col));
 				if (answer.maxInd(ind)) {
 					return answer.generate();
 				} else {
