@@ -158,7 +158,7 @@ public class DiagonalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnCatAtOneThreeTwoTwoZeroOne() {
+	public void shouldReturnCatAtOneThreeTwoTwoThreeOne() {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'c' }, { 'x', 'x', 'a', 'x' },
 				{ 'x', 't', 'x', 'x', } };
@@ -167,12 +167,21 @@ public class DiagonalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnItAtOneThreeTwoTwoZeroOne() {
+	public void shouldReturnItAtTwoTwoZeroOne() {
 		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'i', 'x' },
 				{ 'x', 't', 'x', 'x', } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("it: (2,2),(3,1)"));
+	}
+	
+	@Test
+	public void shouldReturnOffAtOneThreeTwoTwoThreeOne() {
+		toFind = "off";
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'o' }, { 'x', 'x', 'f', 'x' },
+				{ 'x', 'f', 'x', 'x', } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("off: (1,3),(2,2),(3,1)"));
 	}
 
 }
