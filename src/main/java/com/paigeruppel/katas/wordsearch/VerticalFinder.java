@@ -13,26 +13,25 @@ public class VerticalFinder {
 		answer = new AnswerBuilder(toFind);
 	}
 
+	int ind;
+	int tries;
+
 	public String scan() {
-		int ind = 0;
-		int tries = 0;
+		ind = 0;
+		tries = 0;
 
 		while (tries < 2) {
 			for (int col = 0; col < grid.colLength; col++) {
 				for (int row = 0; row < grid.rowLength; row++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 						answer.buildAnswerList(ind, answer.coords(row, col));
-						if (answer.maxInd(ind) && tries == 0) {
-							return answer.generate();
-						} else if (answer.maxInd(ind)) {
-							return answer.generateReverse();
+						if (answer.maxInd(ind)) {
+							return generatedAnswer();
 						}
-							else {
-							ind++;
-							if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
-								answer.reset();
-								ind = 0;
-							}
+						ind++;
+						if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
+							answer.reset();
+							ind = 0;
 						}
 					}
 				}
@@ -41,5 +40,13 @@ public class VerticalFinder {
 			tries++;
 		}
 		return "not found";
+	}
+
+	private String generatedAnswer() {
+		if (tries == 0) {
+			return answer.generate();
+		} else {
+			return answer.generateReverse();
+		}
 	}
 }
