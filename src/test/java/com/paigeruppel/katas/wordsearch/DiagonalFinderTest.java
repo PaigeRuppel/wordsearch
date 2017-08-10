@@ -183,5 +183,27 @@ public class DiagonalFinderTest {
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("off: (1,3),(2,2),(3,1)"));
 	}
+	
+	@Test
+	public void shouldReturnOffAtThreeOneTwoTwo() {
+		toFind = "off";
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'f' }, { 'x', 'x', 'f', 'x' },
+				{ 'x', 'o', 'x', 'x', } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("off: (3,1),(2,2),(1,3)"));
+	}
+	
+	@Test
+	public void shouldReturnOffAtThreeOneTwoTwoWithConfoundingLetters() {
+		toFind = "off";
+		char[][] toSearch = { 
+				{ 'x', 'x', 'x', 'x', 'x' }, 
+				{ 'x', 'x', 'x', 'f', 'o' }, 
+				{ 'x', 'x', 'f', 'x', 'x' },
+				{ 'x', 'o', 'x', 'x', 'o' },
+				{ 'x', 'x', 'x', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("off: (3,1),(2,2),(1,3)"));
+	}
 
 }

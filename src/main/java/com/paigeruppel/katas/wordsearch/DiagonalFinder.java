@@ -88,18 +88,27 @@ public class DiagonalFinder {
 	}
 
 	public Object scanAlongRowsFromTopRight() {
-		start = 0;
+		start = 1;
 		ind = 0;
 		
-		for (int row = 1, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
+		while(tries < 2) {
+		for (int row = start, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
 			if (grid.getCharacterAt(row, col) == answer.currentChar(ind) ) {
 				answer.buildAnswerList(ind, answer.coords(row, col));
-				if (answer.maxInd(ind)) {
+				if (answer.maxInd(ind) && tries == 0) {
 					return answer.generate();
+				} else if (answer.maxInd(ind)) {
+					return answer.generateReverse();
 				} else {
 					ind++;
+					if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(ind)) {
+						answer.reset();
+						ind = 0;
+					}
 				}
 			}
+		}
+		checkPositionAndIncrementStartOrReverseWord();
 		}
 		
 		return "";

@@ -71,8 +71,7 @@ public class AnswerBuilder {
 	
 	
 
-	public boolean reverseWord() {
+	public void reverseWord() {
 		holder = new StringBuilder(holder).reverse().toString();
-		return true;
 	}
 }
