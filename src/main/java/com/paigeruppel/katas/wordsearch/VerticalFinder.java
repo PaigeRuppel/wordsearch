@@ -13,8 +13,8 @@ public class VerticalFinder {
 		answer = new AnswerBuilder(toFind);
 	}
 
-	int ind;
-	int tries;
+	private int ind;
+	private int tries;
 
 	public String scan() {
 		ind = 0;
@@ -29,10 +29,7 @@ public class VerticalFinder {
 							return generatedAnswer();
 						}
 						ind++;
-						if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
-							answer.reset();
-							ind = 0;
-						}
+						resetIfNextVerticalCharNotPresent(col, row);
 					}
 				}
 			}
@@ -40,6 +37,13 @@ public class VerticalFinder {
 			tries++;
 		}
 		return "not found";
+	}
+
+	private void resetIfNextVerticalCharNotPresent(int col, int row) {
+		if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
+			answer.reset();
+			ind = 0;
+		}
 	}
 
 	private String generatedAnswer() {
