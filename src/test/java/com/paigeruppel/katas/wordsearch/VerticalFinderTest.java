@@ -55,7 +55,7 @@ public class VerticalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnAtFitColumnTwoRowwoOneZeroWithConfoundingFi() {
+	public void shouldReturnFitAtColumnTwoRowTwoOneZeroWithConfoundingFi() {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
 		grid = new LetterGrid(toSearch);

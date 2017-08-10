@@ -19,8 +19,10 @@ public class HorizontalFinder {
 				for (int col = 0; col < grid.colLength; col++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 						answer.buildAnswerList(ind, answer.coords(row, col));
-						if (answer.maxInd(ind)) {
+						if (answer.maxInd(ind) && tries == 0) {
 							return answer.generate();
+						} else if (answer.maxInd(ind)) {
+							return answer.generateReverse();
 						} else {
 							ind = answer.increment(ind);
 							if (grid.getNextCharacterHorizontalFrom(row, col) != answer.currentChar(ind)) {

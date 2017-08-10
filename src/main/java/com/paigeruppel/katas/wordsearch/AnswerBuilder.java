@@ -57,6 +57,18 @@ public class AnswerBuilder {
 		return answer;
 	}
 	
+	public String generateReverse() {
+		String answer = toFind + ": ";
+		for (int i = toFind.length() - 1; i > -1; i--) {
+			if (i > 0) {
+				answer += answerList.get(i) + ",";
+			} else {
+				answer += answerList.get(i);
+			}
+		}
+		return answer;
+	}
+	
 	
 
 	public boolean reverseWord() {

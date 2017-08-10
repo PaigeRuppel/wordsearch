@@ -22,9 +22,12 @@ public class VerticalFinder {
 				for (int row = 0; row < grid.rowLength; row++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 						answer.buildAnswerList(ind, answer.coords(row, col));
-						if (answer.maxInd(ind)) {
+						if (answer.maxInd(ind) && tries == 0) {
 							return answer.generate();
-						} else {
+						} else if (answer.maxInd(ind)) {
+							return answer.generateReverse();
+						}
+							else {
 							ind++;
 							if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
 								answer.reset();
