@@ -35,4 +35,14 @@ public class AnswerBuilderTest {
 		underTest.buildAnswerMap('t', "(1,2)");
 		assertThat(underTest.generate(), is("cat: (1,0),(1,1),(1,2)"));
 	}
+	
+	@Test
+	public void shouldReturnKataAtOneZeroOneOneOneTwoOneThre() {
+		underTest = new AnswerBuilder("kata");
+		underTest.buildAnswerMap('k', "(1,0)");
+		underTest.buildAnswerMap('a', "(1,1)");
+		underTest.buildAnswerMap('t', "(1,2)");
+		underTest.buildAnswerMap('a', "(1,3)");
+		assertThat(underTest.generate(), is("kata: (1,0),(1,1),(1,2),(1,3)"));
+	}
 }

@@ -88,7 +88,6 @@ public class DiagonalFinder {
 		for (int row = 1, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
 			if (grid.getCharacterAt(row, col) == answer.currentChar(ind) ) {
 				answer.buildAnswerMap(answer.currentChar(ind), answer.coords(row, col));
-				
 				if (answer.maxInd(ind)) {
 					return answer.generate();
 				} else {
