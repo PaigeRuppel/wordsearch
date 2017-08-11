@@ -27,7 +27,7 @@ public class AnswerBuilder {
 		return "(" + row + "," + col + ")";
 	}
 
-	public boolean maxInd(int ind) {
+	public boolean atLastLetter(int ind) {
 		if (ind == maxInd) {
 			return true;
 		}
@@ -56,13 +56,7 @@ public class AnswerBuilder {
 				}
 			}
 		} else {
-			for (int i = toFind.length() - 1; i > -1; i--) {
-				if (i > 0) {
-					answer += answerList.get(i) + ",";
-				} else {
-					answer += answerList.get(i);
-				}
-			}
+			answer = generateReverse();
 		}
 		return answer;
 	}

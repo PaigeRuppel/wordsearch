@@ -14,7 +14,7 @@ public class VerticalFinder {
 	}
 
 	private int ind;
-	protected int tries;
+	private int tries;
 
 	public String scan() {
 		ind = 0;
@@ -25,7 +25,7 @@ public class VerticalFinder {
 				for (int row = 0; row < grid.rowLength; row++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 						answer.buildAnswerList(ind, answer.coords(row, col));
-						if (answer.maxInd(ind)) {
+						if (answer.atLastLetter(ind)) {
 							return answer.generate(tries);
 						} else {
 							ind++;

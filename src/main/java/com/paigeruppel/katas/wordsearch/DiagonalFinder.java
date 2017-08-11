@@ -34,14 +34,14 @@ public class DiagonalFinder {
 			for (int row = 0, col = start; row < grid.rowLength && col < grid.colLength; row++, col++) {
 				if (matchFound(row, col)) {
 					appendCoordsToAnswer(row, col);
-					if (answer.maxInd(letterIndex)) {
+					if (answer.atLastLetter(letterIndex)) {
 						return answer.generate(tries);
 					}
 					letterIndex++;
 					resetIfNextLToRDiagCharNotPresent(row, col);
 				}
 			}
-			checkPositionAndIncrementStartOrReverseWord();
+			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
 		return "not found";
 	}
@@ -52,14 +52,14 @@ public class DiagonalFinder {
 			for (int row = start, col = 0; row < grid.rowLength && col < grid.colLength; row++, col++) {
 				if (matchFound(row, col)) {
 					appendCoordsToAnswer(row, col);
-					if (answer.maxInd(letterIndex)) {
+					if (answer.atLastLetter(letterIndex)) {
 						return answer.generate(tries);
 					}
 					letterIndex++;
 					resetIfNextLToRDiagCharNotPresent(row, col);
 				}
 			}
-			checkPositionAndIncrementStartOrReverseWord();
+			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
 		return "not found";
 	}
@@ -70,7 +70,7 @@ public class DiagonalFinder {
 			for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
 				if (matchFound(row, col)) {
 					appendCoordsToAnswer(row, col);
-					if (answer.maxInd(letterIndex)) {
+					if (answer.atLastLetter(letterIndex)) {
 						return answer.generate(tries);
 					} else {
 						letterIndex++;
@@ -78,7 +78,7 @@ public class DiagonalFinder {
 					}
 				}
 			}
-			checkPositionAndIncrementStartOrReverseWord();
+			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
 		return "not found";
 	}
@@ -89,7 +89,7 @@ public class DiagonalFinder {
 			for (int row = start, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
 				if (matchFound(row, col)) {
 					appendCoordsToAnswer(row, col);
-					if (answer.maxInd(letterIndex)) {
+					if (answer.atLastLetter(letterIndex)) {
 						return answer.generate(tries);
 					} else {
 						letterIndex++;
@@ -97,7 +97,7 @@ public class DiagonalFinder {
 					}
 				}
 			}
-			checkPositionAndIncrementStartOrReverseWord();
+			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
 		return "not found";
 	}
@@ -117,7 +117,7 @@ public class DiagonalFinder {
 		return grid.getCharacterAt(row, col) == answer.currentChar(letterIndex);
 	}
 
-	private void checkPositionAndIncrementStartOrReverseWord() {
+	private void incrementStartingPositionOrReverseWordAndIncrementTries() {
 		if (start == grid.colLength - 1) {
 			start = 0;
 			answer.reverseWord();

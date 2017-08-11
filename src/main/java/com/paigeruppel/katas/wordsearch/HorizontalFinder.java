@@ -22,7 +22,7 @@ public class HorizontalFinder {
 				for (int col = 0; col < grid.colLength; col++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 						answer.buildAnswerList(ind, answer.coords(row, col));
-						if (answer.maxInd(ind)) {
+						if (answer.atLastLetter(ind)) {
 							return answer.generate(tries);
 						}
 						ind++;
