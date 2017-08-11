@@ -25,19 +25,19 @@ public class WordSearch {
 
 		if (horizontal.scan() != "not found") {
 			return horizontal.scan();
-		}  else if (vertical.scan() != "not found") {
-			return vertical.scan();
+		} else if (vertical.scan() != "not found") {
+			return vertical.scan().toString();
 		} else if (diagonal.scan() != "not found") {
 			return diagonal.scan();
 		}
-
 		return answer;
 	}
 
 	public String findAll(ArrayList<String> listToFind) {
 		String allWordsWithCoords = "";
 		for (String toFind: listToFind) {
-		allWordsWithCoords += find(toFind);
+		String singleCoords = find(toFind);
+		allWordsWithCoords += singleCoords + "\r\n";
 		}
 		
 		return allWordsWithCoords;

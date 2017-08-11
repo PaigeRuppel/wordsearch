@@ -11,8 +11,6 @@ public class VerticalFinder {
 		answer = new AnswerBuilder(toFind);
 	}
 
-
-
 	public String scan() {
 
 		while (answer.tries < 2) {
@@ -21,7 +19,9 @@ public class VerticalFinder {
 					if (grid.getCharacterAt(row, col) == answer.currentChar()) {
 						answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
 						if (answer.atLastLetter()) {
+
 							return answer.generate();
+
 						} else {
 							answer.incrementLetterIndex();
 							resetIfNextVerticalCharNotPresent(col, row);

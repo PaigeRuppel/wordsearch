@@ -26,7 +26,7 @@ public class AnswerBuilder {
 	public void incrementLetterIndex() {
 		if (letterIndex < maxInd) {
 			letterIndex++;
-		} 
+		}
 	}
 
 	public void buildAnswerList(int currentIndex, String coords) {
@@ -76,12 +76,12 @@ public class AnswerBuilder {
 	}
 
 	public String generateReverse(String answer) {
-		
-		for (int i = toFind.length() - 1; i > -1; i--) {
-			if (i > 0) {
-				answer += answerList.get(i) + ",";
+		letterIndex = maxInd;
+		for (int index = letterIndex; index > -1; index--) {
+			if (index > 0) {
+				answer += answerList.get(index) + ",";
 			} else {
-				answer += answerList.get(i);
+				answer += answerList.get(index);
 			}
 		}
 		return answer;
@@ -94,4 +94,9 @@ public class AnswerBuilder {
 	public void forwardWord() {
 		toFindHolder = toFind;
 	}
+
+	public boolean completed() {
+		return true;
+	}
+
 }
