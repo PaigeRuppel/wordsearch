@@ -15,8 +15,7 @@ public class WordSearchTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'c' }, { 'x', 'x', 'a', 'x' },
 				{ 'x', 't', 'x', 'x', } };
-		grid = new LetterGrid(toSearch);
-		WordSearch underTest = new WordSearch(grid);
+		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
 		assertThat(underTest.find(toFind), is("cat: (1,3),(2,2),(3,1)"));
 	}
 
@@ -24,8 +23,7 @@ public class WordSearchTest {
 	public void shouldReturnLaAtRowOneColumnOneTwoWithConfoundingLHorizontal() {
 		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'l', 'a' }, { 'x', 'x', 'x' } };
-		grid = new LetterGrid(toSearch);
-		WordSearch underTest = new WordSearch(grid);
+		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
 		assertThat(underTest.find(toFind), is("la: (1,1),(1,2)"));
 	}
 
@@ -33,8 +31,7 @@ public class WordSearchTest {
 	public void shouldReturnAtFitColumnTwoRowZeroOneTwoWithConfoundingFiVertical() {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
-		grid = new LetterGrid(toSearch);
-		WordSearch underTest = new WordSearch(grid);
+		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
 		assertThat(underTest.find(toFind), is("fit: (0,2),(1,2),(2,2)"));
 	}
 
@@ -45,5 +42,30 @@ public class WordSearchTest {
 		grid = new LetterGrid(toSearch);
 		WordSearch underTest = new WordSearch(grid);
 		assertThat(underTest.find(toFind), is("it: (0,1),(1,2)"));
+	}
+
+	@Test
+	public void shouldReturnItAtThreeOneTwoZeroWithConfoundingIDiagLToRRows() {
+		toFind = "it";
+		char[][] toSearch = { 
+				{ 'x', 'x', 'x', 'x' }, 
+				{ 'x', 'x', 'x', 'x' }, 
+				{ 't', 'x', 'i', 'x' },
+				{ 'x', 'i', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		WordSearch underTest = new WordSearch(grid);
+		assertThat(underTest.find(toFind), is("it: (3,1),(2,0)"));
+	}
+
+	@Test
+	public void shouldReturnCatAtTwoZeroOneOneZeroTwoWithConfoundingLettersRToLColumn() {
+		toFind = "cat";
+		char[][] toSearch = { 
+				{ 'x', 'x', 't', 'c' }, 
+				{ 'x', 'a', 'a', 'x' }, 
+				{ 'c', 'x', 'x', 'x' },
+				{ 'x', 'x', 'x', 'x', } };
+		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
+		assertThat(underTest.find(toFind), is("cat: (2,0),(1,1),(0,2)"));
 	}
 }

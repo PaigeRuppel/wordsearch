@@ -4,7 +4,6 @@ public class WordSearch {
 
 	private LetterGrid grid;
 
-	// private String toFind;
 
 	public WordSearch(LetterGrid grid) {
 		this.grid = grid;
@@ -25,10 +24,8 @@ public class WordSearch {
 			answer = horizontal.scan();
 		}  else if (vertical.scan() != "not found") {
 			answer = vertical.scan();
-		} else if (diagonal.scanAlongRowsFromTopRight() != "not found") {
-			answer = diagonal.scanAlongRowsFromTopRight();
-		} else if (diagonal.scanAlongColumnsFromTopLeft() != "not found") {
-			answer = diagonal.scanAlongColumnsFromTopLeft();
+		} else if (diagonal.scan() != "not found") {
+			answer = diagonal.scan();
 		}
 
 		return answer;

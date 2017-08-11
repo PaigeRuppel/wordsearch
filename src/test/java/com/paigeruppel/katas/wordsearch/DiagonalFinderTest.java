@@ -142,7 +142,10 @@ public class DiagonalFinderTest {
 	@Test
 	public void shouldReturnCatAtTwoZeroOneOneZeroTwoWithConfoundingLetters() {
 		toFind = "cat";
-		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
+		char[][] toSearch = { 
+				{ 'x', 'x', 't', 'c' }, 
+				{ 'x', 'a', 'a', 'x' }, 
+				{ 'c', 'x', 'x', 'x' },
 				{ 'x', 'x', 'x', 'x', } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongColumnsFromTopRight(), is("cat: (2,0),(1,1),(0,2)"));
@@ -204,6 +207,52 @@ public class DiagonalFinderTest {
 				{ 'x', 'x', 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scanAlongRowsFromTopRight(), is("off: (3,1),(2,2),(1,3)"));
+	}
+	
+	@Test
+	public void shouldReturnOffAtThreeOneTwoTwoWithConfoundingLettersFromScan() {
+		// rows from top right
+		toFind = "off";
+		char[][] toSearch = { 
+				{ 'x', 'x', 'x', 'x', 'x' }, 
+				{ 'x', 'x', 'x', 'f', 'o' }, 
+				{ 'x', 'x', 'f', 'x', 'x' },
+				{ 'x', 'o', 'x', 'x', 'o' },
+				{ 'x', 'x', 'x', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scan(), is("off: (3,1),(2,2),(1,3)"));
+	}
+	
+	@Test
+	public void shouldReturnCatAtTwoZeroOneOneZeroTwoWithConfoundingLettersFromScan() {
+		// columns from top right
+		toFind = "cat";
+		char[][] toSearch = { 
+				{ 'x', 'x', 't', 'c' }, 
+				{ 'x', 'a', 'a', 'x' }, 
+				{ 'c', 'x', 'x', 'x' },
+				{ 'x', 'x', 'x', 'x', } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scan(), is("cat: (2,0),(1,1),(0,2)"));
+	}
+
+	@Test
+	public void shouldReturnItAtThreeOneTwoZeroWithConfoundingIFromScan() {
+		// rows from top left
+		toFind = "it";
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },
+				{ 'x', 'i', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scan(), is("it: (3,1),(2,0)"));
+	}
+	
+	@Test
+	public void shouldReturnItAtZeroOneOneTwoWithConfoundingIFromScan() {
+		// columns from top left
+		toFind = "it";
+		char[][] toSearch = { { 'i', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scan(), is("it: (0,1),(1,2)"));
 	}
 
 }

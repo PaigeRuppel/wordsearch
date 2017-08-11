@@ -21,6 +21,7 @@ public class DiagonalFinder {
 	private int tries;
 	private int start;
 
+
 	public String scanAlongColumnsFromTopLeft() {
 		ind = 0;
 		tries = 0;
@@ -67,6 +68,7 @@ public class DiagonalFinder {
 	public String scanAlongColumnsFromTopRight() {
 		start = grid.colLength - 1;
 		ind = 0;
+		tries = 0;
 
 		while (tries < 2) {
 			for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
@@ -89,6 +91,7 @@ public class DiagonalFinder {
 	public String scanAlongRowsFromTopRight() {
 		start = 1;
 		ind = 0;
+		tries = 0;
 
 		while (tries < 2) {
 			for (int row = start, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
@@ -104,7 +107,6 @@ public class DiagonalFinder {
 			}
 			checkPositionAndIncrementStartOrReverseWord();
 		}
-
 		return "not found";
 	}
 
@@ -142,4 +144,22 @@ public class DiagonalFinder {
 		}
 	}
 
+	public String scan() {
+		String answer = "not found";
+		String rowsFromTopLeft = scanAlongRowsFromTopLeft();
+		String columnsFromTopLeft = scanAlongColumnsFromTopLeft();
+		String rowsFromTopRight = scanAlongRowsFromTopRight();
+		String columnsFromTopRight = scanAlongColumnsFromTopRight();
+		if (rowsFromTopRight != "not found" ) {
+			answer = rowsFromTopRight;
+		} else if (columnsFromTopRight != "not found") {
+			answer = columnsFromTopRight;
+		} else if (rowsFromTopLeft != "not found") {
+			answer = rowsFromTopLeft;
+		} else if (columnsFromTopLeft != "not found" ) {
+			answer = columnsFromTopLeft;
+		}
+		
+			return answer;
+	}
 }

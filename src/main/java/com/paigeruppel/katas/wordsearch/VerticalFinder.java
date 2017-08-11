@@ -47,11 +47,4 @@ public class VerticalFinder {
 		}
 	}
 
-	// private String generatedAnswer() {
-	// if (tries == 0) {
-	// return answer.generate();
-	// } else {
-	// return answer.generateReverse();
-	// }
-	// }
 }
