@@ -11,6 +11,11 @@ public class LetterGrid {
 		rowLength = toSearch.length;
 		colLength = toSearch[0].length;
 	}
+	
+	public boolean withinEdges (int row, int col) {
+		return row > -1 && row < rowLength && col > -1 && col < colLength;
+		
+	}
 
 	public Character getCharacterAt(int row, int col) {
 		return toSearch[row][col];

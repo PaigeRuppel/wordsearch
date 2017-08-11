@@ -1,7 +1,5 @@
 package com.paigeruppel.katas.wordsearch;
 
-import java.io.ByteArrayOutputStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
 
 public class WordSearch {
@@ -20,6 +18,7 @@ public class WordSearch {
 	public String find(String toFind) {
 
 		String answer = "";
+		
 		diagonal = new DiagonalFinder(toFind, grid);
 		horizontal = new HorizontalFinder(toFind, grid);
 		vertical = new VerticalFinder(toFind, grid);

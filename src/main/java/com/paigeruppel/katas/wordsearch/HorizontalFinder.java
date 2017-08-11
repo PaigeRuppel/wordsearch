@@ -11,35 +11,30 @@ public class HorizontalFinder {
 		answer = new AnswerBuilder(toFind);
 	}
 
-	private int ind;
-	private int tries;
 
 	public String scan() {
-		ind = 0;
-		tries = 0;
-		while (tries < 2) {
+		while (answer.tries < 2) {
 			for (int row = 0; row < grid.rowLength; row++) {
 				for (int col = 0; col < grid.colLength; col++) {
-					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-						answer.buildAnswerList(ind, answer.coords(row, col));
-						if (answer.atLastLetter(ind)) {
-							return answer.generate(tries);
+					if (grid.getCharacterAt(row, col) == answer.currentChar()) {
+						answer.buildAnswerList(answer.coords(row, col));
+						if (answer.atLastLetter()) {
+							return answer.generate();
 						}
-						ind++;
+						answer.incrementLetterIndex();
 						resetIfNextHorizontalCharNotPresent(row, col);
 					}
 				}
 			}
-			tries++;
+			answer.incrementTries();
 			answer.reverseWord();
 		}
 		return "not found";
 	}
 
 	private void resetIfNextHorizontalCharNotPresent(int row, int col) {
-		if (grid.getNextCharacterHorizontalFrom(row, col) != answer.currentChar(ind)) {
+		if (grid.getNextCharacterHorizontalFrom(row, col) != answer.currentChar()) {
 			answer.reset();
-			ind = 0;
 		}
 	}
 

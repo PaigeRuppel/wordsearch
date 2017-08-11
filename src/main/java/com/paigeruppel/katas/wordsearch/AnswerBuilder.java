@@ -5,21 +5,36 @@ import java.util.ArrayList;
 public class AnswerBuilder {
 
 	private String toFind;
-	private String holder;
+	private String toFindHolder;
 	protected ArrayList<String> answerList = new ArrayList<String>();
 	private int maxInd;
+	protected int tries;
+	protected int letterIndex;
 
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
-		holder = toFind;
+		toFindHolder = toFind;
 		maxInd = toFind.length() - 1;
+		tries = 0;
+		letterIndex = 0;
 	}
 
-	public void buildAnswerList(Integer index, String coords) {
-		answerList.add(index, coords);
+	public void incrementTries() {
+		tries++;
+	}
+
+	public void incrementLetterIndex() {
+		if (letterIndex < maxInd) {
+			letterIndex++;
+		} 
+	}
+
+	public void buildAnswerList(String coords) {
+		answerList.add(letterIndex, coords);
 	}
 
 	public void reset() {
+		letterIndex = 0;
 		answerList.clear();
 	}
 
@@ -27,25 +42,18 @@ public class AnswerBuilder {
 		return "(" + row + "," + col + ")";
 	}
 
-	public boolean atLastLetter(int ind) {
-		if (ind == maxInd) {
+	public boolean atLastLetter() {
+		if (letterIndex == maxInd) {
 			return true;
 		}
 		return false;
 	}
 
-	public int increment(int ind) {
-		if (ind < maxInd) {
-			ind++;
-		}
-		return ind;
+	public Character currentChar() {
+		return toFindHolder.charAt(letterIndex);
 	}
 
-	public Character currentChar(int ind) {
-		return holder.charAt(ind);
-	}
-
-	public String generate(int tries) {
+	public String generate() {
 		String answer = toFind + ": ";
 		if (tries == 0) {
 			for (int i = 0; i < toFind.length(); i++) {
@@ -74,10 +82,10 @@ public class AnswerBuilder {
 	}
 
 	public void reverseWord() {
-		holder = new StringBuilder(holder).reverse().toString();
+		toFindHolder = new StringBuilder(toFindHolder).reverse().toString();
 	}
-	
-	public void resetHolder() {
-		holder = toFind;
+
+	public void forwardWord() {
+		toFindHolder = toFind;
 	}
 }

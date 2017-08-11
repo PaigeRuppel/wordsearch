@@ -10,34 +10,25 @@ public class DiagonalFinder {
 		this.grid = grid;
 	}
 
-	public DiagonalFinder(LetterGrid grid) {
-		this.grid = grid;
-	}
-
-	public DiagonalFinder() {
-	}
-
-	private int letterIndex;
-	private int tries;
 	private int start;
 
 	private void resetAll() {
-		letterIndex = 0;
-		tries = 0;
 		start = 0;
-		answer.resetHolder();
+		answer.tries = 0;
+		answer.reset();
+		answer.forwardWord();
 	}
 
 	public String scanColumnsLookingLeftToRight() {
 		resetAll();
-		while (tries < 2) {
-			for (int row = 0, col = start; row < grid.rowLength && col < grid.colLength; row++, col++) {
+		while (answer.tries < 2) {
+			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col++) {
 				if (matchFound(row, col)) {
-					appendCoordsToAnswer(row, col);
-					if (answer.atLastLetter(letterIndex)) {
-						return answer.generate(tries);
+					answer.buildAnswerList(answer.coords(row, col));
+					if (answer.atLastLetter()) {
+						return answer.generate();
 					}
-					letterIndex++;
+					answer.incrementLetterIndex();
 					resetIfNextLToRDiagCharNotPresent(row, col);
 				}
 			}
@@ -48,14 +39,14 @@ public class DiagonalFinder {
 
 	public String scanRowsLookingLeftToRight() {
 		resetAll();
-		while (tries < 2) {
-			for (int row = start, col = 0; row < grid.rowLength && col < grid.colLength; row++, col++) {
+		while (answer.tries < 2) {
+			for (int row = start, col = 0; grid.withinEdges(row, col); row++, col++) {
 				if (matchFound(row, col)) {
-					appendCoordsToAnswer(row, col);
-					if (answer.atLastLetter(letterIndex)) {
-						return answer.generate(tries);
+					answer.buildAnswerList(answer.coords(row, col));
+					if (answer.atLastLetter()) {
+						return answer.generate();
 					}
-					letterIndex++;
+					answer.incrementLetterIndex();
 					resetIfNextLToRDiagCharNotPresent(row, col);
 				}
 			}
@@ -66,16 +57,15 @@ public class DiagonalFinder {
 
 	public String scanColumnsLookingRightToLeft() {
 		resetAll();
-		while (tries < 2) {
-			for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
+		while (answer.tries < 2) {
+			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col--) {
 				if (matchFound(row, col)) {
-					appendCoordsToAnswer(row, col);
-					if (answer.atLastLetter(letterIndex)) {
-						return answer.generate(tries);
-					} else {
-						letterIndex++;
-						resetIfNextRToLCharNotPresent(row, col);
+					answer.buildAnswerList(answer.coords(row, col));
+					if (answer.atLastLetter()) {
+						return answer.generate();
 					}
+					answer.incrementLetterIndex();
+					resetIfNextRToLCharNotPresent(row, col);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -85,16 +75,15 @@ public class DiagonalFinder {
 
 	public String scanRowsLookingRightToLeft() {
 		resetAll();
-		while (tries < 2) {
-			for (int row = start, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
+		while (answer.tries < 2) {
+			for (int row = start, col = grid.colLength - 1; grid.withinEdges(row, col); row++, col--) {
 				if (matchFound(row, col)) {
-					appendCoordsToAnswer(row, col);
-					if (answer.atLastLetter(letterIndex)) {
-						return answer.generate(tries);
-					} else {
-						letterIndex++;
-						resetIfNextRToLCharNotPresent(row, col);
+					answer.buildAnswerList(answer.coords(row, col));
+					if (answer.atLastLetter()) {
+						return answer.generate();
 					}
+					answer.incrementLetterIndex();
+					resetIfNextRToLCharNotPresent(row, col);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -102,35 +91,31 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-	private void appendCoordsToAnswer(int row, int col) {
-		answer.buildAnswerList(letterIndex, answer.coords(row, col));
-	}
 
 	private void resetIfNextRToLCharNotPresent(int row, int col) {
-		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(letterIndex)) {
+		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar()) {
 			answer.reset();
-			letterIndex = 0;
 		}
 	}
 
 	private boolean matchFound(int row, int col) {
-		return grid.getCharacterAt(row, col) == answer.currentChar(letterIndex);
+		return grid.getCharacterAt(row, col) == answer.currentChar();
 	}
 
 	private void incrementStartingPositionOrReverseWordAndIncrementTries() {
 		if (start == grid.colLength - 1) {
 			start = 0;
 			answer.reverseWord();
-			tries++;
+			answer.reset();
+			answer.incrementTries();
 		} else {
 			start++;
 		}
 	}
 
 	private void resetIfNextLToRDiagCharNotPresent(int row, int col) {
-		if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(letterIndex)) {
+		if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar()) {
 			answer.reset();
-			letterIndex = 0;
 		}
 	}
 

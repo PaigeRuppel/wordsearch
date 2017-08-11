@@ -7,43 +7,37 @@ public class VerticalFinder {
 	private AnswerBuilder answer;
 
 	public VerticalFinder(String toFind, LetterGrid grid) {
-
 		this.grid = grid;
-
 		answer = new AnswerBuilder(toFind);
 	}
 
-	private int ind;
-	private int tries;
+
 
 	public String scan() {
-		ind = 0;
-		tries = 0;
 
-		while (tries < 2) {
+		while (answer.tries < 2) {
 			for (int col = 0; col < grid.colLength; col++) {
 				for (int row = 0; row < grid.rowLength; row++) {
-					if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-						answer.buildAnswerList(ind, answer.coords(row, col));
-						if (answer.atLastLetter(ind)) {
-							return answer.generate(tries);
+					if (grid.getCharacterAt(row, col) == answer.currentChar()) {
+						answer.buildAnswerList(answer.coords(row, col));
+						if (answer.atLastLetter()) {
+							return answer.generate();
 						} else {
-							ind++;
+							answer.incrementLetterIndex();
 							resetIfNextVerticalCharNotPresent(col, row);
 						}
 					}
 				}
 			}
 			answer.reverseWord();
-			tries++;
+			answer.incrementTries();
 		}
 		return "not found";
 	}
 
 	private void resetIfNextVerticalCharNotPresent(int col, int row) {
-		if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar(ind)) {
+		if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar()) {
 			answer.reset();
-			ind = 0;
 		}
 	}
 
