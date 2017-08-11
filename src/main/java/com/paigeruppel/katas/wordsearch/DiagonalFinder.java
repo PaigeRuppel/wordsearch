@@ -23,7 +23,7 @@ public class DiagonalFinder {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
 					answer.buildAnswerList(ind, answer.coords(row, col));
 					if (answer.maxInd(ind)) {
-						return answer.generate(tries);
+						return answer.generate(tries); 
 					}
 					ind++;
 					resetIfNextLToRDiagCharNotPresent(row, col);
