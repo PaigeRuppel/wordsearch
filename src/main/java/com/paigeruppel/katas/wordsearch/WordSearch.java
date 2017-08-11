@@ -23,12 +23,16 @@ public class WordSearch {
 		horizontal = new HorizontalFinder(toFind, grid);
 		vertical = new VerticalFinder(toFind, grid);
 
-		if (horizontal.scan() != "not found") {
-			return horizontal.scan();
-		} else if (vertical.scan() != "not found") {
-			return vertical.scan().toString();
-		} else if (diagonal.scan() != "not found") {
-			return diagonal.scan();
+		String horizontalAnswer = horizontal.scan();
+		String verticalAnswer = vertical.scan();
+		String diagonalAnswer = diagonal.scan();
+		
+		if (horizontalAnswer != "not found") {
+			return horizontalAnswer;
+		} else if (verticalAnswer != "not found") {
+			return verticalAnswer;
+		} else if (diagonalAnswer != "not found") {
+			return diagonalAnswer;
 		}
 		return answer;
 	}

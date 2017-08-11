@@ -12,6 +12,7 @@ public class HorizontalFinder {
 	}
 
 	public String scan() {
+
 		while (answer.tries < 2) {
 			for (int row = 0; row < grid.rowLength; row++) {
 				for (int col = 0; col < grid.colLength; col++) {
