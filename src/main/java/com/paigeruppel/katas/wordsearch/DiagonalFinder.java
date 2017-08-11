@@ -10,6 +10,13 @@ public class DiagonalFinder {
 		this.grid = grid;
 	}
 
+	public DiagonalFinder(LetterGrid grid) {
+		this.grid = grid;
+	}
+
+	public DiagonalFinder() {
+	}
+
 	private int ind;
 	private int tries;
 	private int start;
