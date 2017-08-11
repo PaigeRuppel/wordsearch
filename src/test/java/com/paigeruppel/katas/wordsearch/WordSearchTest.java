@@ -3,6 +3,12 @@ package com.paigeruppel.katas.wordsearch;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class WordSearchTest {
@@ -67,5 +73,22 @@ public class WordSearchTest {
 				{ 'x', 'x', 'x', 'x', } };
 		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
 		assertThat(underTest.find(toFind), is("cat: (2,0),(1,1),(0,2)"));
+	}
+	
+	
+	@Test
+	public void shouldReturnBillAndLawFromSameGrid() {
+		ArrayList<String> listToFind = new ArrayList();
+		listToFind.add(0, "bill");
+		listToFind.add(1, "law");
+		char[][] toSearch = {
+				{'b','i','l','l'},
+				{'x','x','a','x'},
+				{'x','x','w','x'},
+				{'x','x','x','x'}};
+		
+		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
+		
+		assertThat(underTest.findAll(listToFind), is("bill: (0,0),(0,1),(0,2),(0,3)\r\nlaw: (0,2),(1,2),(2,2)\r\n"));
 	}
 }

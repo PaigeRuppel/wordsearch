@@ -17,26 +17,28 @@ public class DiagonalFinder {
 	public DiagonalFinder() {
 	}
 
-	private int ind;
+	private int letterIndex;
 	private int tries;
 	private int start;
 
-
-	public String scanAlongColumnsFromTopLeft() {
-		ind = 0;
+	private void resetAll() {
+		letterIndex = 0;
 		tries = 0;
 		start = 0;
 		answer.resetHolder();
+	}
+
+	public String scanColumnsLookingLeftToRight() {
+		resetAll();
 		while (tries < 2) {
 			for (int row = 0, col = start; row < grid.rowLength && col < grid.colLength; row++, col++) {
-				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerList(ind, answer.coords(row, col));
-					if (answer.maxInd(ind)) {
-						return answer.generate(tries); 
+				if (matchFound(row, col)) {
+					appendCoordsToAnswer(row, col);
+					if (answer.maxInd(letterIndex)) {
+						return answer.generate(tries);
 					}
-					ind++;
+					letterIndex++;
 					resetIfNextLToRDiagCharNotPresent(row, col);
-
 				}
 			}
 			checkPositionAndIncrementStartOrReverseWord();
@@ -44,22 +46,17 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-
-	public String scanAlongRowsFromTopLeft() {
-		start = 1; 
-		ind = 0;
-		tries = 0;
-		answer.resetHolder();
+	public String scanRowsLookingLeftToRight() {
+		resetAll();
 		while (tries < 2) {
 			for (int row = start, col = 0; row < grid.rowLength && col < grid.colLength; row++, col++) {
-				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerList(ind, answer.coords(row, col));
-					if (answer.maxInd(ind)) {
+				if (matchFound(row, col)) {
+					appendCoordsToAnswer(row, col);
+					if (answer.maxInd(letterIndex)) {
 						return answer.generate(tries);
 					}
-					ind++;
+					letterIndex++;
 					resetIfNextLToRDiagCharNotPresent(row, col);
-
 				}
 			}
 			checkPositionAndIncrementStartOrReverseWord();
@@ -67,42 +64,16 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-	public String scanAlongColumnsFromTopRight() {
-		start = grid.colLength - 1;
-		ind = 0;
-		tries = 0;
-		answer.resetHolder();
+	public String scanColumnsLookingRightToLeft() {
+		resetAll();
 		while (tries < 2) {
 			for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
-				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerList(ind, answer.coords(row, col));
-					if (answer.maxInd(ind)) {
+				if (matchFound(row, col)) {
+					appendCoordsToAnswer(row, col);
+					if (answer.maxInd(letterIndex)) {
 						return answer.generate(tries);
 					} else {
-						ind++;
-						resetIfNextRToLCharNotPresent(row, col);
-					}
-				}
-			}
-			checkPositionAndDecrementStartOrReverseWord();
-		}
-		return "not found";
-	}
-
-
-	public String scanAlongRowsFromTopRight() {
-		start = 1;
-		ind = 0;
-		tries = 0;
-		answer.resetHolder();
-		while (tries < 2) {
-			for (int row = start, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
-				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
-					answer.buildAnswerList(ind, answer.coords(row, col));
-					if (answer.maxInd(ind)) {
-						return answer.generate(tries);
-					} else {
-						ind++;
+						letterIndex++;
 						resetIfNextRToLCharNotPresent(row, col);
 					}
 				}
@@ -110,23 +81,40 @@ public class DiagonalFinder {
 			checkPositionAndIncrementStartOrReverseWord();
 		}
 		return "not found";
+	}
+
+	public String scanRowsLookingRightToLeft() {
+		resetAll();
+		while (tries < 2) {
+			for (int row = start, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
+				if (matchFound(row, col)) {
+					appendCoordsToAnswer(row, col);
+					if (answer.maxInd(letterIndex)) {
+						return answer.generate(tries);
+					} else {
+						letterIndex++;
+						resetIfNextRToLCharNotPresent(row, col);
+					}
+				}
+			}
+			checkPositionAndIncrementStartOrReverseWord();
+		}
+		return "not found";
+	}
+
+	private void appendCoordsToAnswer(int row, int col) {
+		answer.buildAnswerList(letterIndex, answer.coords(row, col));
 	}
 
 	private void resetIfNextRToLCharNotPresent(int row, int col) {
-		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(ind)) {
+		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar(letterIndex)) {
 			answer.reset();
-			ind = 0;
+			letterIndex = 0;
 		}
 	}
 
-	private void checkPositionAndDecrementStartOrReverseWord() {
-		if (start == 0) {
-			start = grid.colLength - 1;
-			answer.reverseWord();
-			tries++;
-		} else {
-			start--;
-		}
+	private boolean matchFound(int row, int col) {
+		return grid.getCharacterAt(row, col) == answer.currentChar(letterIndex);
 	}
 
 	private void checkPositionAndIncrementStartOrReverseWord() {
@@ -140,29 +128,25 @@ public class DiagonalFinder {
 	}
 
 	private void resetIfNextLToRDiagCharNotPresent(int row, int col) {
-		if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(ind)) {
+		if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar(letterIndex)) {
 			answer.reset();
-			ind = 0;
+			letterIndex = 0;
 		}
 	}
 
 	public String scan() {
 		String answer = "not found";
-		String rowsFromTopLeft = scanAlongRowsFromTopLeft();
-		String columnsFromTopLeft = scanAlongColumnsFromTopLeft();
-		String rowsFromTopRight = scanAlongRowsFromTopRight();
-		String columnsFromTopRight = scanAlongColumnsFromTopRight();
-		
-		if (rowsFromTopRight != "not found" ) {
-			answer = rowsFromTopRight;
-		} else if (columnsFromTopRight != "not found") {
-			answer = columnsFromTopRight;
-		} else if (rowsFromTopLeft != "not found") {
-			answer = rowsFromTopLeft;
-		} else if (columnsFromTopLeft != "not found" ) {
-			answer = columnsFromTopLeft;
+
+		if (scanRowsLookingRightToLeft() != "not found") {
+			answer = scanRowsLookingRightToLeft();
+		} else if (scanColumnsLookingRightToLeft() != "not found") {
+			answer = scanColumnsLookingRightToLeft();
+		} else if (scanRowsLookingLeftToRight() != "not found") {
+			answer = scanRowsLookingLeftToRight();
+		} else if (scanColumnsLookingLeftToRight() != "not found") {
+			answer = scanColumnsLookingLeftToRight();
 		}
-		
-			return answer;
+
+		return answer;
 	}
 }

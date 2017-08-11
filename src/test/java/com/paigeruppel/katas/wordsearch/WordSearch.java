@@ -1,5 +1,9 @@
 package com.paigeruppel.katas.wordsearch;
 
+import java.io.ByteArrayOutputStream;
+import java.io.StringWriter;
+import java.util.ArrayList;
+
 public class WordSearch {
 
 	private LetterGrid grid;
@@ -29,6 +33,15 @@ public class WordSearch {
 		}
 
 		return answer;
+	}
+
+	public String findAll(ArrayList<String> listToFind) {
+		String allWordsWithCoords = "";
+		for (String toFind: listToFind) {
+		allWordsWithCoords += find(toFind) + "\r\n";
+		}
+		
+		return allWordsWithCoords;
 	}
 
 }
