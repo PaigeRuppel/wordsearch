@@ -82,4 +82,8 @@ public class AnswerBuilder {
 	public void reverseWord() {
 		holder = new StringBuilder(holder).reverse().toString();
 	}
+	
+	public void resetHolder() {
+		holder = toFind;
+	}
 }

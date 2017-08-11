@@ -26,6 +26,7 @@ public class DiagonalFinder {
 		ind = 0;
 		tries = 0;
 		start = 0;
+		answer.resetHolder();
 		while (tries < 2) {
 			for (int row = 0, col = start; row < grid.rowLength && col < grid.colLength; row++, col++) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
@@ -48,6 +49,7 @@ public class DiagonalFinder {
 		start = 1; 
 		ind = 0;
 		tries = 0;
+		answer.resetHolder();
 		while (tries < 2) {
 			for (int row = start, col = 0; row < grid.rowLength && col < grid.colLength; row++, col++) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
@@ -69,7 +71,7 @@ public class DiagonalFinder {
 		start = grid.colLength - 1;
 		ind = 0;
 		tries = 0;
-
+		answer.resetHolder();
 		while (tries < 2) {
 			for (int row = 0, col = start; row < grid.rowLength && col > -1; row++, col--) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
@@ -92,7 +94,7 @@ public class DiagonalFinder {
 		start = 1;
 		ind = 0;
 		tries = 0;
-
+		answer.resetHolder();
 		while (tries < 2) {
 			for (int row = start, col = grid.colLength - 1; row < grid.rowLength && col > -1; row++, col--) {
 				if (grid.getCharacterAt(row, col) == answer.currentChar(ind)) {
@@ -150,6 +152,7 @@ public class DiagonalFinder {
 		String columnsFromTopLeft = scanAlongColumnsFromTopLeft();
 		String rowsFromTopRight = scanAlongRowsFromTopRight();
 		String columnsFromTopRight = scanAlongColumnsFromTopRight();
+		
 		if (rowsFromTopRight != "not found" ) {
 			answer = rowsFromTopRight;
 		} else if (columnsFromTopRight != "not found") {
