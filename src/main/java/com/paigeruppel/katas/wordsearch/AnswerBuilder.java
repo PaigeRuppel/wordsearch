@@ -29,8 +29,8 @@ public class AnswerBuilder {
 		} 
 	}
 
-	public void buildAnswerList(String coords) {
-		answerList.add(letterIndex, coords);
+	public void buildAnswerList(int currentIndex, String coords) {
+		answerList.add(currentIndex, coords);
 	}
 
 	public void reset() {
@@ -64,17 +64,19 @@ public class AnswerBuilder {
 	}
 
 	private String generateForward(String answer) {
-		for (int i = 0; i < toFind.length(); i++) {
-			if (i < toFind.length() - 1) {
-				answer += answerList.get(i) + ",";
+		letterIndex = 0;
+		for (int index = letterIndex; index < toFind.length(); index++) {
+			if (index < toFind.length() - 1) {
+				answer += answerList.get(index) + ",";
 			} else {
-				answer += answerList.get(i);
+				answer += answerList.get(index);
 			}
 		}
 		return answer;
 	}
 
 	public String generateReverse(String answer) {
+		
 		for (int i = toFind.length() - 1; i > -1; i--) {
 			if (i > 0) {
 				answer += answerList.get(i) + ",";

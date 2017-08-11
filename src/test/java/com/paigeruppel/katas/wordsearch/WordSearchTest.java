@@ -18,41 +18,41 @@ public class WordSearchTest {
 	private ArrayList<String> listToFind = new ArrayList();
 
 	@Test
-	public void shouldReturnCatAtOneThreeTwoTwoThreeOneDiagRToL() {
+	public void shouldReturnCatFromDiagRToL() {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'c' }, { 'x', 'x', 'a', 'x' },
 				{ 'x', 't', 'x', 'x', } };
 		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
-		assertThat(underTest.find(toFind), is("cat: (1,3),(2,2),(3,1)"));
+		assertThat(underTest.find(toFind), is("cat: (3,1),(2,2),(1,3)"));
 	}
 
 	@Test
-	public void shouldReturnLaAtRowOneColumnOneTwoWithConfoundingLHorizontal() {
+	public void shouldReturnLaFromHorizontal() {
 		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'l', 'a' }, { 'x', 'x', 'x' } };
 		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
-		assertThat(underTest.find(toFind), is("la: (1,1),(1,2)"));
+		assertThat(underTest.find(toFind), is("la: (1,1),(2,1)"));
 	}
 
 	@Test
-	public void shouldReturnAtFitColumnTwoRowZeroOneTwoWithConfoundingFiVertical() {
+	public void shouldReturnAtFitFromVertical() {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
 		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
-		assertThat(underTest.find(toFind), is("fit: (0,2),(1,2),(2,2)"));
+		assertThat(underTest.find(toFind), is("fit: (2,0),(2,1),(2,2)"));
 	}
 
 	@Test
-	public void shouldReturnItAtZeroOneOneTwoWithConfoundingIDiagLToRColumn() {
+	public void shouldReturnItFromDiagLToRColumn() {
 		toFind = "it";
 		char[][] toSearch = { { 'i', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		WordSearch underTest = new WordSearch(grid);
-		assertThat(underTest.find(toFind), is("it: (0,1),(1,2)"));
+		assertThat(underTest.find(toFind), is("it: (1,0),(2,1)"));
 	}
 
 	@Test
-	public void shouldReturnItAtThreeOneTwoZeroWithConfoundingIDiagLToRRows() {
+	public void shouldReturnItFromDiagLToRRows() {
 		toFind = "it";
 		char[][] toSearch = { 
 				{ 'x', 'x', 'x', 'x' }, 
@@ -61,11 +61,11 @@ public class WordSearchTest {
 				{ 'x', 'i', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
 		WordSearch underTest = new WordSearch(grid);
-		assertThat(underTest.find(toFind), is("it: (3,1),(2,0)"));
+		assertThat(underTest.find(toFind), is("it: (1,3),(0,2)"));
 	}
 
 	@Test
-	public void shouldReturnCatAtTwoZeroOneOneZeroTwoWithConfoundingLettersRToLColumn() {
+	public void shouldReturnCatFromRToLColumn() {
 		toFind = "cat";
 		char[][] toSearch = { 
 				{ 'x', 'x', 't', 'c' }, 
@@ -73,7 +73,7 @@ public class WordSearchTest {
 				{ 'c', 'x', 'x', 'x' },
 				{ 'x', 'x', 'x', 'x', } };
 		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
-		assertThat(underTest.find(toFind), is("cat: (2,0),(1,1),(0,2)"));
+		assertThat(underTest.find(toFind), is("cat: (0,2),(1,1),(2,0)"));
 	}
 	
 	

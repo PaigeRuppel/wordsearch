@@ -16,7 +16,7 @@ public class HorizontalFinder {
 			for (int row = 0; row < grid.rowLength; row++) {
 				for (int col = 0; col < grid.colLength; col++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar()) {
-						answer.buildAnswerList(answer.coords(row, col));
+						answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
 						if (answer.atLastLetter()) {
 							return answer.generate();
 						}
@@ -28,6 +28,7 @@ public class HorizontalFinder {
 			answer.incrementTries();
 			answer.reverseWord();
 		}
+	
 		return "not found";
 	}
 

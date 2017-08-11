@@ -49,7 +49,9 @@ public class VerticalFinderTest {
 	@Test
 	public void shouldReturnAtFitColumnTwoRowZeroOneTwoWithConfoundingFi() {
 		toFind = "fit";
-		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
+		char[][] toSearch = { { 'x', 'f', 'f' }, 
+								{ 'x', 'i', 'i' }, 
+								{ 'x', 'x', 't' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scan(), is("fit: (2,0),(2,1),(2,2)"));
 	}
@@ -66,6 +68,15 @@ public class VerticalFinderTest {
 	public void shouldReturnNotFoundForBit() {
 		toFind = "bit";
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
+		grid = new LetterGrid(toSearch);
+		assertThat(createTest(toFind, grid).scan(), is("not found"));
+	}
+	
+	@Test
+	public void shouldReturnNotFoundForBill() {
+		toFind = "bill";
+		char[][] toSearch = { { 'b', 'i', 'l', 'l' }, { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' },
+				{ 'x', 'b', 'a', 'l' } };
 		grid = new LetterGrid(toSearch);
 		assertThat(createTest(toFind, grid).scan(), is("not found"));
 	}

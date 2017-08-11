@@ -25,7 +25,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col++) {
 				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.coords(row, col));
+					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
@@ -43,7 +43,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int row = start, col = 0; grid.withinEdges(row, col); row++, col++) {
 				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.coords(row, col));
+					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
@@ -61,7 +61,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col--) {
 				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.coords(row, col));
+					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
@@ -79,7 +79,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int row = start, col = grid.colLength - 1; grid.withinEdges(row, col); row++, col--) {
 				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.coords(row, col));
+					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
@@ -91,7 +91,6 @@ public class DiagonalFinder {
 		}
 		return "not found";
 	}
-
 
 	private void resetIfNextRToLCharNotPresent(int row, int col) {
 		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar()) {

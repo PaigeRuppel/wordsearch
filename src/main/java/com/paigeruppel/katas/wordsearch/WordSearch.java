@@ -24,11 +24,11 @@ public class WordSearch {
 		vertical = new VerticalFinder(toFind, grid);
 
 		if (horizontal.scan() != "not found") {
-			answer = horizontal.scan();
+			return horizontal.scan();
 		}  else if (vertical.scan() != "not found") {
-			answer = vertical.scan();
+			return vertical.scan();
 		} else if (diagonal.scan() != "not found") {
-			answer = diagonal.scan();
+			return diagonal.scan();
 		}
 
 		return answer;
@@ -37,7 +37,7 @@ public class WordSearch {
 	public String findAll(ArrayList<String> listToFind) {
 		String allWordsWithCoords = "";
 		for (String toFind: listToFind) {
-		allWordsWithCoords += find(toFind) + "\r\n";
+		allWordsWithCoords += find(toFind);
 		}
 		
 		return allWordsWithCoords;

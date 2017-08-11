@@ -19,7 +19,7 @@ public class VerticalFinder {
 			for (int col = 0; col < grid.colLength; col++) {
 				for (int row = 0; row < grid.rowLength; row++) {
 					if (grid.getCharacterAt(row, col) == answer.currentChar()) {
-						answer.buildAnswerList(answer.coords(row, col));
+						answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
 						if (answer.atLastLetter()) {
 							return answer.generate();
 						} else {
