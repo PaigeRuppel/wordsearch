@@ -11,7 +11,6 @@ public class HorizontalFinder {
 		answer = new AnswerBuilder(toFind);
 	}
 
-
 	public String scan() {
 		while (answer.tries < 2) {
 			for (int row = 0; row < grid.rowLength; row++) {

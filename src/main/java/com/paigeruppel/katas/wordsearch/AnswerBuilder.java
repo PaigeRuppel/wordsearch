@@ -39,7 +39,7 @@ public class AnswerBuilder {
 	}
 
 	public String coords(int row, int col) {
-		return "(" + row + "," + col + ")";
+		return "(" + col + "," + row + ")";
 	}
 
 	public boolean atLastLetter() {
@@ -56,21 +56,25 @@ public class AnswerBuilder {
 	public String generate() {
 		String answer = toFind + ": ";
 		if (tries == 0) {
-			for (int i = 0; i < toFind.length(); i++) {
-				if (i < toFind.length() - 1) {
-					answer += answerList.get(i) + ",";
-				} else {
-					answer += answerList.get(i);
-				}
-			}
+			answer = generateForward(answer);
 		} else {
-			answer = generateReverse();
+			answer = generateReverse(answer);
 		}
 		return answer;
 	}
 
-	public String generateReverse() {
-		String answer = toFind + ": ";
+	private String generateForward(String answer) {
+		for (int i = 0; i < toFind.length(); i++) {
+			if (i < toFind.length() - 1) {
+				answer += answerList.get(i) + ",";
+			} else {
+				answer += answerList.get(i);
+			}
+		}
+		return answer;
+	}
+
+	public String generateReverse(String answer) {
 		for (int i = toFind.length() - 1; i > -1; i--) {
 			if (i > 0) {
 				answer += answerList.get(i) + ",";

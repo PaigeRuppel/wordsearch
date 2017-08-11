@@ -1,5 +1,6 @@
 package com.paigeruppel.katas.wordsearch;
 
+// to satisfy third and fourth user stories
 public class DiagonalFinder {
 
 	private AnswerBuilder answer;
@@ -12,7 +13,7 @@ public class DiagonalFinder {
 
 	private int start;
 
-	private void resetAll() {
+	private void clearAnswerSetStartAt0() {
 		start = 0;
 		answer.tries = 0;
 		answer.reset();
@@ -20,7 +21,7 @@ public class DiagonalFinder {
 	}
 
 	public String scanColumnsLookingLeftToRight() {
-		resetAll();
+		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
 			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col++) {
 				if (matchFound(row, col)) {
@@ -38,7 +39,7 @@ public class DiagonalFinder {
 	}
 
 	public String scanRowsLookingLeftToRight() {
-		resetAll();
+		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
 			for (int row = start, col = 0; grid.withinEdges(row, col); row++, col++) {
 				if (matchFound(row, col)) {
@@ -56,7 +57,7 @@ public class DiagonalFinder {
 	}
 
 	public String scanColumnsLookingRightToLeft() {
-		resetAll();
+		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
 			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col--) {
 				if (matchFound(row, col)) {
@@ -74,7 +75,7 @@ public class DiagonalFinder {
 	}
 
 	public String scanRowsLookingRightToLeft() {
-		resetAll();
+		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
 			for (int row = start, col = grid.colLength - 1; grid.withinEdges(row, col); row++, col--) {
 				if (matchFound(row, col)) {
