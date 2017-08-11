@@ -17,7 +17,7 @@ public class WordSearch {
 
 	public String find(String toFind) {
 
-		String answer = "";
+		String answerWithCoords = "";
 		
 		diagonal = new DiagonalFinder(toFind, grid);
 		horizontal = new HorizontalFinder(toFind, grid);
@@ -28,13 +28,13 @@ public class WordSearch {
 		String diagonalAnswer = diagonal.scan();
 		
 		if (horizontalAnswer != "not found") {
-			return horizontalAnswer;
+			answerWithCoords = horizontalAnswer;
 		} else if (verticalAnswer != "not found") {
-			return verticalAnswer;
+			answerWithCoords = verticalAnswer;
 		} else if (diagonalAnswer != "not found") {
-			return diagonalAnswer;
+			answerWithCoords = diagonalAnswer;
 		}
-		return answer;
+		return answerWithCoords;
 	}
 
 	public String findAll(ArrayList<String> listToFind) {
