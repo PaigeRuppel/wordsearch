@@ -19,7 +19,7 @@ public class VerticalFinderTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'c', 'x' }, { 'x', 'a', 'x' }, { 'x', 't', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("cat: (0,1),(1,1),(2,1)"));
+		assertThat(createTest(toFind, grid).scan(), is("cat: (1,0),(1,1),(1,2)"));
 	}
 
 	@Test
@@ -27,7 +27,7 @@ public class VerticalFinderTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'c', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("cat: (0,0),(1,0),(2,0)"));
+		assertThat(createTest(toFind, grid).scan(), is("cat: (0,0),(0,1),(0,2)"));
 	}
 	
 	@Test
@@ -35,7 +35,7 @@ public class VerticalFinderTest {
 		toFind = "at";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("at: (1,0),(2,0)"));
+		assertThat(createTest(toFind, grid).scan(), is("at: (0,1),(0,2)"));
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class VerticalFinderTest {
 		toFind = "at";
 		char[][] toSearch = { { 'a', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("at: (1,0),(2,0)"));
+		assertThat(createTest(toFind, grid).scan(), is("at: (0,1),(0,2)"));
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class VerticalFinderTest {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("fit: (0,2),(1,2),(2,2)"));
+		assertThat(createTest(toFind, grid).scan(), is("fit: (2,0),(2,1),(2,2)"));
 	}
 	
 	@Test
@@ -59,7 +59,7 @@ public class VerticalFinderTest {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
 		grid = new LetterGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("fit: (2,2),(1,2),(0,2)"));
+		assertThat(createTest(toFind, grid).scan(), is("fit: (2,2),(2,1),(2,0)"));
 	}
 	
 	@Test
