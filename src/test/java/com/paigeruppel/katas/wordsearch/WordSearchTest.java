@@ -9,7 +9,7 @@ public class WordSearchTest {
 
 	private String toFind;
 	private LetterGrid grid;
-	
+
 	@Test
 	public void shouldReturnCatAtOneThreeTwoTwoThreeOneDiagRToL() {
 		toFind = "cat";
@@ -19,7 +19,7 @@ public class WordSearchTest {
 		WordSearch underTest = new WordSearch(grid);
 		assertThat(underTest.find(toFind), is("cat: (1,3),(2,2),(3,1)"));
 	}
-	
+
 	@Test
 	public void shouldReturnLaAtRowOneColumnOneTwoWithConfoundingLHorizontal() {
 		toFind = "la";
@@ -28,7 +28,7 @@ public class WordSearchTest {
 		WordSearch underTest = new WordSearch(grid);
 		assertThat(underTest.find(toFind), is("la: (1,1),(1,2)"));
 	}
-	
+
 	@Test
 	public void shouldReturnAtFitColumnTwoRowZeroOneTwoWithConfoundingFiVertical() {
 		toFind = "fit";
@@ -36,5 +36,14 @@ public class WordSearchTest {
 		grid = new LetterGrid(toSearch);
 		WordSearch underTest = new WordSearch(grid);
 		assertThat(underTest.find(toFind), is("fit: (0,2),(1,2),(2,2)"));
+	}
+
+	@Test
+	public void shouldReturnItAtZeroOneOneTwoWithConfoundingIDiagLToRColumn() {
+		toFind = "it";
+		char[][] toSearch = { { 'i', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
+		grid = new LetterGrid(toSearch);
+		WordSearch underTest = new WordSearch(grid);
+		assertThat(underTest.find(toFind), is("it: (0,1),(1,2)"));
 	}
 }

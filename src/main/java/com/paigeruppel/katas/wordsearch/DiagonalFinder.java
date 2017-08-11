@@ -105,7 +105,7 @@ public class DiagonalFinder {
 			checkPositionAndIncrementStartOrReverseWord();
 		}
 
-		return "";
+		return "not found";
 	}
 
 	private void resetIfNextRToLCharNotPresent(int row, int col) {
