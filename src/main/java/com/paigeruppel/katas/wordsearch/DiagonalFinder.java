@@ -16,7 +16,7 @@ public class DiagonalFinder {
 	private void clearAnswerSetStartAt0() {
 		start = 0;
 		answer.tries = 0;
-		answer.reset();
+		answer.resetAnswerAndLetterIndexToZero();
 		answer.forwardWord();
 	}
 
@@ -94,7 +94,7 @@ public class DiagonalFinder {
 
 	private void resetIfNextRToLCharNotPresent(int row, int col) {
 		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar()) {
-			answer.reset();
+			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
 
@@ -106,7 +106,7 @@ public class DiagonalFinder {
 		if (start == grid.colLength - 1) {
 			start = 0;
 			answer.reverseWord();
-			answer.reset();
+			answer.resetAnswerAndLetterIndexToZero();
 			answer.incrementTries();
 		} else {
 			start++;
@@ -115,7 +115,7 @@ public class DiagonalFinder {
 
 	private void resetIfNextLToRDiagCharNotPresent(int row, int col) {
 		if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar()) {
-			answer.reset();
+			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
 

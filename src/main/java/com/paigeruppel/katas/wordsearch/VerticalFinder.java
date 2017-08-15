@@ -37,7 +37,7 @@ public class VerticalFinder {
 
 	private void resetIfNextVerticalCharNotPresent(int col, int row) {
 		if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar()) {
-			answer.reset();
+			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
 

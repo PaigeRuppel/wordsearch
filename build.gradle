@@ -7,13 +7,13 @@ repositories {
 
 dependencies {
 	testCompile 'org.hamcrest:hamcrest-all:1.+',
-		'org.mockito:mockito-core:1.+',
+
 		'junit:junit:4.+'
 }
 
 configurations {
 	all*.exclude module: 'hamcrest-core'
-	all*.exclude module: 'mockito-all'
+
 }
 
 task buildSrcFolders {
@@ -23,6 +23,7 @@ task buildSrcFolders {
 	doLast {
 		mkdir("src/main/java")
 		mkdir("src/test/java")
+		mkdir("src/main/resources")
 	}
 }
 

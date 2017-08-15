@@ -35,7 +35,7 @@ public class HorizontalFinder {
 
 	private void resetIfNextHorizontalCharNotPresent(int row, int col) {
 		if (grid.getNextCharacterHorizontalFrom(row, col) != answer.currentChar()) {
-			answer.reset();
+			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
 

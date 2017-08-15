@@ -6,8 +6,8 @@ public class AnswerBuilder {
 
 	private String toFind;
 	private String toFindHolder;
-	protected ArrayList<String> answerList = new ArrayList<String>();
 	private int maxInd;
+	protected ArrayList<String> answerList = new ArrayList<String>();
 	protected int tries;
 	protected int letterIndex;
 
@@ -33,7 +33,7 @@ public class AnswerBuilder {
 		answerList.add(currentIndex, coords);
 	}
 
-	public void reset() {
+	public void resetAnswerAndLetterIndexToZero() {
 		letterIndex = 0;
 		answerList.clear();
 	}
@@ -95,8 +95,8 @@ public class AnswerBuilder {
 		toFindHolder = toFind;
 	}
 
-	public boolean completed() {
-		return true;
-	}
+//	public boolean completed() {
+//		return true;
+//	}
 
 }
