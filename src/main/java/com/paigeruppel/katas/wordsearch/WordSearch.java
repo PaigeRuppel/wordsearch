@@ -17,11 +17,9 @@ public class WordSearch {
 
 	public String find(String toFind) {
 
-		String answerWithCoords = "";
+		String answerWithCoords = "empty";
 		
-		diagonal = new DiagonalFinder(toFind, grid);
-		horizontal = new HorizontalFinder(toFind, grid);
-		vertical = new VerticalFinder(toFind, grid);
+		buildFinders(toFind);
 
 		String horizontalAnswer = horizontal.scan();
 		String verticalAnswer = vertical.scan();
@@ -35,6 +33,12 @@ public class WordSearch {
 			answerWithCoords = diagonalAnswer;
 		}
 		return answerWithCoords;
+	}
+
+	private void buildFinders(String toFind) {
+		diagonal = new DiagonalFinder(toFind, grid);
+		horizontal = new HorizontalFinder(toFind, grid);
+		vertical = new VerticalFinder(toFind, grid);
 	}
 
 	public String findAll(ArrayList<String> listToFind) {
