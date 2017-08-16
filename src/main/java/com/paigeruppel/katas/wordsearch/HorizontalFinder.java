@@ -14,15 +14,15 @@ public class HorizontalFinder {
 	public String scan() {
 
 		while (answer.tries < 2) {
-			for (int row = 0; row < grid.rowLength; row++) {
-				for (int col = 0; col < grid.colLength; col++) {
-					if (grid.getCharacterAt(row, col) == answer.currentChar()) {
-						answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
+			for (int yAxis = 0; yAxis < grid.rowLength; yAxis++) {
+				for (int xAxis = 0; xAxis < grid.colLength; xAxis++) {
+					if (grid.getCharacterAt(yAxis, xAxis) == answer.currentChar()) {
+						answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
 						if (answer.atLastLetter()) {
 							return answer.generate();
 						}
 						answer.incrementLetterIndex();
-						resetIfNextHorizontalCharNotPresent(row, col);
+						resetIfNextHorizontalCharNotPresent(yAxis, xAxis);
 					}
 				}
 			}

@@ -20,17 +20,17 @@ public class DiagonalFinder {
 		answer.forwardWord();
 	}
 
-	public String scanColumnsLookingLeftToRight() {
+	public String scanXAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col++) {
-				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
+			for (int yAxis = 0, xAxis = start; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis++) {
+				if (matchFound(yAxis, xAxis)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextLToRDiagCharNotPresent(row, col);
+					resetIfNextLToRDiagCharNotPresent(yAxis, xAxis);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -38,17 +38,17 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-	public String scanRowsLookingLeftToRight() {
+	public String scanYAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int row = start, col = 0; grid.withinEdges(row, col); row++, col++) {
-				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
+			for (int yAxis = start, xAxis = 0; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis++) {
+				if (matchFound(yAxis, xAxis)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextLToRDiagCharNotPresent(row, col);
+					resetIfNextLToRDiagCharNotPresent(yAxis, xAxis);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -56,17 +56,17 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-	public String scanColumnsLookingRightToLeft() {
+	public String scanXAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int row = 0, col = start; grid.withinEdges(row, col); row++, col--) {
-				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
+			for (int yAxis = 0, xAxis = start; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis--) {
+				if (matchFound(yAxis, xAxis)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextRToLCharNotPresent(row, col);
+					resetIfNextRToLCharNotPresent(yAxis, xAxis);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -74,17 +74,17 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-	public String scanRowsLookingRightToLeft() {
+	public String scanYAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int row = start, col = grid.colLength - 1; grid.withinEdges(row, col); row++, col--) {
-				if (matchFound(row, col)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
+			for (int yAxis = start, xAxis = grid.colLength - 1; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis--) {
+				if (matchFound(yAxis, xAxis)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextRToLCharNotPresent(row, col);
+					resetIfNextRToLCharNotPresent(yAxis, xAxis);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -122,14 +122,14 @@ public class DiagonalFinder {
 	public String scan() {
 		String answer = "not found";
 
-		if (scanRowsLookingRightToLeft() != "not found") {
-			answer = scanRowsLookingRightToLeft();
-		} else if (scanColumnsLookingRightToLeft() != "not found") {
-			answer = scanColumnsLookingRightToLeft();
-		} else if (scanRowsLookingLeftToRight() != "not found") {
-			answer = scanRowsLookingLeftToRight();
-		} else if (scanColumnsLookingLeftToRight() != "not found") {
-			answer = scanColumnsLookingLeftToRight();
+		if (scanYAxisLookingRightToLeft() != "not found") {
+			answer = scanYAxisLookingRightToLeft();
+		} else if (scanXAxisLookingRightToLeft() != "not found") {
+			answer = scanXAxisLookingRightToLeft();
+		} else if (scanYAxisLookingLeftToRight() != "not found") {
+			answer = scanYAxisLookingLeftToRight();
+		} else if (scanXAxisLookingLeftToRight() != "not found") {
+			answer = scanXAxisLookingLeftToRight();
 		}
 
 		return answer;
