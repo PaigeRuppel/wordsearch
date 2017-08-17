@@ -14,17 +14,17 @@ public class VerticalFinder {
 	public String scan() {
 
 		while (answer.tries < 2) {
-			for (int col = 0; col < grid.colLength; col++) {
-				for (int row = 0; row < grid.rowLength; row++) {
-					if (grid.getCharacterAt(row, col) == answer.currentChar()) {
-						answer.buildAnswerList(answer.letterIndex, answer.coords(row, col));
+			for (int x = 0; x < grid.colLength; x++) {
+				for (int y = 0; y < grid.rowLength; y++) {
+					if (grid.getCharacterAt(y, x) == answer.currentChar()) {
+						answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
 						if (answer.atLastLetter()) {
 							
 							return answer.generate();
 						
 						} else {
 							answer.incrementLetterIndex();
-							resetIfNextVerticalCharNotPresent(col, row);
+							resetIfNextVerticalCharNotPresent(x, y);
 						}
 					}
 				}
@@ -35,8 +35,8 @@ public class VerticalFinder {
 		return "not found";
 	}
 
-	private void resetIfNextVerticalCharNotPresent(int col, int row) {
-		if (grid.getNextCharacterVerticalFrom(row, col) != answer.currentChar()) {
+	private void resetIfNextVerticalCharNotPresent(int x, int y) {
+		if (grid.getNextCharacterVerticalFrom(x, y) != answer.currentChar()) {
 			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}

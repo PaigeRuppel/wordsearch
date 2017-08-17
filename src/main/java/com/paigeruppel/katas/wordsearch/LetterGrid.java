@@ -31,10 +31,10 @@ public class LetterGrid {
 		return nextHorChar;
 	}
 
-	public Character getNextCharacterVerticalFrom(int row, int col) {
+	public Character getNextCharacterVerticalFrom(int x, int y) {
 		Character nextVerChar;
-		if (row + 1 < toSearch.length) {
-			nextVerChar = toSearch[row + 1][col];
+		if (y + 1 < toSearch.length) {
+			nextVerChar = toSearch[y + 1][x];
 		} else {
 			nextVerChar = '0';
 		}

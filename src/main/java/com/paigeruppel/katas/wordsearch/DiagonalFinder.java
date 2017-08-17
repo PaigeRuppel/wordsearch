@@ -23,14 +23,14 @@ public class DiagonalFinder {
 	public String scanXAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int yAxis = 0, xAxis = start; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis++) {
-				if (matchFound(yAxis, xAxis)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
+			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x++) {
+				if (matchFound(y, x)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextLToRDiagCharNotPresent(yAxis, xAxis);
+					resetIfNextLToRDiagCharNotPresent(y, x);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -41,14 +41,14 @@ public class DiagonalFinder {
 	public String scanYAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int yAxis = start, xAxis = 0; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis++) {
-				if (matchFound(yAxis, xAxis)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
+			for (int y = start, x = 0; grid.withinEdges(y, x); y++, x++) {
+				if (matchFound(y, x)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextLToRDiagCharNotPresent(yAxis, xAxis);
+					resetIfNextLToRDiagCharNotPresent(y, x);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -59,14 +59,14 @@ public class DiagonalFinder {
 	public String scanXAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int yAxis = 0, xAxis = start; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis--) {
-				if (matchFound(yAxis, xAxis)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
+			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x--) {
+				if (matchFound(y, x)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextRToLCharNotPresent(yAxis, xAxis);
+					resetIfNextRToLCharNotPresent(y, x);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -77,14 +77,14 @@ public class DiagonalFinder {
 	public String scanYAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.tries < 2) {
-			for (int yAxis = start, xAxis = grid.colLength - 1; grid.withinEdges(yAxis, xAxis); yAxis++, xAxis--) {
-				if (matchFound(yAxis, xAxis)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(yAxis, xAxis));
+			for (int y = start, x = grid.colLength - 1; grid.withinEdges(y, x); y++, x--) {
+				if (matchFound(y, x)) {
+					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
 					answer.incrementLetterIndex();
-					resetIfNextRToLCharNotPresent(yAxis, xAxis);
+					resetIfNextRToLCharNotPresent(y, x);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -92,14 +92,14 @@ public class DiagonalFinder {
 		return "not found";
 	}
 
-	private void resetIfNextRToLCharNotPresent(int row, int col) {
-		if (grid.getNextCharacterRToLDiagonalFrom(row, col) != answer.currentChar()) {
+	private void resetIfNextRToLCharNotPresent(int y, int x) {
+		if (grid.getNextCharacterRToLDiagonalFrom(y, x) != answer.currentChar()) {
 			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
 
-	private boolean matchFound(int row, int col) {
-		return grid.getCharacterAt(row, col) == answer.currentChar();
+	private boolean matchFound(int y, int x) {
+		return grid.getCharacterAt(y, x) == answer.currentChar();
 	}
 
 	private void incrementStartingPositionOrReverseWordAndIncrementTries() {
@@ -113,8 +113,8 @@ public class DiagonalFinder {
 		}
 	}
 
-	private void resetIfNextLToRDiagCharNotPresent(int row, int col) {
-		if (grid.getNextCharacterLToRDiagonalFrom(row, col) != answer.currentChar()) {
+	private void resetIfNextLToRDiagCharNotPresent(int y, int x) {
+		if (grid.getNextCharacterLToRDiagonalFrom(y, x) != answer.currentChar()) {
 			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
