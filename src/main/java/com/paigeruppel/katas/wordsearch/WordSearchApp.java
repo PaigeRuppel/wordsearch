@@ -7,7 +7,6 @@ public class WordSearchApp {
 
 	private static final String FILE_PATH = "C:\\Users\\Paige\\code\\code-katas\\wordsearch\\src\\main\\resources\\";
 	
-	private static LetterGrid grid;
 	private static WordSearch wordSearch;
 	private static TextFileReader textFileReader;
 	
