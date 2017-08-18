@@ -1,7 +1,7 @@
 package com.paigeruppel.katas.wordsearch;
 
 //To satisfy the second user story (and fifth)
-public class VerticalFinder implements Finder {
+public class VerticalFinder implements Finder  {
 
 	private LetterGrid grid;
 	private AnswerBuilder answer;

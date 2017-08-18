@@ -1,5 +1,6 @@
 package com.paigeruppel.katas.wordsearch;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordSearch {
@@ -10,34 +11,25 @@ public class WordSearch {
 		this.grid = grid;
 	}
 
-	private HorizontalFinder horizontal;
-	private VerticalFinder vertical;
-	private DiagonalFinder diagonal;
+	private Finder[] finders;
 
 	public String find(String toFind) {
 
 		String answerWithCoords = "empty";
 
 		buildFinders(toFind);
-
-		String horizontalAnswer = horizontal.scan();
-		String verticalAnswer = vertical.scan();
-		String diagonalAnswer = diagonal.scan();
-
-		if (horizontalAnswer != "not found") {
-			answerWithCoords = horizontalAnswer;
-		} else if (verticalAnswer != "not found") {
-			answerWithCoords = verticalAnswer;
-		} else if (diagonalAnswer != "not found") {
-			answerWithCoords = diagonalAnswer;
+		for (Finder f: finders) {
+			answerWithCoords = f.scan();
+			if (answerWithCoords != "not found" ) {
+				return answerWithCoords;
+			}
 		}
 		return answerWithCoords;
 	}
 
 	private void buildFinders(String toFind) {
-		diagonal = new DiagonalFinder(toFind, grid);
-		horizontal = new HorizontalFinder(toFind, grid);
-		vertical = new VerticalFinder(toFind, grid);
+		finders = new Finder[] { new DiagonalFinder(toFind, grid), new HorizontalFinder(toFind, grid),
+				new VerticalFinder(toFind, grid) };
 	}
 
 	// another way to do this - return a list instead (don't have new lines)
@@ -48,11 +40,11 @@ public class WordSearch {
 	// prints results
 	// static List<String> findWords(String filename) - could write an apptest
 	// around those methods in your app, but not around main
-	public String findAll(List<String> listToFind) {
-		String allWordsWithCoords = "";
+	private List<String> allWordsWithCoords = new ArrayList<String>();
+	public List<String> findAll(List<String> listToFind) {
 		for (String toFind : listToFind) {
 			String singleCoords = find(toFind);
-			allWordsWithCoords += singleCoords + "\r\n";
+			allWordsWithCoords.add(singleCoords);
 		}
 
 		return allWordsWithCoords;
