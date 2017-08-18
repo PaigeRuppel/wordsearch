@@ -6,6 +6,7 @@ import java.util.List;
 public class WordSearch {
 
 	private LetterGrid grid;
+	private List<String> allWordsWithCoords = new ArrayList<String>();
 
 	public WordSearch(LetterGrid grid) {
 		this.grid = grid;
@@ -32,15 +33,6 @@ public class WordSearch {
 				new VerticalFinder(toFind, grid) };
 	}
 
-	// another way to do this - return a list instead (don't have new lines)
-	// move the print each new entry on new line to main
-	// have a method in app?
-	// main getFilename()
-	// calls findWords
-	// prints results
-	// static List<String> findWords(String filename) - could write an apptest
-	// around those methods in your app, but not around main
-	private List<String> allWordsWithCoords = new ArrayList<String>();
 	public List<String> findAll(List<String> listToFind) {
 		for (String toFind : listToFind) {
 			String singleCoords = find(toFind);

@@ -1,13 +1,14 @@
 package com.paigeruppel.katas.wordsearch;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AnswerBuilder {
 
 	private String toFind;
 	private String toFindHolder;
 	private int maxInd;
-	protected ArrayList<String> answerList = new ArrayList<String>();
+	protected List<String> answerList = new ArrayList<String>();
 	private int tries;
 	private int letterIndex;
 
