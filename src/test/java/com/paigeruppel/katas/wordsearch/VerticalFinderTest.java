@@ -57,7 +57,7 @@ public class VerticalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnFitAtXTwoYTwoOneZeYithConfoundingFi() {
+	public void shouldReturnFitAtXTwoYTwoOneZeroWithConfoundingFi() {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
 		grid = new LetterGrid(toSearch);
@@ -82,7 +82,7 @@ public class VerticalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnKahnXCoords5YCoords9Through6() {
+	public void shouldReturnKahnXFiveYNineThroughSix() {
 		toFind = "KHAN";
 		char[][] toSearch = {
 				{'U','M','K','H','U','L','K','I','N','V','J','O','C','W','E'},

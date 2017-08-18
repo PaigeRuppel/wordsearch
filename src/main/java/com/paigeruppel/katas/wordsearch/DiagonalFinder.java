@@ -15,7 +15,7 @@ public class DiagonalFinder implements Finder {
 
 	private void clearAnswerSetStartAt0() {
 		start = 0;
-		answer.setTries(0);
+		answer.resetTries();
 		answer.resetAnswerAndLetterIndexToZero();
 		answer.forwardWord();
 	}

@@ -19,20 +19,20 @@ public class AnswerBuilder {
 		return tries;
 	}
 
-	protected void setTries(int tries) {
-		this.tries = tries;
-	}
-
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
 		toFindHolder = toFind;
 		maxInd = toFind.length() - 1;
-		setTries(0);
+		tries = 0;
 		letterIndex = 0;
 	}
 
 	public void incrementTries() {
-		setTries(getTries() + 1);
+		tries = getTries() + 1;
+	}
+	
+	public void resetTries() {
+		tries = 0;
 	}
 
 	public void incrementLetterIndex() {
