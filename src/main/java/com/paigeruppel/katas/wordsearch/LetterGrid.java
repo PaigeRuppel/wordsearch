@@ -3,28 +3,36 @@ package com.paigeruppel.katas.wordsearch;
 public class LetterGrid {
 
 	private char[][] toSearch;
-	protected int rowLength;
-	protected int colLength;
+	private int yLength;
+	private int xLength;
+
+	protected int getyLength() {
+		return yLength;
+	}
+
+	protected int getxLength() {
+		return xLength;
+	}
 
 	public LetterGrid(char[][] toSearch) {
 		this.toSearch = toSearch;
-		rowLength = toSearch.length;
-		colLength = toSearch[0].length;
-	}
-	
-	public boolean withinEdges (int row, int col) {
-		return row > -1 && row < rowLength && col > -1 && col < colLength;
-		
+		yLength = toSearch.length;
+		xLength = toSearch[0].length;
 	}
 
-	public Character getCharacterAt(int row, int col) {
-		return toSearch[row][col];
+	public boolean withinEdges(int y, int x) {
+		return y > -1 && y < getyLength() && x > -1 && x < getxLength();
+
 	}
 
-	public Character getNextCharacterHorizontalFrom(int row, int col) {
+	public Character getCharacterAt(int y, int x) {
+		return toSearch[y][x];
+	}
+
+	public Character getNextCharacterHorizontalFrom(int y, int x) {
 		Character nextHorChar;
-		if (col + 1 < toSearch[row].length) {
-			nextHorChar = toSearch[row][col + 1];
+		if (x + 1 < toSearch[y].length) {
+			nextHorChar = toSearch[y][x + 1];
 		} else {
 			nextHorChar = '0';
 		}
@@ -41,25 +49,24 @@ public class LetterGrid {
 		return nextVerChar;
 	}
 
-	public Character getNextCharacterLToRDiagonalFrom(int row, int col) {
+	public Character getNextCharacterLToRDiagonalFrom(int y, int x) {
 		Character nextLToRDiagChar;
-		if (col + 1 < toSearch[0].length && row + 1 < toSearch.length) {
-			nextLToRDiagChar = toSearch[row + 1][col + 1];
+		if (x + 1 < toSearch[0].length && y + 1 < toSearch.length) {
+			nextLToRDiagChar = toSearch[y + 1][x + 1];
 		} else {
 			nextLToRDiagChar = '0';
 		}
 		return nextLToRDiagChar;
 	}
 
-	public Character getNextCharacterRToLDiagonalFrom(int row, int col) {
+	public Character getNextCharacterRToLDiagonalFrom(int y, int x) {
 		Character nextRToLDiagChar;
-		if (col - 1 > -1 && row + 1 < toSearch.length) {
-			nextRToLDiagChar = toSearch[row + 1][col - 1];
+		if (x - 1 > -1 && y + 1 < toSearch.length) {
+			nextRToLDiagChar = toSearch[y + 1][x - 1];
 		} else {
 			nextRToLDiagChar = '0';
 		}
 		return nextRToLDiagChar;
 	}
-	
-	
+
 }
