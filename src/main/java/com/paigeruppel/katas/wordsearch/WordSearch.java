@@ -1,11 +1,10 @@
 package com.paigeruppel.katas.wordsearch;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class WordSearch {
 
 	private LetterGrid grid;
-
 
 	public WordSearch(LetterGrid grid) {
 		this.grid = grid;
@@ -18,13 +17,13 @@ public class WordSearch {
 	public String find(String toFind) {
 
 		String answerWithCoords = "empty";
-		
+
 		buildFinders(toFind);
 
 		String horizontalAnswer = horizontal.scan();
 		String verticalAnswer = vertical.scan();
 		String diagonalAnswer = diagonal.scan();
-		
+
 		if (horizontalAnswer != "not found") {
 			answerWithCoords = horizontalAnswer;
 		} else if (verticalAnswer != "not found") {
@@ -41,13 +40,21 @@ public class WordSearch {
 		vertical = new VerticalFinder(toFind, grid);
 	}
 
-	public String findAll(ArrayList<String> listToFind) {
+	// another way to do this - return a list instead (don't have new lines)
+	// move the print each new entry on new line to main
+	// have a method in app?
+	// main getFilename()
+	// calls findWords
+	// prints results
+	// static List<String> findWords(String filename) - could write an apptest
+	// around those methods in your app, but not around main
+	public String findAll(List<String> listToFind) {
 		String allWordsWithCoords = "";
-		for (String toFind: listToFind) {
-		String singleCoords = find(toFind);
-		allWordsWithCoords += singleCoords + "\r\n";
+		for (String toFind : listToFind) {
+			String singleCoords = find(toFind);
+			allWordsWithCoords += singleCoords + "\r\n";
 		}
-		
+
 		return allWordsWithCoords;
 	}
 

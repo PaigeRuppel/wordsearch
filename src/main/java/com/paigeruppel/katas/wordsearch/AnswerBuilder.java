@@ -9,7 +9,11 @@ public class AnswerBuilder {
 	private int maxInd;
 	protected ArrayList<String> answerList = new ArrayList<String>();
 	protected int tries;
-	protected int letterIndex;
+	private int letterIndex;
+
+	protected int getLetterIndex() {
+		return letterIndex;
+	}
 
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
@@ -25,7 +29,7 @@ public class AnswerBuilder {
 
 	public void incrementLetterIndex() {
 		if (letterIndex < maxInd) {
-			letterIndex++;
+			letterIndex = getLetterIndex() + 1;
 		}
 	}
 
@@ -43,14 +47,11 @@ public class AnswerBuilder {
 	}
 
 	public boolean atLastLetter() {
-		if (letterIndex == maxInd) {
-			return true;
-		}
-		return false;
+		return getLetterIndex() == maxInd;
 	}
 
 	public Character currentChar() {
-		return toFindHolder.charAt(letterIndex);
+		return toFindHolder.charAt(getLetterIndex());
 	}
 
 	public String generate() {
@@ -65,7 +66,7 @@ public class AnswerBuilder {
 
 	private String generateForward(String answer) {
 		letterIndex = 0;
-		for (int index = letterIndex; index < toFind.length(); index++) {
+		for (int index = getLetterIndex(); index < toFind.length(); index++) {
 			if (index < toFind.length() - 1) {
 				answer += answerList.get(index) + ",";
 			} else {
@@ -77,7 +78,7 @@ public class AnswerBuilder {
 
 	public String generateReverse(String answer) {
 		letterIndex = maxInd;
-		for (int index = letterIndex; index > -1; index--) {
+		for (int index = getLetterIndex(); index > -1; index--) {
 			if (index > 0) {
 				answer += answerList.get(index) + ",";
 			} else {
@@ -94,9 +95,5 @@ public class AnswerBuilder {
 	public void forwardWord() {
 		toFindHolder = toFind;
 	}
-
-//	public boolean completed() {
-//		return true;
-//	}
 
 }

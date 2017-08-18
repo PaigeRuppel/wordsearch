@@ -1,7 +1,7 @@
 package com.paigeruppel.katas.wordsearch;
 
-// to satisfy third and fourth user stories
-public class DiagonalFinder {
+// to satisfy third and fourth user stories (and fifth)
+public class DiagonalFinder implements Finder {
 
 	private AnswerBuilder answer;
 	private LetterGrid grid;
@@ -25,7 +25,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x++) {
 				if (matchFound(y, x)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
+					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
@@ -43,7 +43,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int y = start, x = 0; grid.withinEdges(y, x); y++, x++) {
 				if (matchFound(y, x)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
+					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
@@ -61,7 +61,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x--) {
 				if (matchFound(y, x)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
+					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
@@ -79,7 +79,7 @@ public class DiagonalFinder {
 		while (answer.tries < 2) {
 			for (int y = start, x = grid.colLength - 1; grid.withinEdges(y, x); y++, x--) {
 				if (matchFound(y, x)) {
-					answer.buildAnswerList(answer.letterIndex, answer.coords(y, x));
+					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
 						return answer.generate();
 					}
