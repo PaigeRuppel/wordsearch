@@ -6,6 +6,8 @@ public class VerticalFinder implements Finder  {
 	private LetterGrid grid;
 	private AnswerBuilder answer;
 
+	private static final String NOT_FOUND = "not found";
+	
 	public VerticalFinder(String toFind, LetterGrid grid) {
 		this.grid = grid;
 		answer = new AnswerBuilder(toFind);
@@ -17,7 +19,7 @@ public class VerticalFinder implements Finder  {
 			for (int x = 0; x < grid.getXLength(); x++) {
 				for (int y = 0; y < grid.getYLength(); y++) {
 					if (grid.getCharacterAt(y, x) == answer.currentChar()) {
-						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
+						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 						if (answer.atLastLetter()) {
 							return answer.generate();
 
@@ -31,7 +33,7 @@ public class VerticalFinder implements Finder  {
 			answer.reverseWord();
 			answer.incrementTries();
 		}
-		return "not found";
+		return NOT_FOUND;
 	}
 
 	private void resetIfNextVerticalCharNotPresent(int x, int y) {

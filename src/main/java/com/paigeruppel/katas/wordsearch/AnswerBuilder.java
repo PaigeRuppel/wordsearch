@@ -50,8 +50,8 @@ public class AnswerBuilder {
 		answerList.clear();
 	}
 
-	public String coords(int row, int col) {
-		return "(" + col + "," + row + ")";
+	public String coords(int x, int y) {
+		return "(" + x + "," + y + ")";
 	}
 
 	public boolean atLastLetter() {
