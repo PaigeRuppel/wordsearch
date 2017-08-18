@@ -15,14 +15,14 @@ public class DiagonalFinder implements Finder {
 
 	private void clearAnswerSetStartAt0() {
 		start = 0;
-		answer.tries = 0;
+		answer.setTries(0);
 		answer.resetAnswerAndLetterIndexToZero();
 		answer.forwardWord();
 	}
 
 	public String scanXAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
-		while (answer.tries < 2) {
+		while (answer.getTries() < 2) {
 			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x++) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
@@ -40,7 +40,7 @@ public class DiagonalFinder implements Finder {
 
 	public String scanYAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
-		while (answer.tries < 2) {
+		while (answer.getTries() < 2) {
 			for (int y = start, x = 0; grid.withinEdges(y, x); y++, x++) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
@@ -58,7 +58,7 @@ public class DiagonalFinder implements Finder {
 
 	public String scanXAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
-		while (answer.tries < 2) {
+		while (answer.getTries() < 2) {
 			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x--) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
@@ -76,7 +76,7 @@ public class DiagonalFinder implements Finder {
 
 	public String scanYAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
-		while (answer.tries < 2) {
+		while (answer.getTries() < 2) {
 			for (int y = start, x = grid.colLength - 1; grid.withinEdges(y, x); y++, x--) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));

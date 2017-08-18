@@ -13,9 +13,9 @@ public class VerticalFinderTest {
 	public VerticalFinder createTest(String toFind, LetterGrid grid) {
 		return new VerticalFinder(toFind, grid);
 	}
-
+	
 	@Test
-	public void shouldReturnCatAtColumnOneRowZeroOneTwo() {
+	public void shouldReturnCatAtXOneYZeroOneTwo() {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'c', 'x' }, { 'x', 'a', 'x' }, { 'x', 't', 'x' } };
 		grid = new LetterGrid(toSearch);
@@ -23,7 +23,7 @@ public class VerticalFinderTest {
 	}
 
 	@Test
-	public void shouldReturnCatAtColumnZeroRowZeroOneTwo() {
+	public void shouldReturnCatAtXZeroYZeroOneTwo() {
 		toFind = "cat";
 		char[][] toSearch = { { 'c', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
@@ -31,7 +31,7 @@ public class VerticalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnAtAtColumnZeroRowOneTwo() {
+	public void shouldReturnAtAtXZeroYOneTwo() {
 		toFind = "at";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
@@ -39,7 +39,7 @@ public class VerticalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnAtAtColumnZeroRowOneTwoWithConfoundingA() {
+	public void shouldReturnAtAtXZeroYOneTwoWithConfoundingA() {
 		toFind = "at";
 		char[][] toSearch = { { 'a', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		grid = new LetterGrid(toSearch);
@@ -47,7 +47,7 @@ public class VerticalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnAtFitColumnTwoRowZeroOneTwoWithConfoundingFi() {
+	public void shouldReturnAtFitXTwoYZeroOneTwoWithConfoundingFi() {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 'f' }, 
 								{ 'x', 'i', 'i' }, 
@@ -57,7 +57,7 @@ public class VerticalFinderTest {
 	}
 	
 	@Test
-	public void shouldReturnFitAtColumnTwoRowTwoOneZeroWithConfoundingFi() {
+	public void shouldReturnFitAtXTwoYTwoOneZeYithConfoundingFi() {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
 		grid = new LetterGrid(toSearch);

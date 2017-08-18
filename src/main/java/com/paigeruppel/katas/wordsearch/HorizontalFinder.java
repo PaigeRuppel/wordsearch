@@ -13,7 +13,7 @@ public class HorizontalFinder implements Finder {
 
 	public String scan() {
 
-		while (answer.tries < 2) {
+		while (answer.getTries() < 2) {
 			for (int y = 0; y < grid.rowLength; y++) {
 				for (int x = 0; x < grid.colLength; x++) {
 					if (grid.getCharacterAt(y, x) == answer.currentChar()) {

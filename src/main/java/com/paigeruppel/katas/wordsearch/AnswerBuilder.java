@@ -8,23 +8,31 @@ public class AnswerBuilder {
 	private String toFindHolder;
 	private int maxInd;
 	protected ArrayList<String> answerList = new ArrayList<String>();
-	protected int tries;
+	private int tries;
 	private int letterIndex;
 
 	protected int getLetterIndex() {
 		return letterIndex;
 	}
 
+	protected int getTries() {
+		return tries;
+	}
+
+	protected void setTries(int tries) {
+		this.tries = tries;
+	}
+
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
 		toFindHolder = toFind;
 		maxInd = toFind.length() - 1;
-		tries = 0;
+		setTries(0);
 		letterIndex = 0;
 	}
 
 	public void incrementTries() {
-		tries++;
+		setTries(getTries() + 1);
 	}
 
 	public void incrementLetterIndex() {
@@ -56,7 +64,7 @@ public class AnswerBuilder {
 
 	public String generate() {
 		String answer = toFind + ": ";
-		if (tries == 0) {
+		if (getTries() == 0) {
 			answer = generateForward(answer);
 		} else {
 			answer = generateReverse(answer);
