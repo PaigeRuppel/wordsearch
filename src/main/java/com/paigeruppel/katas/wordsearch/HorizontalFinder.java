@@ -14,8 +14,8 @@ public class HorizontalFinder implements Finder {
 	public String scan() {
 
 		while (answer.getTries() < 2) {
-			for (int y = 0; y < grid.getyLength(); y++) {
-				for (int x = 0; x < grid.getxLength(); x++) {
+			for (int y = 0; y < grid.getYLength(); y++) {
+				for (int x = 0; x < grid.getXLength(); x++) {
 					if (grid.getCharacterAt(y, x) == answer.currentChar()) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 						if (answer.atLastLetter()) {

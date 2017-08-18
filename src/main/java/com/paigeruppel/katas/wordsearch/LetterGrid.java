@@ -6,11 +6,11 @@ public class LetterGrid {
 	private int yLength;
 	private int xLength;
 
-	protected int getyLength() {
+	protected int getYLength() {
 		return yLength;
 	}
 
-	protected int getxLength() {
+	protected int getXLength() {
 		return xLength;
 	}
 
@@ -20,8 +20,8 @@ public class LetterGrid {
 		xLength = toSearch[0].length;
 	}
 
-	public boolean withinEdges(int y, int x) {
-		return y > -1 && y < getyLength() && x > -1 && x < getxLength();
+	public boolean withinEdges(int x, int y) {
+		return y > -1 && y < getYLength() && x > -1 && x < getXLength();
 
 	}
 

@@ -23,7 +23,7 @@ public class DiagonalFinder implements Finder {
 	public String scanXAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
-			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x++) {
+			for (int y = 0, x = start; grid.withinEdges(x, y); y++, x++) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
@@ -41,7 +41,7 @@ public class DiagonalFinder implements Finder {
 	public String scanYAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
-			for (int y = start, x = 0; grid.withinEdges(y, x); y++, x++) {
+			for (int y = start, x = 0; grid.withinEdges(x, y); y++, x++) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
@@ -59,7 +59,7 @@ public class DiagonalFinder implements Finder {
 	public String scanXAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
-			for (int y = 0, x = start; grid.withinEdges(y, x); y++, x--) {
+			for (int y = 0, x = start; grid.withinEdges(x, y); y++, x--) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
@@ -77,7 +77,7 @@ public class DiagonalFinder implements Finder {
 	public String scanYAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
-			for (int y = start, x = grid.getxLength() - 1; grid.withinEdges(y, x); y++, x--) {
+			for (int y = start, x = grid.getXLength() - 1; grid.withinEdges(x, y); y++, x--) {
 				if (matchFound(y, x)) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(y, x));
 					if (answer.atLastLetter()) {
@@ -103,7 +103,7 @@ public class DiagonalFinder implements Finder {
 	}
 
 	private void incrementStartingPositionOrReverseWordAndIncrementTries() {
-		if (start == grid.getxLength() - 1) {
+		if (start == grid.getXLength() - 1) {
 			start = 0;
 			answer.reverseWord();
 			answer.resetAnswerAndLetterIndexToZero();
