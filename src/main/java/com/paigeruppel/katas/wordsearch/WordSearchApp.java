@@ -17,17 +17,15 @@ public class WordSearchApp {
 		writeLine(
 				"Please enter the name of the file you wish to search: \n(Note: Please save the file in src/main/resources in the proper format if you have not already done so)");
 
-		textFileReader = new TextFileReader(getFilename(input.nextLine()));
-
-
-//
-//		writeLine(wordSearch.findAll(listToFind));
-
+		List<String> wordsWithCoords = findWords(input.nextLine());
+		
+		for (String current: wordsWithCoords) {
+			writeLine(current);
+		}
+		
+		input.close();
 	}
-
-	// move the print each new entry on new line to main
-	// have a method in app?
-	// main getFilename()
+	
 	public static String getFilename(String filename) {
 		return FILE_PATH + filename;
 	}
@@ -40,8 +38,6 @@ public class WordSearchApp {
 		wordSearch = new WordSearch(new LetterGrid(toSearch));
 		return wordSearch.findAll(listToFind);
 	}
-	// static List<String> findWords(String filename) - could write an apptest
-	// around those methods in your app, but not around main
 
 	public static void writeLine(String message) {
 		System.out.println(message);
