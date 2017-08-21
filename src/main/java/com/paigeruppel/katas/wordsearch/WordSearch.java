@@ -19,9 +19,9 @@ public class WordSearch {
 		String answerWithCoords = "empty";
 
 		buildFinders(toFind);
-		for (Finder f: finders) {
+		for (Finder f : finders) {
 			answerWithCoords = f.scan();
-			if (answerWithCoords != "not found" ) {
+			if (answerWithCoords != "not found") {
 				return answerWithCoords;
 			}
 		}

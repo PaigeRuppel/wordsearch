@@ -122,15 +122,14 @@ public class DiagonalFinder implements Finder {
 	}
 
 	public String scan() {
-		String answer = "not found";
-
-		if (scanYAxisLookingRightToLeft() != "not found") {
+		String answer = NOT_FOUND;
+		if (scanYAxisLookingRightToLeft() != NOT_FOUND) {
 			answer = scanYAxisLookingRightToLeft();
-		} else if (scanXAxisLookingRightToLeft() != "not found") {
+		} else if (scanXAxisLookingRightToLeft() != NOT_FOUND) {
 			answer = scanXAxisLookingRightToLeft();
-		} else if (scanYAxisLookingLeftToRight() != "not found") {
+		} else if (scanYAxisLookingLeftToRight() != NOT_FOUND) {
 			answer = scanYAxisLookingLeftToRight();
-		} else if (scanXAxisLookingLeftToRight() != "not found") {
+		} else if (scanXAxisLookingLeftToRight() != NOT_FOUND) {
 			answer = scanXAxisLookingLeftToRight();
 		}
 
