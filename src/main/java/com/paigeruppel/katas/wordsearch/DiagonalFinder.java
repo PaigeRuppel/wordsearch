@@ -31,7 +31,7 @@ public class DiagonalFinder implements Finder {
 				} else if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
-					buildAnswerAndCheckForNextLToRDiagChar(x, y);
+					buildAnswerAndIncrementLetterIndex(x, y);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -48,7 +48,7 @@ public class DiagonalFinder implements Finder {
 				} else if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
-					buildAnswerAndCheckForNextLToRDiagChar(x, y);
+					buildAnswerAndIncrementLetterIndex(x, y);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -65,7 +65,7 @@ public class DiagonalFinder implements Finder {
 				} else if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
-					buildAnswerAndCheckForNextRToLDiagChar(x, y);
+					buildAnswerAndIncrementLetterIndex(x, y);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -77,13 +77,14 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = grid.getXLength() - 1, y = start; grid.withinEdges(x, y); x--, y++) {
-				//TODO think about whether it is necessary to include second letterIndex condition here
+				// TODO think about whether it is necessary to include second letterIndex
+				// condition here
 				if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
 					answer.resetAnswerAndLetterIndexToZero();
 				} else if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
-					buildAnswerAndCheckForNextRToLDiagChar(x, y);
+					buildAnswerAndIncrementLetterIndex(x, y);
 				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -91,16 +92,9 @@ public class DiagonalFinder implements Finder {
 		return NOT_FOUND;
 	}
 
-	private void buildAnswerAndCheckForNextLToRDiagChar(int x, int y) {
+	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
 		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 		answer.incrementLetterIndex();
-//		resetIfNextLToRDiagCharNotPresent(y, x);
-	}
-
-	private void buildAnswerAndCheckForNextRToLDiagChar(int x, int y) {
-		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-		answer.incrementLetterIndex();
-//		resetIfNextRToLCharNotPresent(y, x);
 	}
 
 	private String buildAndReturnAnswer(int x, int y) {
@@ -110,12 +104,6 @@ public class DiagonalFinder implements Finder {
 
 	private boolean isMatchAndAtLastLetter(int x, int y) {
 		return isMatch(x, y) && answer.atLastLetter();
-	}
-
-	private void resetIfNextRToLCharNotPresent(int y, int x) {
-		if (grid.getNextCharacterRToLDiagonalFrom(y, x) != answer.currentChar()) {
-			answer.resetAnswerAndLetterIndexToZero();
-		}
 	}
 
 	private boolean isMatch(int x, int y) {
@@ -130,12 +118,6 @@ public class DiagonalFinder implements Finder {
 			answer.incrementTries();
 		} else {
 			start++;
-		}
-	}
-
-	private void resetIfNextLToRDiagCharNotPresent(int y, int x) {
-		if (grid.getNextCharacterLToRDiagonalFrom(y, x) != answer.currentChar()) {
-			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
 
