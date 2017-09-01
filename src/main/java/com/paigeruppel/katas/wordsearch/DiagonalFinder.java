@@ -56,7 +56,9 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x--, y++) {
-				if (isMatchAndAtLastLetter(x, y)) {
+				if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
+					answer.resetAnswerAndLetterIndexToZero();
+				} else if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
 					buildAnswerAndCheckForNextRToLDiagChar(x, y);
@@ -71,7 +73,9 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = grid.getXLength() - 1, y = start; grid.withinEdges(x, y); x--, y++) {
-				if (isMatchAndAtLastLetter(x, y)) {
+				if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
+					answer.resetAnswerAndLetterIndexToZero();
+				} else if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
 					buildAnswerAndCheckForNextRToLDiagChar(x, y);
@@ -91,7 +95,7 @@ public class DiagonalFinder implements Finder {
 	private void buildAnswerAndCheckForNextRToLDiagChar(int x, int y) {
 		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 		answer.incrementLetterIndex();
-		resetIfNextRToLCharNotPresent(y, x);
+//		resetIfNextRToLCharNotPresent(y, x);
 	}
 
 	private String buildAndReturnAnswer(int x, int y) {
