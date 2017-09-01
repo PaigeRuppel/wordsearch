@@ -1,13 +1,13 @@
 package com.paigeruppel.katas.wordsearch;
 
 //To satisfy the second user story (and fifth)
-public class VerticalFinder implements Finder  {
+public class VerticalFinder implements Finder {
 
 	private LetterGrid grid;
 	private AnswerBuilder answer;
 
 	private static final String NOT_FOUND = "not found";
-	
+
 	public VerticalFinder(String toFind, LetterGrid grid) {
 		this.grid = grid;
 		answer = new AnswerBuilder(toFind);
@@ -18,15 +18,13 @@ public class VerticalFinder implements Finder  {
 		while (answer.getTries() < 2) {
 			for (int x = 0; x < grid.getXLength(); x++) {
 				for (int y = 0; y < grid.getYLength(); y++) {
-					if (grid.getCharacterAt(y, x) == answer.currentChar()) {
+					if (grid.getCharacterAt(y, x) == answer.currentChar() && answer.atLastLetter()) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-						if (answer.atLastLetter()) {
-							return answer.generate();
-
-						} else {
-							answer.incrementLetterIndex();
-							resetIfNextVerticalCharNotPresent(x, y);
-						}
+						return answer.generate();
+					} else if (grid.getCharacterAt(y, x) == answer.currentChar()) {
+						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
+						answer.incrementLetterIndex();
+						resetIfNextVerticalCharNotPresent(x, y);
 					}
 				}
 			}
@@ -34,6 +32,7 @@ public class VerticalFinder implements Finder  {
 			answer.incrementTries();
 		}
 		return NOT_FOUND;
+
 	}
 
 	private void resetIfNextVerticalCharNotPresent(int x, int y) {

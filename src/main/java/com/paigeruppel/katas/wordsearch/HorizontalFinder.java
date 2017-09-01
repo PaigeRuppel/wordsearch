@@ -24,6 +24,7 @@ public class HorizontalFinder implements Finder {
 					} else if (grid.getCharacterAt(y, x) == answer.currentChar()) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 						answer.incrementLetterIndex();
+						// TODO still some nesting here - revisit
 						resetIfNextHorizontalCharNotPresent(x, y);
 					}
 				}
