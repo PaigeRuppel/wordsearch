@@ -43,10 +43,12 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = 0, y = start; grid.withinEdges(x, y); x++, y++) {
+				if (isMatchAndAtLastLetter(x, y)) {
+					return buildAndReturnAnswer(x, y);
+				}
+				
 				if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
 					answer.resetAnswerAndLetterIndexToZero();
-				} else if (isMatchAndAtLastLetter(x, y)) {
-					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
 					buildAnswerAndIncrementLetterIndex(x, y);
 				}
@@ -60,10 +62,12 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x--, y++) {
+				if (isMatchAndAtLastLetter(x, y)) {
+					return buildAndReturnAnswer(x, y);
+				}
+				
 				if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
 					answer.resetAnswerAndLetterIndexToZero();
-				} else if (isMatchAndAtLastLetter(x, y)) {
-					return buildAndReturnAnswer(x, y);
 				} else if (isMatch(x, y)) {
 					buildAnswerAndIncrementLetterIndex(x, y);
 				}
@@ -77,8 +81,6 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = grid.getXLength() - 1, y = start; grid.withinEdges(x, y); x--, y++) {
-				// TODO think about whether it is necessary to include second letterIndex
-				// condition here
 				if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
 					answer.resetAnswerAndLetterIndexToZero();
 				} else if (isMatchAndAtLastLetter(x, y)) {
