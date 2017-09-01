@@ -9,13 +9,6 @@ import java.util.List;
 import org.junit.Test;
 
 public class WordSearchAppTest {
-
-	@Test
-	public void shouldReturnFilenameForOakSpecies() {
-		String pathPlusFile = "C:\\Users\\Paige\\code\\code-katas\\wordsearch\\src\\main\\resources\\"
-				+ "OakSpeciesSearch.txt";
-		assertThat(WordSearchApp.getFilename("OakSpeciesSearch.txt"), is(pathPlusFile));
-	}
 	
 	@Test
 	public void shouldReturnListWithCoordsForStarTrekSearch() {

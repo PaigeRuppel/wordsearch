@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class WordSearchApp {
 
-	private static final String FILE_PATH = "C:\\Users\\Paige\\code\\code-katas\\wordsearch\\src\\main\\resources\\";
 
 	private static WordSearch wordSearch;
 	private static TextFileReader textFileReader;
@@ -24,8 +23,8 @@ public class WordSearchApp {
 		
 	}
 
-	public static String getFilename(String filename) {
-		return FILE_PATH + filename;
+	public static String getFilename(String fileName) {
+		return new FilePath().getFullFileName(fileName);
 	}
 
 	public static List<String> findWords(String filename) {
