@@ -44,11 +44,11 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = 0, y = start; grid.withinEdges(x, y); x++, y++) {
-				if (matchFound(x, y)) {
+				if (matchFound(x, y) && answer.atLastLetter()) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-					if (answer.atLastLetter()) {
-						return answer.generate();
-					}
+					return answer.generate();
+				} else if (matchFound(x, y)) {
+					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 					answer.incrementLetterIndex();
 					resetIfNextLToRDiagCharNotPresent(y, x);
 				}
