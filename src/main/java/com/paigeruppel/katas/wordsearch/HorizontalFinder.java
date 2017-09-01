@@ -7,7 +7,7 @@ public class HorizontalFinder implements Finder {
 	private AnswerBuilder answer;
 
 	private static final String NOT_FOUND = "not found";
-	
+
 	public HorizontalFinder(String toFind, LetterGrid grid) {
 		this.grid = grid;
 		answer = new AnswerBuilder(toFind);
@@ -18,11 +18,11 @@ public class HorizontalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int y = 0; y < grid.getYLength(); y++) {
 				for (int x = 0; x < grid.getXLength(); x++) {
-					if (grid.getCharacterAt(y, x) == answer.currentChar()) {
+					if (grid.getCharacterAt(y, x) == answer.currentChar() && answer.atLastLetter()) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-						if (answer.atLastLetter()) {
-							return answer.generate();
-						}
+						return answer.generate();
+					} else if (grid.getCharacterAt(y, x) == answer.currentChar()) {
+						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 						answer.incrementLetterIndex();
 						resetIfNextHorizontalCharNotPresent(x, y);
 					}
@@ -31,7 +31,7 @@ public class HorizontalFinder implements Finder {
 			answer.incrementTries();
 			answer.reverseWord();
 		}
-	
+
 		return NOT_FOUND;
 	}
 
@@ -40,6 +40,5 @@ public class HorizontalFinder implements Finder {
 			answer.resetAnswerAndLetterIndexToZero();
 		}
 	}
-
 
 }
