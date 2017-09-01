@@ -10,16 +10,17 @@ import org.junit.Test;
 
 public class TextFileReaderTest {
 
-	private String starTrekFile = "C:\\Users\\Paige\\code\\code-katas\\wordsearch\\src\\main\\resources\\StarTrekSearch.txt";
-	private String oakSpeciesFile = "C:\\Users\\Paige\\code\\code-katas\\wordsearch\\src\\main\\resources\\OakSpeciesSearch.txt";
-
 	private TextFileReader starTrekReader;
 	private TextFileReader oakSpeciesReader;
 
+	private FilePath filePath;
+
 	@Before
 	public void setup() {
-		starTrekReader = new TextFileReader(starTrekFile);
-		oakSpeciesReader = new TextFileReader(oakSpeciesFile);
+		filePath = new FilePath();
+
+		starTrekReader = new TextFileReader(filePath.getFullFileName("StarTrekSearch.txt"));
+		oakSpeciesReader = new TextFileReader(filePath.getFullFileName("OakSpeciesSearch.txt"));
 	}
 
 	@Test
@@ -93,7 +94,8 @@ public class TextFileReaderTest {
 				{ 'W', 'A', 'N', 'W', 'C', 'X', 'H', 'C', 'C', 'G', 'B', 'R', 'D', 'J', 'W', 'D', 'M', 'Q', 'K', 'P' },
 				{ 'A', 'M', 'U', 'V', 'I', 'S', 'A', 'Z', 'B', 'A', 'Q', 'E', 'R', 'F', 'W', 'T', 'K', 'Q', 'U', 'Q' },
 				{ 'C', 'W', 'Q', 'R', 'K', 'M', 'S', 'W', 'D', 'Z', 'N', 'C', 'P', 'H', 'W', 'N', 'F', 'E', 'I', 'F' },
-				{ 'E', 'K', 'N', 'C', 'I', 'R', 'N', 'V', 'G', 'S', 'I', 'D', 'J', 'N', 'U', 'H', 'J', 'F', 'R', 'X' } };
+				{ 'E', 'K', 'N', 'C', 'I', 'R', 'N', 'V', 'G', 'S', 'I', 'D', 'J', 'N', 'U', 'H', 'J', 'F', 'R',
+						'X' } };
 		assertThat(oakSpeciesReader.buildLetterGrid(), is(oakSpeciesGrid));
 	}
 
