@@ -57,7 +57,6 @@ public class DiagonalFinder implements Finder {
 				if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
 				}
-
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
@@ -71,8 +70,7 @@ public class DiagonalFinder implements Finder {
 			for (int x = grid.getXLength() - 1, y = start; grid.withinEdges(x, y); x--, y++) {
 				if (isMatchAndAtLastLetter(x, y)) {
 					return buildAndReturnAnswer(x, y);
-				}
-
+				} 
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();

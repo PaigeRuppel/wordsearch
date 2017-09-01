@@ -18,10 +18,10 @@ public class VerticalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int x = 0; x < grid.getXLength(); x++) {
 				for (int y = 0; y < grid.getYLength(); y++) {
-					if (grid.getCharacterAt(y, x) == answer.currentChar() && answer.atLastLetter()) {
+					if (isMatch(x, y) && answer.atLastLetter()) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 						return answer.generate();
-					} else if (grid.getCharacterAt(y, x) == answer.currentChar()) {
+					} else if (isMatch(x, y)) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 						answer.incrementLetterIndex();
 						// TODO think about addressing nesting here...
@@ -34,6 +34,10 @@ public class VerticalFinder implements Finder {
 		}
 		return NOT_FOUND;
 
+	}
+
+	private boolean isMatch(int x, int y) {
+		return grid.getCharacterAt(y, x) == answer.currentChar();
 	}
 
 	private void resetIfNextVerticalCharNotPresent(int x, int y) {

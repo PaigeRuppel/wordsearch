@@ -8,15 +8,16 @@ public class AnswerBuilder {
 	private String toFind;
 	private String toFindHolder;
 	private int maxInd;
-	protected List<String> answerList = new ArrayList<String>();
 	private int tries;
 	private int letterIndex;
 
-	protected int getLetterIndex() {
+	List<String> answerList = new ArrayList<String>();
+
+	public int getLetterIndex() {
 		return letterIndex;
 	}
 
-	protected int getTries() {
+	public int getTries() {
 		return tries;
 	}
 
