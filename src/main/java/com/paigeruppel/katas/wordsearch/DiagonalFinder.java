@@ -7,7 +7,7 @@ public class DiagonalFinder implements Finder {
 	private LetterGrid grid;
 
 	private static final String NOT_FOUND = "not found";
-	
+
 	public DiagonalFinder(String toFind, LetterGrid grid) {
 		answer = new AnswerBuilder(toFind);
 		this.grid = grid;
@@ -26,11 +26,11 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x++, y++) {
-				if (matchFound(x, y)) {
+				if (matchFound(x, y) && answer.atLastLetter()) {
 					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-					if (answer.atLastLetter()) {
-						return answer.generate();
-					}
+					return answer.generate();
+				} else if (matchFound(x, y)) {
+					answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 					answer.incrementLetterIndex();
 					resetIfNextLToRDiagCharNotPresent(y, x);
 				}

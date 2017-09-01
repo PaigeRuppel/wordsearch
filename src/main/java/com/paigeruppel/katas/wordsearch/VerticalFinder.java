@@ -24,6 +24,7 @@ public class VerticalFinder implements Finder {
 					} else if (grid.getCharacterAt(y, x) == answer.currentChar()) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 						answer.incrementLetterIndex();
+						// TODO think about addressing nesting here...
 						resetIfNextVerticalCharNotPresent(x, y);
 					}
 				}
