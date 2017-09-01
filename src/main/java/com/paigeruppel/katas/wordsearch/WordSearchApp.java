@@ -13,11 +13,11 @@ public class WordSearchApp {
 	public static void main(String[] args) throws IOException {
 		Scanner input = new Scanner(System.in);
 
-		writeLine(
+		System.out.println(
 				"Please enter the name of the file you wish to search: \n(Note: Please save the file in src/main/resources in the proper format if you have not already done so)");
 			List<String> wordsWithCoords = findWords(input.nextLine());
 			for (String current : wordsWithCoords) {
-				writeLine(current);
+				System.out.println(current);
 			}		
 			input.close();
 		
@@ -33,9 +33,5 @@ public class WordSearchApp {
 		char[][] toSearch = textFileReader.buildLetterGrid();
 		wordSearch = new WordSearch(new LetterGrid(toSearch));
 		return wordSearch.findAll(listToFind);
-	}
-
-	public static void writeLine(String message) {
-		System.out.println(message);
 	}
 }
