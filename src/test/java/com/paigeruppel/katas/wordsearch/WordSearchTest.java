@@ -78,7 +78,8 @@ public class WordSearchTest {
 		WordSearch underTest = new WordSearch(new LetterGrid(toSearch));
 		allWordsWithCoords.add("bill: (0,0),(1,0),(2,0),(3,0)");
 		allWordsWithCoords.add("law: (2,0),(2,1),(2,2)");
-		assertThat(underTest.findAll(listToFind), is(allWordsWithCoords));
+		underTest.buildAnswerList(listToFind);
+		assertThat(underTest.getAllWordsWithCoords(), is(allWordsWithCoords));
 	}
 
 	@Test
@@ -114,6 +115,7 @@ public class WordSearchTest {
 		allWordsWithCoords.add("SULU: (3,3),(2,2),(1,1),(0,0)");
 		allWordsWithCoords.add("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)");
 
-		assertThat(underTest.findAll(listToFind), is(allWordsWithCoords));
+		underTest.buildAnswerList(listToFind);
+		assertThat(underTest.getAllWordsWithCoords(), is(allWordsWithCoords));
 	}
 }

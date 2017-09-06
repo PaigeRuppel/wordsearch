@@ -32,6 +32,6 @@ public class WordSearchApp {
 		List<String> listToFind = textFileReader.readFirstLine();
 		char[][] toSearch = textFileReader.buildLetterGrid();
 		wordSearch = new WordSearch(new LetterGrid(toSearch));
-		return wordSearch.findAll(listToFind);
+		return wordSearch.buildAnswerList(listToFind);
 	}
 }
