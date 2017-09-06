@@ -12,7 +12,6 @@ import org.junit.Test;
 public class WordSearchTest {
 
 	private String toFind;
-	private LetterGrid grid;
 
 	private List<String> listToFind = new ArrayList<String>();
 	private List<String> allWordsWithCoords = new ArrayList<String>();
@@ -20,7 +19,7 @@ public class WordSearchTest {
 	private WordSearch underTest;
 	
 	
-	public void setup(char[][] toSearch) {
+	public void buildTest(char[][] toSearch) {
 		underTest = new WordSearch(new LetterGrid(toSearch));
 	}
 
@@ -29,7 +28,7 @@ public class WordSearchTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'c' }, { 'x', 'x', 'a', 'x' },
 				{ 'x', 't', 'x', 'x', } };
-		setup(toSearch);
+		buildTest(toSearch);
 		assertThat(underTest.find(toFind), is("cat: (3,1),(2,2),(1,3)"));
 	}
 
@@ -37,7 +36,7 @@ public class WordSearchTest {
 	public void shouldReturnLaFromHorizontal() {
 		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'l', 'a' }, { 'x', 'x', 'x' } };
-		setup(toSearch);
+		buildTest(toSearch);
 		assertThat(underTest.find(toFind), is("la: (1,1),(2,1)"));
 	}
 
@@ -45,7 +44,7 @@ public class WordSearchTest {
 	public void shouldReturnAtFitFromVertical() {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
-		setup(toSearch);
+		buildTest(toSearch);
 		assertThat(underTest.find(toFind), is("fit: (2,0),(2,1),(2,2)"));
 	}
 
@@ -53,7 +52,7 @@ public class WordSearchTest {
 	public void shouldReturnItFromDiagLToRColumn() {
 		toFind = "it";
 		char[][] toSearch = { { 'i', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
-		setup(toSearch);
+		buildTest(toSearch);
 		assertThat(underTest.find(toFind), is("it: (1,0),(2,1)"));
 	}
 
@@ -62,7 +61,7 @@ public class WordSearchTest {
 		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },
 				{ 'x', 'i', 'x', 'x' } };
-		setup(toSearch);
+		buildTest(toSearch);
 		assertThat(underTest.find(toFind), is("it: (1,3),(0,2)"));
 	}
 
@@ -71,7 +70,7 @@ public class WordSearchTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
 				{ 'x', 'x', 'x', 'x', } };
-		setup(toSearch);
+		buildTest(toSearch);
 		assertThat(underTest.find(toFind), is("cat: (0,2),(1,1),(2,0)"));
 	}
 
@@ -82,7 +81,7 @@ public class WordSearchTest {
 		char[][] toSearch = { { 'b', 'i', 'l', 'l' }, { 'x', 'x', 'a', 'x' }, { 'x', 'x', 'w', 'x' },
 				{ 'x', 'x', 'x', 'x' } };
 
-		setup(toSearch);
+		buildTest(toSearch);
 		
 		allWordsWithCoords.add("bill: (0,0),(1,0),(2,0),(3,0)");
 		allWordsWithCoords.add("law: (2,0),(2,1),(2,2)");
@@ -116,7 +115,7 @@ public class WordSearchTest {
 				{ 'W', 'Z', 'M', 'I', 'S', 'U', 'K', 'U', 'R', 'B', 'I', 'D', 'U', 'X', 'S' },
 				{ 'K', 'Y', 'L', 'B', 'Q', 'Q', 'P', 'M', 'D', 'F', 'C', 'K', 'E', 'A', 'B' } };
 		
-		setup(toSearch);
+		buildTest(toSearch);
 		
 		allWordsWithCoords.add("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)");
 		allWordsWithCoords.add("KHAN: (5,9),(5,8),(5,7),(5,6)");
