@@ -6,7 +6,7 @@ import java.util.List;
 public class WordSearch {
 
 	private LetterGrid grid;
-	private List<String> allWordsWithCoords = new ArrayList<String>();
+//	private List<String> allWordsWithCoords = new ArrayList<String>();
 
 	public WordSearch(LetterGrid grid) {
 		this.grid = grid;
@@ -34,12 +34,14 @@ public class WordSearch {
 	}
 
 	public List<String> findAll(List<String> listToFind) {
+		List<String> allWords = new ArrayList<>();
+		
 		for (String toFind : listToFind) {
 			String singleCoords = find(toFind);
-			allWordsWithCoords.add(singleCoords);
+			allWords.add(singleCoords);
 		}
 
-		return allWordsWithCoords;
+		return allWords;
 	}
 
 }
