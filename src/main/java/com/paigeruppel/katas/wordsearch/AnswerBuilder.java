@@ -13,7 +13,6 @@ public class AnswerBuilder {
 
 	List<String> answerList = new ArrayList<String>();
 
-
 	public int getTries() {
 		return tries;
 	}
@@ -21,8 +20,6 @@ public class AnswerBuilder {
 	public int getLetterIndex() {
 		return letterIndex;
 	}
-
-
 
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
@@ -41,6 +38,7 @@ public class AnswerBuilder {
 			letterIndex = getLetterIndex() + 1;
 		}
 	}
+
 	public void incrementTries() {
 		tries = getTries() + 1;
 	}
@@ -49,19 +47,18 @@ public class AnswerBuilder {
 		tries = 0;
 	}
 
-	public void buildAnswerAndIncrementLetterIndex(int x, int y) {
-		buildAnswerList(getLetterIndex(), coords(x, y));
-		incrementLetterIndex();
-	}
-	
-	public String buildAndReturnAnswer(int x, int y) {
-		buildAnswerList(getLetterIndex(), coords(x, y));
-		return generate();
-	}
-	
-
 	public void buildAnswerList(int currentIndex, String coords) {
 		answerList.add(currentIndex, coords);
+	}
+
+	public void buildAnswerAndIncrementLetterIndex(int x, int y) {
+		buildAnswerList(getLetterIndex(), formattedCoords(x, y));
+		incrementLetterIndex();
+	}
+
+	public String buildAndReturnAnswer(int x, int y) {
+		buildAnswerList(getLetterIndex(), formattedCoords(x, y));
+		return generate();
 	}
 
 	public void resetAnswerAndLetterIndexToZero() {
@@ -69,10 +66,9 @@ public class AnswerBuilder {
 		answerList.clear();
 	}
 
-	public String coords(int x, int y) {
+	public String formattedCoords(int x, int y) {
 		return "(" + x + "," + y + ")";
 	}
-
 
 	public Character currentChar() {
 		return toFindHolder.charAt(getLetterIndex());
