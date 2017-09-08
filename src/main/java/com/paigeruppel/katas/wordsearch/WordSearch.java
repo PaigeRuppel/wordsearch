@@ -9,7 +9,7 @@ public class WordSearch {
 	private List<String> listToFind;
 	private LetterGrid grid;
 	
-	private List<String> allWordsWithCoords;
+	private List<String> foundWordsWithCoords;
 	private Finder[] finders;
 
 	private static String NOT_FOUND = "not found";
@@ -29,15 +29,15 @@ public class WordSearch {
 	}
 
 	public void buildAnswerList() {
-		allWordsWithCoords = new ArrayList<String>();
+		foundWordsWithCoords = new ArrayList<String>();
 		for (String toFind : listToFind) {
 			String singleCoords = find(toFind);
-			allWordsWithCoords.add(singleCoords);
+			foundWordsWithCoords.add(singleCoords);
 		}
 	}
 
-	public List<String> getAllWordsWithCoords() {
-		return allWordsWithCoords;
+	public List<String> getFoundWordsWithCoords() {
+		return foundWordsWithCoords;
 	}
 
 	private void buildFinders(String toFind) {

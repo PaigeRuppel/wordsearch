@@ -86,6 +86,6 @@ public class WordSearchTest {
 		allWordsWithCoords.add("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)");
 		
 		starTrek.buildAnswerList();
-		assertThat(starTrek.getAllWordsWithCoords(), is(allWordsWithCoords));
+		assertThat(starTrek.getFoundWordsWithCoords(), is(allWordsWithCoords));
 	}
 }

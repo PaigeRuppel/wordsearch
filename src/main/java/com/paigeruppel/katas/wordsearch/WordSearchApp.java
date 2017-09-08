@@ -29,16 +29,9 @@ public class WordSearchApp {
 		}
 	}
 
-	public static String getFilename(String fileName) {
-		return new FilePath().getFullFileName(fileName);
-	}
-
 	public static List<String> findWords(String filename) {
-		textFileReader = new TextFileReader(getFilename(filename));
-		List<String> listToFind = textFileReader.readFirstLine();
-		char[][] toSearch = textFileReader.buildLetterGrid();
-		wordSearch = new WordSearch(new LetterGrid(toSearch));
-		wordSearch.buildAnswerList(listToFind);
-		return wordSearch.getAllWordsWithCoords();
+		wordSearch = new WordSearch(filename);
+		wordSearch.buildAnswerList();
+		return wordSearch.getFoundWordsWithCoords();
 	}
 }
