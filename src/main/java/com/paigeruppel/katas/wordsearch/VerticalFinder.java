@@ -10,7 +10,7 @@ public class VerticalFinder implements Finder {
 
 	public VerticalFinder(String toFind, LetterGrid grid) {
 		this.grid = grid;
-		answer = new AnswerBuilder(toFind);
+		answer = new AnswerBuilder(toFind, grid);
 	}
 
 	public String scan() {
@@ -18,12 +18,12 @@ public class VerticalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int x = 0; x < grid.getXLength(); x++) {
 				for (int y = 0; y < grid.getYLength(); y++) {
-					if (!isMatch(x, y)) {
+					if (!answer.isMatch(x, y)) {
 						answer.resetAnswerAndLetterIndexToZero();	
 					}
-					if (isMatchAndAtLastLetter(x, y)) {
+					if (answer.isMatchAndAtLastLetter(x, y)) {
 						return answer.buildAndReturnAnswer(x, y);
-					} else if (isMatch(x, y)) {
+					} else if (answer.isMatch(x, y)) {
 						answer.buildAnswerAndIncrementLetterIndex(x, y);
 					}
 				}
@@ -35,13 +35,6 @@ public class VerticalFinder implements Finder {
 
 	}
 
-	public boolean isMatch(int x, int y) {
-		return grid.charAt(y, x) == answer.currentChar();
-	}
-
-	public boolean isMatchAndAtLastLetter(int x, int y) {
-		return isMatch(x, y) && answer.atLastLetter();
-	}
 	
 
 
