@@ -14,7 +14,7 @@ public class AnswerBuilder {
 	private List<String> answerList = new ArrayList<String>();
 
 	private LetterGrid grid;
-	
+
 	public int getTries() {
 		return tries;
 	}
@@ -22,7 +22,7 @@ public class AnswerBuilder {
 	public int getLetterIndex() {
 		return letterIndex;
 	}
-	
+
 	public List<String> getAnswerList() {
 		return answerList;
 	}
@@ -34,7 +34,7 @@ public class AnswerBuilder {
 		tries = 0;
 		letterIndex = 0;
 	}
-	
+
 	public AnswerBuilder(String toFind, LetterGrid grid) {
 		this.toFind = toFind;
 		this.grid = grid;
@@ -130,20 +130,22 @@ public class AnswerBuilder {
 	public void forwardWord() {
 		toFindHolder = toFind;
 	}
-	
+
 	public boolean isMatch(int x, int y) {
 		return grid.charAt(y, x) == currentChar();
 	}
-	
+
 	public boolean isMatchAndAtLastLetter(int x, int y) {
 		return isMatch(x, y) && atLastLetter();
 	}
-	
-	public void checkForMatchAndResetOrBuildAnswer(int x, int y) {
+
+	public void resetIfNoMatch(int x, int y) {
 		if (!isMatch(x, y)) {
 			resetAnswerAndLetterIndexToZero();
 		}
-		
+	}
+
+	public void buildAnswerIfMatch(int x, int y) {
 		if (isMatch(x, y)) {
 			buildAnswerAndIncrementLetterIndex(x, y);
 		}

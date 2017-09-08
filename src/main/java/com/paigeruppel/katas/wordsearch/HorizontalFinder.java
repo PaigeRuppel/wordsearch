@@ -21,7 +21,8 @@ public class HorizontalFinder implements Finder {
 					if (answer.isMatchAndAtLastLetter(x, y)) {
 						return answer.buildAndReturnAnswer(x, y);
 					} 
-					answer.checkForMatchAndResetOrBuildAnswer(x, y);
+					answer.resetIfNoMatch(x, y);
+					answer.buildAnswerIfMatch(x, y);
 				}
 			}
 			answer.incrementTries();

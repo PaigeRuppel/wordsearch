@@ -37,7 +37,8 @@ public class DiagonalFinder implements Finder {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				}
-				answer.checkForMatchAndResetOrBuildAnswer(x, y);
+				answer.resetIfNoMatch(x, y);
+				answer.buildAnswerIfMatch(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -51,7 +52,8 @@ public class DiagonalFinder implements Finder {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				}
-				answer.checkForMatchAndResetOrBuildAnswer(x, y);
+				answer.resetIfNoMatch(x, y);
+				answer.buildAnswerIfMatch(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -65,7 +67,8 @@ public class DiagonalFinder implements Finder {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				}
-				answer.checkForMatchAndResetOrBuildAnswer(x, y);
+				answer.resetIfNoMatch(x, y);
+				answer.buildAnswerIfMatch(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -79,7 +82,8 @@ public class DiagonalFinder implements Finder {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				}
-				answer.checkForMatchAndResetOrBuildAnswer(x, y);
+				answer.resetIfNoMatch(x, y);
+				answer.buildAnswerIfMatch(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
