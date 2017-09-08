@@ -29,7 +29,7 @@ public class DiagonalFinder implements Finder {
 
 		return formattedAnswer;
 	}
-	
+
 	public String scanXAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
@@ -74,15 +74,6 @@ public class DiagonalFinder implements Finder {
 		return answer.getFormattedAnswer();
 	}
 
-//	private void lookForMatchAndBuildFormattedAnswerIfWordIsFound(int x, int y) {
-//		if (answer.isMatchAndAtLastLetter(x, y)) {
-//			formattedAnswer = answer.buildAndReturnAnswer(x, y);
-//			answer.setTriesToThree();
-//		}
-//		answer.resetIfNoMatch(x, y);
-//		answer.buildAnswerIfMatch(x, y);
-//	}
-
 	private void clearAnswerSetStartAt0() {
 		start = 0;
 		answer.resetTries();
@@ -100,6 +91,5 @@ public class DiagonalFinder implements Finder {
 			start++;
 		}
 	}
-
 
 }

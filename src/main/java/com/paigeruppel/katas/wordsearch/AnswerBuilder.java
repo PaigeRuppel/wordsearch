@@ -13,8 +13,9 @@ public class AnswerBuilder {
 
 	private List<String> answerList = new ArrayList<String>();
 
-	private String formattedAnswer = "not found";
-	
+	private static final String NOT_FOUND = "not found";
+	private String formattedAnswer = NOT_FOUND;
+
 	private LetterGrid grid;
 
 	public int getTries() {
@@ -28,7 +29,7 @@ public class AnswerBuilder {
 	public List<String> getAnswerList() {
 		return answerList;
 	}
-	
+
 	public String getFormattedAnswer() {
 		return formattedAnswer;
 	}
@@ -42,15 +43,11 @@ public class AnswerBuilder {
 	}
 
 	public AnswerBuilder(String toFind, LetterGrid grid) {
-		this.toFind = toFind;
+		this(toFind);
 		this.grid = grid;
-		toFindHolder = toFind;
-		maxInd = toFind.length() - 1;
-		tries = 0;
-		letterIndex = 0;
 	}
 
-	public boolean atLastLetter() {
+	private boolean atLastLetter() {
 		return getLetterIndex() == maxInd;
 	}
 
@@ -64,10 +61,10 @@ public class AnswerBuilder {
 		tries = getTries() + 1;
 	}
 
-	public void setTriesToThree() {
+	private void setTriesToThree() {
 		tries = 3;
 	}
-	
+
 	public void resetTries() {
 		tries = 0;
 	}
@@ -76,14 +73,9 @@ public class AnswerBuilder {
 		answerList.add(currentIndex, coords);
 	}
 
-	public void buildAnswerAndIncrementLetterIndex(int x, int y) {
+	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
 		buildAnswerList(getLetterIndex(), formattedCoords(x, y));
 		incrementLetterIndex();
-	}
-
-	public String buildAndReturnAnswer(int x, int y) {
-		buildAnswerList(getLetterIndex(), formattedCoords(x, y));
-		return generate();
 	}
 
 	public void resetAnswerAndLetterIndexToZero() {
@@ -91,11 +83,11 @@ public class AnswerBuilder {
 		answerList.clear();
 	}
 
-	public String formattedCoords(int x, int y) {
+	private String formattedCoords(int x, int y) {
 		return "(" + x + "," + y + ")";
 	}
 
-	public Character currentChar() {
+	private Character currentChar() {
 		return toFindHolder.charAt(getLetterIndex());
 	}
 
@@ -121,7 +113,7 @@ public class AnswerBuilder {
 		return answer;
 	}
 
-	public String generateReverse(String answer) {
+	private String generateReverse(String answer) {
 		letterIndex = maxInd;
 		for (int index = getLetterIndex(); index > -1; index--) {
 			if (index > 0) {
@@ -141,33 +133,34 @@ public class AnswerBuilder {
 		toFindHolder = toFind;
 	}
 
-	public boolean isMatch(int x, int y) {
-		return grid.charAt(y, x) == currentChar();
-	}
-
-	public boolean isMatchAndAtLastLetter(int x, int y) {
-		return isMatch(x, y) && atLastLetter();
-	}
-
-	public void resetIfNoMatch(int x, int y) {
-		if (!isMatch(x, y)) {
-			resetAnswerAndLetterIndexToZero();
-		}
-	}
-
-	public void buildAnswerIfMatch(int x, int y) {
-		if (isMatch(x, y)) {
-			buildAnswerAndIncrementLetterIndex(x, y);
-		}
-	}
-	
 	public void lookForMatchAndBuildFormattedAnswerIfWordIsFound(int x, int y) {
 		if (isMatchAndAtLastLetter(x, y)) {
-			formattedAnswer = buildAndReturnAnswer(x, y);
+			buildAnswerList(getLetterIndex(), formattedCoords(x, y));
+			formattedAnswer = generate();
 			setTriesToThree();
 		}
 		resetIfNoMatch(x, y);
 		buildAnswerIfMatch(x, y);
 	}
-	
+
+	private boolean isMatch(int x, int y) {
+		return grid.charAt(y, x) == currentChar();
+	}
+
+	private boolean isMatchAndAtLastLetter(int x, int y) {
+		return isMatch(x, y) && atLastLetter();
+	}
+
+	private void resetIfNoMatch(int x, int y) {
+		if (!isMatch(x, y)) {
+			resetAnswerAndLetterIndexToZero();
+		}
+	}
+
+	private void buildAnswerIfMatch(int x, int y) {
+		if (isMatch(x, y)) {
+			buildAnswerAndIncrementLetterIndex(x, y);
+		}
+	}
+
 }
