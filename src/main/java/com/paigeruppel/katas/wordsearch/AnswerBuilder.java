@@ -13,6 +13,7 @@ public class AnswerBuilder {
 
 	private List<String> answerList = new ArrayList<String>();
 
+	private LetterGrid grid;
 	
 	public int getTries() {
 		return tries;
@@ -28,6 +29,15 @@ public class AnswerBuilder {
 
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
+		toFindHolder = toFind;
+		maxInd = toFind.length() - 1;
+		tries = 0;
+		letterIndex = 0;
+	}
+	
+	public AnswerBuilder(String toFind, LetterGrid grid) {
+		this.toFind = toFind;
+		this.grid = grid;
 		toFindHolder = toFind;
 		maxInd = toFind.length() - 1;
 		tries = 0;
@@ -121,5 +131,12 @@ public class AnswerBuilder {
 		toFindHolder = toFind;
 	}
 	
+	public boolean isMatch(int x, int y) {
+		return grid.charAt(y, x) == currentChar();
+	}
+	
+	public boolean isMatchAndAtLastLetter(int x, int y) {
+		return isMatch(x, y) && atLastLetter();
+	}
 
 }

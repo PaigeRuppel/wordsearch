@@ -9,7 +9,7 @@ public class DiagonalFinder implements Finder {
 	private static final String NOT_FOUND = "not found";
 
 	public DiagonalFinder(String toFind, LetterGrid grid) {
-		answer = new AnswerBuilder(toFind);
+		answer = new AnswerBuilder(toFind, grid);
 		this.grid = grid;
 	}
 
@@ -26,7 +26,7 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x++, y++) {
-				if (isMatchAndAtLastLetter(x, y)) {
+				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				}
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
@@ -40,7 +40,7 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = 0, y = start; grid.withinEdges(x, y); x++, y++) {
-				if (isMatchAndAtLastLetter(x, y)) {
+				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				}
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
@@ -54,7 +54,7 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x--, y++) {
-				if (isMatchAndAtLastLetter(x, y)) {
+				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				}
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
@@ -68,7 +68,7 @@ public class DiagonalFinder implements Finder {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = grid.getXLength() - 1, y = start; grid.withinEdges(x, y); x--, y++) {
-				if (isMatchAndAtLastLetter(x, y)) {
+				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				} 
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
@@ -79,21 +79,11 @@ public class DiagonalFinder implements Finder {
 	}
 
 	private void checkForMatchAndResetOrContinueBuildingAnswer(int x, int y) {
-		if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
+		if (!answer.isMatch(x, y) && answer.getLetterIndex() > 0) {
 			answer.resetAnswerAndLetterIndexToZero();
-		} else if (isMatch(x, y)) {
+		} else if (answer.isMatch(x, y)) {
 			answer.buildAnswerAndIncrementLetterIndex(x, y);
 		}
-	}
-
-
-	
-	public boolean isMatchAndAtLastLetter(int x, int y) {
-		return isMatch(x, y) && answer.atLastLetter();
-	}
-
-	public boolean isMatch(int x, int y) {
-		return grid.charAt(y, x) == answer.currentChar();
 	}
 
 	private void incrementStartingPositionOrReverseWordAndIncrementTries() {
