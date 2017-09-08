@@ -47,11 +47,7 @@ public class HorizontalFinder implements Finder {
 		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 		return answer.generate();
 	}
-//	
-//	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
-//		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-//		answer.incrementLetterIndex();
-//	}
+
 	
 
 }

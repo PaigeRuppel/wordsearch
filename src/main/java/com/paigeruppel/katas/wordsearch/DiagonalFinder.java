@@ -82,14 +82,14 @@ public class DiagonalFinder implements Finder {
 		if (!isMatch(x, y) && answer.getLetterIndex() > 0) {
 			answer.resetAnswerAndLetterIndexToZero();
 		} else if (isMatch(x, y)) {
-			buildAnswerAndIncrementLetterIndex(x, y);
+			answer.buildAnswerAndIncrementLetterIndex(x, y);
 		}
 	}
 
-	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
-		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-		answer.incrementLetterIndex();
-	}
+//	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
+//		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
+//		answer.incrementLetterIndex();
+//	}
 
 	private String buildAndReturnAnswer(int x, int y) {
 		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
