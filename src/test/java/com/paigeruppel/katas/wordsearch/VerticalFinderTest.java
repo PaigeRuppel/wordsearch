@@ -8,9 +8,10 @@ import org.junit.Test;
 public class VerticalFinderTest {
 
 	private LetterGrid grid;
+
 	private String toFind;
 
-	public VerticalFinder createTest(String toFind, LetterGrid grid) {
+	public VerticalFinder createTest() {
 		return new VerticalFinder(toFind, grid);
 	}
 
@@ -23,7 +24,7 @@ public class VerticalFinderTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'c', 'x' }, { 'x', 'a', 'x' }, { 'x', 't', 'x' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("cat: (1,0),(1,1),(1,2)"));
+		assertThat(createTest().scan(), is("cat: (1,0),(1,1),(1,2)"));
 	}
 
 	@Test
@@ -31,7 +32,7 @@ public class VerticalFinderTest {
 		toFind = "cat";
 		char[][] toSearch = { { 'c', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("cat: (0,0),(0,1),(0,2)"));
+		assertThat(createTest().scan(), is("cat: (0,0),(0,1),(0,2)"));
 	}
 
 	@Test
@@ -39,7 +40,7 @@ public class VerticalFinderTest {
 		toFind = "at";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("at: (0,1),(0,2)"));
+		assertThat(createTest().scan(), is("at: (0,1),(0,2)"));
 	}
 
 	@Test
@@ -47,7 +48,7 @@ public class VerticalFinderTest {
 		toFind = "at";
 		char[][] toSearch = { { 'a', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("at: (0,1),(0,2)"));
+		assertThat(createTest().scan(), is("at: (0,1),(0,2)"));
 	}
 
 	@Test
@@ -55,7 +56,7 @@ public class VerticalFinderTest {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("fit: (2,0),(2,1),(2,2)"));
+		assertThat(createTest().scan(), is("fit: (2,0),(2,1),(2,2)"));
 	}
 
 	@Test
@@ -63,7 +64,7 @@ public class VerticalFinderTest {
 		toFind = "fit";
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("fit: (2,2),(2,1),(2,0)"));
+		assertThat(createTest().scan(), is("fit: (2,2),(2,1),(2,0)"));
 	}
 
 	@Test
@@ -71,7 +72,7 @@ public class VerticalFinderTest {
 		toFind = "bit";
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("not found"));
+		assertThat(createTest().scan(), is("not found"));
 	}
 
 	@Test
@@ -80,7 +81,7 @@ public class VerticalFinderTest {
 		char[][] toSearch = { { 'b', 'i', 'l', 'l' }, { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' },
 				{ 'x', 'b', 'a', 'l' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("not found"));
+		assertThat(createTest().scan(), is("not found"));
 	}
 
 	@Test
@@ -102,6 +103,6 @@ public class VerticalFinderTest {
 				{ 'W', 'Z', 'M', 'I', 'S', 'U', 'K', 'U', 'R', 'B', 'I', 'D', 'U', 'X', 'S' },
 				{ 'K', 'Y', 'L', 'B', 'Q', 'Q', 'P', 'M', 'D', 'F', 'C', 'K', 'E', 'A', 'B' } };
 		buildGrid(toSearch);
-		assertThat(createTest(toFind, grid).scan(), is("KHAN: (5,9),(5,8),(5,7),(5,6)"));
+		assertThat(createTest().scan(), is("KHAN: (5,9),(5,8),(5,7),(5,6)"));
 	}
 }

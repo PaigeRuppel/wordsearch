@@ -15,7 +15,9 @@ public class WordSearchApp {
 		System.out.println(
 				"Please enter the name of the file you wish to search: \n(Note: Please save the file in src/main/resources in the proper format if you have not already done so)");
 		List<String> wordsWithCoords = findWords(input.nextLine());
+		
 		printFoundWords(wordsWithCoords);
+		
 		input.close();
 
 	}
