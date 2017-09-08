@@ -18,14 +18,13 @@ public class VerticalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int x = 0; x < grid.getXLength(); x++) {
 				for (int y = 0; y < grid.getYLength(); y++) {
-					if (isMatch(x, y) && answer.atLastLetter()) {
-						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-						return answer.generate();
+					if (!isMatch(x, y)) {
+						answer.resetAnswerAndLetterIndexToZero();	
+					}
+					if (isMatchAndAtLastLetter(x, y)) {
+						return buildAndReturnAnswer(x, y);
 					} else if (isMatch(x, y)) {
-						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-						answer.incrementLetterIndex();
-						// TODO think about addressing nesting here...
-						resetIfNextVerticalCharNotPresent(x, y);
+						answer.buildAnswerAndIncrementLetterIndex(x, y);
 					}
 				}
 			}
@@ -40,10 +39,18 @@ public class VerticalFinder implements Finder {
 		return grid.getCharacterAt(y, x) == answer.currentChar();
 	}
 
-	private void resetIfNextVerticalCharNotPresent(int x, int y) {
-		if (grid.getNextCharacterVerticalFrom(x, y) != answer.currentChar()) {
-			answer.resetAnswerAndLetterIndexToZero();
-		}
+	private boolean isMatchAndAtLastLetter(int x, int y) {
+		return isMatch(x, y) && answer.atLastLetter();
 	}
+	
+	private String buildAndReturnAnswer(int x, int y) {
+		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
+		return answer.generate();
+	}
+//	
+//	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
+//		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
+//		answer.incrementLetterIndex();
+//	}
 
 }

@@ -37,6 +37,11 @@ public class AnswerBuilder {
 		tries = 0;
 	}
 
+	public void buildAnswerAndIncrementLetterIndex(int x, int y) {
+		buildAnswerList(getLetterIndex(), coords(x, y));
+		incrementLetterIndex();
+	}
+	
 	public void incrementLetterIndex() {
 		if (letterIndex < maxInd) {
 			letterIndex = getLetterIndex() + 1;

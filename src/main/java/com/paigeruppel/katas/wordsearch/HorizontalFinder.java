@@ -24,7 +24,7 @@ public class HorizontalFinder implements Finder {
 					if (isMatchAndAtLastLetter(x, y)) {
 						return buildAndReturnAnswer(x, y);
 					} else if (isMatch(x, y)) {
-						buildAnswerAndIncrementLetterIndex(x, y);
+						answer.buildAnswerAndIncrementLetterIndex(x, y);
 					}
 				}
 			}
@@ -47,11 +47,11 @@ public class HorizontalFinder implements Finder {
 		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 		return answer.generate();
 	}
-	
-	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
-		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-		answer.incrementLetterIndex();
-	}
+//	
+//	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
+//		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
+//		answer.incrementLetterIndex();
+//	}
 	
 
 }
