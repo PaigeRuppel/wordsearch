@@ -28,8 +28,15 @@ public class DiagonalFinder implements Finder {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x++, y++) {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
+				} 
+
+				if (!answer.isMatch(x, y)) {
+					answer.resetAnswerAndLetterIndexToZero();
 				}
-				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
+				
+				if (answer.isMatch(x, y)) {
+					answer.buildAnswerAndIncrementLetterIndex(x, y);
+				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -42,8 +49,15 @@ public class DiagonalFinder implements Finder {
 			for (int x = 0, y = start; grid.withinEdges(x, y); x++, y++) {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
+				} 
+
+				if (!answer.isMatch(x, y)) {
+					answer.resetAnswerAndLetterIndexToZero();
 				}
-				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
+				
+				if (answer.isMatch(x, y)) {
+					answer.buildAnswerAndIncrementLetterIndex(x, y);
+				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -56,8 +70,15 @@ public class DiagonalFinder implements Finder {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x--, y++) {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
+				} 
+
+				if (!answer.isMatch(x, y)) {
+					answer.resetAnswerAndLetterIndexToZero();
 				}
-				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
+				
+				if (answer.isMatch(x, y)) {
+					answer.buildAnswerAndIncrementLetterIndex(x, y);
+				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -71,20 +92,27 @@ public class DiagonalFinder implements Finder {
 				if (answer.isMatchAndAtLastLetter(x, y)) {
 					return answer.buildAndReturnAnswer(x, y);
 				} 
-				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
+
+				if (!answer.isMatch(x, y)) {
+					answer.resetAnswerAndLetterIndexToZero();
+				}
+				
+				if (answer.isMatch(x, y)) {
+					answer.buildAnswerAndIncrementLetterIndex(x, y);
+				}
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
 		return NOT_FOUND;
 	}
 
-	private void checkForMatchAndResetOrContinueBuildingAnswer(int x, int y) {
-		if (!answer.isMatch(x, y) && answer.getLetterIndex() > 0) {
-			answer.resetAnswerAndLetterIndexToZero();
-		} else if (answer.isMatch(x, y)) {
-			answer.buildAnswerAndIncrementLetterIndex(x, y);
-		}
-	}
+//	private void checkForMatchAndResetOrContinueBuildingAnswer(int x, int y) {
+//		if (!answer.isMatch(x, y)) {
+//			answer.resetAnswerAndLetterIndexToZero();
+//		} else if (answer.isMatch(x, y)) {
+//			answer.buildAnswerAndIncrementLetterIndex(x, y);
+//		}
+//	}
 
 	private void incrementStartingPositionOrReverseWordAndIncrementTries() {
 		if (start == grid.getXLength() - 1) {

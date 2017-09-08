@@ -18,14 +18,11 @@ public class HorizontalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int y = 0; y < grid.getYLength(); y++) {
 				for (int x = 0; x < grid.getXLength(); x++) {
-					if (!answer.isMatch(x, y)) {
-						answer.resetAnswerAndLetterIndexToZero();	
-					}
 					if (answer.isMatchAndAtLastLetter(x, y)) {
 						return answer.buildAndReturnAnswer(x, y);
-					} else if (answer.isMatch(x, y)) {
-						answer.buildAnswerAndIncrementLetterIndex(x, y);
-					}
+					} 
+
+					checkForMatchAndResetOrBuildAnswer(x, y);
 				}
 			}
 			answer.incrementTries();
@@ -33,6 +30,16 @@ public class HorizontalFinder implements Finder {
 		}
 
 		return NOT_FOUND;
+	}
+
+	private void checkForMatchAndResetOrBuildAnswer(int x, int y) {
+		if (!answer.isMatch(x, y)) {
+			answer.resetAnswerAndLetterIndexToZero();
+		}
+		
+		if (answer.isMatch(x, y)) {
+			answer.buildAnswerAndIncrementLetterIndex(x, y);
+		}
 	}
 
 	
