@@ -12,265 +12,208 @@ public class DiagonalFinderTest {
 	private String toFind;
 	private LetterGrid grid;
 
-	public DiagonalFinder createTest() {
-		return new DiagonalFinder(toFind, grid);
-	}
+	private DiagonalFinder underTest;
 
-	public void buildGrid(char[][] toSearch) {
+	public void createTest(String toFind, char[][] toSearch) {
 		grid = new LetterGrid(toSearch);
+		underTest = new DiagonalFinder(toFind, grid);
 	}
 
 	@Test
 	public void shouldReturnCatAtZeroZeroOneOneTwoTwo() {
-		toFind = "cat";
 		char[][] toSearch = { { 'c', 'x', 'x' }, { 'x', 'a', 'x' }, { 'x', 'x', 't' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingLeftToRight(), is("cat: (0,0),(1,1),(2,2)"));
+		createTest("cat", toSearch);
+		assertThat(underTest.scanXAxisLookingLeftToRight(), is("cat: (0,0),(1,1),(2,2)"));
 	}
-
 
 	@Test
 	public void shouldReturnItAtOneOneTwoTwo() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'x', 'i', 'x' }, { 'x', 'x', 't' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingLeftToRight(), is("it: (1,1),(2,2)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanXAxisLookingLeftToRight(), is("it: (1,1),(2,2)"));
 	}
 
 	@Test
 	public void shouldReturnItAtOneZeroOneTwo() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingLeftToRight(), is("it: (1,0),(2,1)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanXAxisLookingLeftToRight(), is("it: (1,0),(2,1)"));
 	}
 
 	@Test
 	public void shouldReturnItWithConfoundingI() {
-		toFind = "it";
 		char[][] toSearch = { { 'i', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingLeftToRight(), is("it: (1,0),(2,1)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanXAxisLookingLeftToRight(), is("it: (1,0),(2,1)"));
 	}
 
 	@Test
 	public void shouldReturnItAtTwoOneOneZero() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 't', 'x' }, { 'x', 'x', 'i' }, { 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingLeftToRight(), is("it: (2,1),(1,0)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanXAxisLookingLeftToRight(), is("it: (2,1),(1,0)"));
 	}
 
 	@Test
 	public void shouldReturnNotFoundForCat() {
-		toFind = "cat";
 		char[][] toSearch = { { 'x', 't', 'x' }, { 'x', 'x', 'i' }, { 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingLeftToRight(), is("not found"));
+		createTest("cat", toSearch);
+		assertThat(underTest.scanXAxisLookingLeftToRight(), is("not found"));
 	}
 
 	@Test
 	public void shouldReturnItAtZeroOneOneTwo() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'i', 'x', 'x' }, { 'x', 't', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingLeftToRight(), is("it: (0,1),(1,2)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanYAxisLookingLeftToRight(), is("it: (0,1),(1,2)"));
 	}
 
 	@Test
 	public void shouldReturnItAtZeroTwoOneThree() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'i', 'x', 'x', 'x' },
 				{ 'x', 't', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingLeftToRight(), is("it: (0,2),(1,3)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanYAxisLookingLeftToRight(), is("it: (0,2),(1,3)"));
 	}
 
 	@Test
 	public void shouldReturnItAtZeroTwoOneThreeWithConfoundingT() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'i', 'x', 't', 'x' },
 				{ 'x', 't', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingLeftToRight(), is("it: (0,2),(1,3)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanYAxisLookingLeftToRight(), is("it: (0,2),(1,3)"));
 	}
-	
+
 	@Test
 	public void shouldReturnItAtOneThreeZeroTwoWithConfoundingI() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },
 				{ 'x', 'i', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingLeftToRight(), is("it: (1,3),(0,2)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanYAxisLookingLeftToRight(), is("it: (1,3),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnNotFoundForBat() {
-		toFind = "bat";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },
 				{ 'x', 'i', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingLeftToRight(), is("not found"));
+		createTest("bat", toSearch);
+		assertThat(underTest.scanYAxisLookingLeftToRight(), is("not found"));
 	}
 
 	@Test
 	public void shouldReturnCatAtTwoZeroOneOneZeroTwo() {
-		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'c' }, { 'x', 'a', 'x' }, { 't', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingRightToLeft(), is("cat: (2,0),(1,1),(0,2)"));
+		createTest("cat", toSearch);
+		assertThat(underTest.scanXAxisLookingRightToLeft(), is("cat: (2,0),(1,1),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnAtAtOneOneZeroTwo() {
-		toFind = "at";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'x', 'a', 'x' }, { 't', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingRightToLeft(), is("at: (1,1),(0,2)"));
+		createTest("at", toSearch);
+		assertThat(underTest.scanXAxisLookingRightToLeft(), is("at: (1,1),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnAtAtOneZeroZeroOne() {
-		toFind = "at";
 		char[][] toSearch = { { 'x', 'a', 'x' }, { 't', 'x', 'x' }, { 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingRightToLeft(), is("at: (1,0),(0,1)"));
+		createTest("at", toSearch);
+		assertThat(underTest.scanXAxisLookingRightToLeft(), is("at: (1,0),(0,1)"));
 	}
 
 	@Test
 	public void shouldReturnCatAtTwoZeroOneOneZeroTwoWithConfoundingLetters() {
-		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'c', 'c' }, { 't', 'a', 'a', 'x' }, { 't', 'x', 't', 'x' },
 				{ 'x', 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingRightToLeft(), is("cat: (2,0),(1,1),(0,2)"));
+		createTest("cat", toSearch);
+		assertThat(underTest.scanXAxisLookingRightToLeft(), is("cat: (2,0),(1,1),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnCatAtZeroTwoOneOneTwoZeroWithConfoundingLetters() {
-		toFind = "cat";
-		char[][] toSearch = { 
-				{ 'x', 'x', 't', 'c' }, 
-				{ 'x', 'a', 'a', 'x' }, 
-				{ 'c', 'x', 'x', 'x' },
-				{ 'x', 'x', 'x', 'x', } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingRightToLeft(), is("cat: (0,2),(1,1),(2,0)"));
-	}
-	
-	@Test
-	public void shouldReturnNotFoundForCog() {
-		toFind = "cog";
 		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
 				{ 'x', 'x', 'x', 'x', } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanXAxisLookingRightToLeft(), is("not found"));
+		createTest("cat", toSearch);
+		assertThat(underTest.scanXAxisLookingRightToLeft(), is("cat: (0,2),(1,1),(2,0)"));
 	}
-	
+
+	@Test
+	public void shouldReturnNotFoundForCog() {
+		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
+				{ 'x', 'x', 'x', 'x', } };
+		createTest("cog", toSearch);
+		assertThat(underTest.scanXAxisLookingRightToLeft(), is("not found"));
+	}
+
 	@Test
 	public void shouldReturnCatAtThreeOneTwoTwoOneThree() {
-		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'c' }, { 'x', 'x', 'a', 'x' },
 				{ 'x', 't', 'x', 'x', } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingRightToLeft(), is("cat: (3,1),(2,2),(1,3)"));
+		createTest("cat", toSearch);
+		assertThat(underTest.scanYAxisLookingRightToLeft(), is("cat: (3,1),(2,2),(1,3)"));
 	}
 
 	@Test
 	public void shouldReturnItAtTwoTwoOneThree() {
-		toFind = "it";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'i', 'x' },
 				{ 'x', 't', 'x', 'x', } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingRightToLeft(), is("it: (2,2),(1,3)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scanYAxisLookingRightToLeft(), is("it: (2,2),(1,3)"));
 	}
-	
+
 	@Test
 	public void shouldReturnOffAtThreeOneTwoTwoOneThree() {
-		toFind = "off";
-		char[][] toSearch = { 
-				{ 'x', 'x', 'x', 'x' }, 
-				{ 'x', 'x', 'x', 'o' }, 
-				{ 'x', 'x', 'f', 'x' },
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'o' }, { 'x', 'x', 'f', 'x' },
 				{ 'x', 'f', 'x', 'x', } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingRightToLeft(), is("off: (3,1),(2,2),(1,3)"));
+		createTest("off", toSearch);
+		assertThat(underTest.scanYAxisLookingRightToLeft(), is("off: (3,1),(2,2),(1,3)"));
 	}
-	
+
 	@Test
 	public void shouldReturnOffAtThreeOneTwoTwo() {
-		toFind = "off";
 		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'f' }, { 'x', 'x', 'f', 'x' },
 				{ 'x', 'o', 'x', 'x', } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingRightToLeft(), is("off: (1,3),(2,2),(3,1)"));
+		createTest("off", toSearch);
+		assertThat(underTest.scanYAxisLookingRightToLeft(), is("off: (1,3),(2,2),(3,1)"));
 	}
-	
+
 	@Test
 	public void shouldReturnOffAtThreeOneTwoTwoWithConfoundingLetters() {
-		toFind = "off";
-		char[][] toSearch = { 
-				{ 'x', 'x', 'x', 'x', 'x' }, 
-				{ 'x', 'x', 'x', 'f', 'o' }, 
-				{ 'x', 'x', 'f', 'x', 'x' },
-				{ 'x', 'o', 'x', 'x', 'o' },
-				{ 'x', 'x', 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scanYAxisLookingRightToLeft(), is("off: (1,3),(2,2),(3,1)"));
+		char[][] toSearch = { { 'x', 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'f', 'o' }, { 'x', 'x', 'f', 'x', 'x' },
+				{ 'x', 'o', 'x', 'x', 'o' }, { 'x', 'x', 'x', 'x', 'x' } };
+		createTest("off", toSearch);
+		assertThat(underTest.scanYAxisLookingRightToLeft(), is("off: (1,3),(2,2),(3,1)"));
 	}
-	
+
 	@Test
 	public void shouldReturnOffAtOneThreeTwoTwoThreeOneWithConfoundingLettersFromScan() {
-		// rows from top right
-		toFind = "off";
-		char[][] toSearch = { 
-				{ 'x', 'x', 'x', 'x', 'x' }, 
-				{ 'x', 'x', 'x', 'f', 'o' }, 
-				{ 'x', 'x', 'f', 'x', 'x' },
-				{ 'x', 'o', 'x', 'x', 'o' },
-				{ 'x', 'x', 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scan(), is("off: (1,3),(2,2),(3,1)"));
+		char[][] toSearch = { { 'x', 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'f', 'o' }, { 'x', 'x', 'f', 'x', 'x' },
+				{ 'x', 'o', 'x', 'x', 'o' }, { 'x', 'x', 'x', 'x', 'x' } };
+		createTest("off", toSearch);
+		assertThat(underTest.scan(), is("off: (1,3),(2,2),(3,1)"));
 	}
-	
+
 	@Test
 	public void shouldReturnCatAtZeroTwoOneOneTwoZeroWithConfoundingLettersFromScan() {
-		// columns from top right
-		toFind = "cat";
-		char[][] toSearch = { 
-				{ 'x', 'x', 't', 'c' }, 
-				{ 'x', 'a', 'a', 'x' }, 
-				{ 'c', 'x', 'x', 'x' },
+		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
 				{ 'x', 'x', 'x', 'x', } };
-		buildGrid(toSearch);
-		assertThat(createTest().scan(), is("cat: (0,2),(1,1),(2,0)"));
+		createTest("cat", toSearch);
+		assertThat(underTest.scan(), is("cat: (0,2),(1,1),(2,0)"));
 	}
 
 	@Test
 	public void shouldReturnItAtThreeOneZeroTwoWithConfoundingIFromScan() {
-		// rows from top left
-		toFind = "it";
-		char[][] toSearch = { 
-				{ 'x', 'x', 'x', 'x' }, 
-				{ 'x', 'x', 'x', 'x' }, 
-				{ 't', 'x', 'i', 'x' },
+		char[][] toSearch = { { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' }, { 't', 'x', 'i', 'x' },
 				{ 'x', 'i', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scan(), is("it: (1,3),(0,2)"));
+		createTest("it", toSearch);
+		assertThat(underTest.scan(), is("it: (1,3),(0,2)"));
 	}
-	
+
 	@Test
 	public void shouldReturnItAtOneZeroTwoOneWithConfoundingIFromScan() {
-		// columns from top left
-		toFind = "it";
-		char[][] toSearch = { 
-				{ 'i', 'i', 'x' }, 
-				{ 'x', 'x', 't' }, 
-				{ 'x', 'x', 'x' } };
-		buildGrid(toSearch);
-		assertThat(createTest().scan(), is("it: (1,0),(2,1)"));
+		char[][] toSearch = { { 'i', 'i', 'x' }, { 'x', 'x', 't' }, { 'x', 'x', 'x' } };
+		createTest("it", toSearch);
+		assertThat(underTest.scan(), is("it: (1,0),(2,1)"));
 	}
-	
-
 
 }
