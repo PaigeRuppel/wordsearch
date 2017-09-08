@@ -129,7 +129,10 @@ public class DiagonalFinderTest {
 
 	@Test
 	public void shouldReturnCatAtZeroTwoOneOneTwoZeroWithConfoundingLetters() {
-		char[][] toSearch = { { 'x', 'x', 't', 'c' }, { 'x', 'a', 'a', 'x' }, { 'c', 'x', 'x', 'x' },
+		char[][] toSearch = { 
+				{ 'x', 'x', 't', 'c' }, 
+				{ 'x', 'a', 'a', 'x' }, 
+				{ 'c', 'x', 'x', 'x' },
 				{ 'x', 'x', 'x', 'x', } };
 		createTest("cat", toSearch);
 		assertThat(underTest.scanXAxisLookingRightToLeft(), is("cat: (0,2),(1,1),(2,0)"));

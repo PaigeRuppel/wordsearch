@@ -6,30 +6,23 @@ public class HorizontalFinder implements Finder {
 	private LetterGrid grid;
 	private AnswerBuilder answer;
 
-	private static final String NOT_FOUND = "not found";
-
 	public HorizontalFinder(String toFind, LetterGrid grid) {
 		this.grid = grid;
 		answer = new AnswerBuilder(toFind, grid);
 	}
 
 	public String scan() {
-
 		while (answer.getTries() < 2) {
 			for (int y = 0; y < grid.getYLength(); y++) {
 				for (int x = 0; x < grid.getXLength(); x++) {
-					if (answer.isMatchAndAtLastLetter(x, y)) {
-						return answer.buildAndReturnAnswer(x, y);
-					} 
-					answer.resetIfNoMatch(x, y);
-					answer.buildAnswerIfMatch(x, y);
+					answer.lookForMatchAndBuildFormattedAnswerIfWordIsFound(x, y);
 				}
 			}
 			answer.incrementTries();
 			answer.reverseWord();
 		}
 
-		return NOT_FOUND;
+		return answer.getFormattedAnswer();
 	}
 
 	

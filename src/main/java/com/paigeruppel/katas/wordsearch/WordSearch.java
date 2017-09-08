@@ -10,6 +10,7 @@ public class WordSearch {
 	private LetterGrid grid;
 	
 	private List<String> foundWordsWithCoords;
+	
 	private Finder[] finders;
 
 	private static String NOT_FOUND = "not found";

@@ -13,6 +13,8 @@ public class AnswerBuilder {
 
 	private List<String> answerList = new ArrayList<String>();
 
+	private String formattedAnswer = "not found";
+	
 	private LetterGrid grid;
 
 	public int getTries() {
@@ -25,6 +27,10 @@ public class AnswerBuilder {
 
 	public List<String> getAnswerList() {
 		return answerList;
+	}
+	
+	public String getFormattedAnswer() {
+		return formattedAnswer;
 	}
 
 	public AnswerBuilder(String toFind) {
@@ -58,6 +64,10 @@ public class AnswerBuilder {
 		tries = getTries() + 1;
 	}
 
+	public void setTriesToThree() {
+		tries = 3;
+	}
+	
 	public void resetTries() {
 		tries = 0;
 	}
@@ -150,5 +160,14 @@ public class AnswerBuilder {
 			buildAnswerAndIncrementLetterIndex(x, y);
 		}
 	}
-
+	
+	public void lookForMatchAndBuildFormattedAnswerIfWordIsFound(int x, int y) {
+		if (isMatchAndAtLastLetter(x, y)) {
+			formattedAnswer = buildAndReturnAnswer(x, y);
+			setTriesToThree();
+		}
+		resetIfNoMatch(x, y);
+		buildAnswerIfMatch(x, y);
+	}
+	
 }

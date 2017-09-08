@@ -12,8 +12,7 @@ public class WordSearchTest {
 
 	private String toFind;
 
-	private List<String> listToFind = new ArrayList<String>();
-	private List<String> allWordsWithCoords = new ArrayList<String>();
+	private List<String> foundWordsWithCoords = new ArrayList<String>();
 
 	private WordSearch underTest;
 	
@@ -77,15 +76,15 @@ public class WordSearchTest {
 	public void shouldReturnEnterpriseCrewInAlphabeticalOrder() {
 		WordSearch starTrek = new WordSearch("StarTrekSearch.txt");
 
-		allWordsWithCoords.add("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)");
-		allWordsWithCoords.add("KHAN: (5,9),(5,8),(5,7),(5,6)");
-		allWordsWithCoords.add("KIRK: (4,7),(3,7),(2,7),(1,7)");
-		allWordsWithCoords.add("SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)");
-		allWordsWithCoords.add("SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)");
-		allWordsWithCoords.add("SULU: (3,3),(2,2),(1,1),(0,0)");
-		allWordsWithCoords.add("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)");
+		foundWordsWithCoords.add("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)");
+		foundWordsWithCoords.add("KHAN: (5,9),(5,8),(5,7),(5,6)");
+		foundWordsWithCoords.add("KIRK: (4,7),(3,7),(2,7),(1,7)");
+		foundWordsWithCoords.add("SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)");
+		foundWordsWithCoords.add("SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)");
+		foundWordsWithCoords.add("SULU: (3,3),(2,2),(1,1),(0,0)");
+		foundWordsWithCoords.add("UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)");
 		
 		starTrek.buildAnswerList();
-		assertThat(starTrek.getFoundWordsWithCoords(), is(allWordsWithCoords));
+		assertThat(starTrek.getFoundWordsWithCoords(), is(foundWordsWithCoords));
 	}
 }

@@ -16,79 +16,72 @@ public class DiagonalFinder implements Finder {
 	}
 
 	public String scan() {
-		String answer = NOT_FOUND;
+		String formattedAnswer = NOT_FOUND;
 		if (scanYAxisLookingRightToLeft() != NOT_FOUND) {
-			answer = scanYAxisLookingRightToLeft();
+			formattedAnswer = scanYAxisLookingRightToLeft();
 		} else if (scanXAxisLookingRightToLeft() != NOT_FOUND) {
-			answer = scanXAxisLookingRightToLeft();
+			formattedAnswer = scanXAxisLookingRightToLeft();
 		} else if (scanYAxisLookingLeftToRight() != NOT_FOUND) {
-			answer = scanYAxisLookingLeftToRight();
+			formattedAnswer = scanYAxisLookingLeftToRight();
 		} else if (scanXAxisLookingLeftToRight() != NOT_FOUND) {
-			answer = scanXAxisLookingLeftToRight();
+			formattedAnswer = scanXAxisLookingLeftToRight();
 		}
 
-		return answer;
+		return formattedAnswer;
 	}
 	
 	public String scanXAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x++, y++) {
-				if (answer.isMatchAndAtLastLetter(x, y)) {
-					return answer.buildAndReturnAnswer(x, y);
-				}
-				answer.resetIfNoMatch(x, y);
-				answer.buildAnswerIfMatch(x, y);
+				answer.lookForMatchAndBuildFormattedAnswerIfWordIsFound(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
-		return NOT_FOUND;
+		return answer.getFormattedAnswer();
 	}
 
 	public String scanYAxisLookingLeftToRight() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = 0, y = start; grid.withinEdges(x, y); x++, y++) {
-				if (answer.isMatchAndAtLastLetter(x, y)) {
-					return answer.buildAndReturnAnswer(x, y);
-				}
-				answer.resetIfNoMatch(x, y);
-				answer.buildAnswerIfMatch(x, y);
+				answer.lookForMatchAndBuildFormattedAnswerIfWordIsFound(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
-		return NOT_FOUND;
+		return answer.getFormattedAnswer();
 	}
 
 	public String scanXAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x--, y++) {
-				if (answer.isMatchAndAtLastLetter(x, y)) {
-					return answer.buildAndReturnAnswer(x, y);
-				}
-				answer.resetIfNoMatch(x, y);
-				answer.buildAnswerIfMatch(x, y);
+				answer.lookForMatchAndBuildFormattedAnswerIfWordIsFound(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
-		return NOT_FOUND;
+		return answer.getFormattedAnswer();
 	}
 
 	public String scanYAxisLookingRightToLeft() {
 		clearAnswerSetStartAt0();
 		while (answer.getTries() < 2) {
 			for (int x = grid.getXLength() - 1, y = start; grid.withinEdges(x, y); x--, y++) {
-				if (answer.isMatchAndAtLastLetter(x, y)) {
-					return answer.buildAndReturnAnswer(x, y);
-				}
-				answer.resetIfNoMatch(x, y);
-				answer.buildAnswerIfMatch(x, y);
+				answer.lookForMatchAndBuildFormattedAnswerIfWordIsFound(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
-		return NOT_FOUND;
+		return answer.getFormattedAnswer();
 	}
+
+//	private void lookForMatchAndBuildFormattedAnswerIfWordIsFound(int x, int y) {
+//		if (answer.isMatchAndAtLastLetter(x, y)) {
+//			formattedAnswer = answer.buildAndReturnAnswer(x, y);
+//			answer.setTriesToThree();
+//		}
+//		answer.resetIfNoMatch(x, y);
+//		answer.buildAnswerIfMatch(x, y);
+//	}
 
 	private void clearAnswerSetStartAt0() {
 		start = 0;
