@@ -13,6 +13,8 @@ public class AnswerBuilder {
 
 	List<String> answerList = new ArrayList<String>();
 
+	private LetterGrid grid;
+	
 	public int getTries() {
 		return tries;
 	}
@@ -114,6 +116,10 @@ public class AnswerBuilder {
 
 	public void forwardWord() {
 		toFindHolder = toFind;
+	}
+	
+	public boolean isMatch(int x, int y) {
+		return grid.getCharacterAt(y, x) == currentChar();
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.paigeruppel.katas.wordsearch;
 
-interface Finder {
+public interface Finder {
 	String scan();
+//	boolean isMatch(int x, int y);
 }
