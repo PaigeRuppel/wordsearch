@@ -17,7 +17,7 @@ public class VerticalFinderTest {
 
 	public void buildGrid(char[][] toSearch) {
 		grid = new LetterGrid(toSearch);
-	}
+	}	
 
 	@Test
 	public void shouldReturnCatAtXOneYZeroOneTwo() {

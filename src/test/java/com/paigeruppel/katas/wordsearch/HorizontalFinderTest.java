@@ -10,8 +10,11 @@ public class HorizontalFinderTest {
 	private LetterGrid grid;
 	private String toFind;
 
-	public HorizontalFinder createTest(char[][] toSearch) {
+	public void buildGrid(char[][] toSearch) {
 		grid = new LetterGrid(toSearch);
+	}
+	
+	public HorizontalFinder createTest() {
 		return new HorizontalFinder(toFind, grid);
 	}
 
@@ -19,7 +22,8 @@ public class HorizontalFinderTest {
 	public void shouldReturnCatAtRowOneColumnZeroOneTwo() {
 		toFind = "cat";
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'c', 'a', 't' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toSearch).scan(), is("cat: (0,1),(1,1),(2,1)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("cat: (0,1),(1,1),(2,1)"));
 	}
 
 
@@ -27,49 +31,56 @@ public class HorizontalFinderTest {
 	public void shouldReturnCatAtRowZeroColumnZeroOneTwo() {
 		toFind = "cat";
 		char[][] toSearch = { { 'c', 'a', 't' }, { 'x', 'x', 'x' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toSearch).scan(), is("cat: (0,0),(1,0),(2,0)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("cat: (0,0),(1,0),(2,0)"));
 	}
 
 	@Test
 	public void shouldReturnLaAtRowZeroColumnOneTwo() {
 		toFind = "la";
 		char[][] toSearch = { { 'x', 'l', 'a' }, { 'x', 'x', 'x' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toSearch).scan(), is("la: (1,0),(2,0)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("la: (1,0),(2,0)"));
 	}
 
 	@Test
 	public void shouldReturnLaAtRowOneColumnOneTwoWithConfoundingL() {
 		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'l', 'a' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toSearch).scan(), is("la: (1,1),(2,1)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("la: (1,1),(2,1)"));
 	}
 
 	@Test
 	public void shouldReturnLaAtRowOneColumnOneTwoWithTwoConfoundingL() {
 		toFind = "la";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'l', 'l', 'a' }, { 'x', 'x', 'x' } };
-		assertThat(createTest(toSearch).scan(), is("la: (1,1),(2,1)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("la: (1,1),(2,1)"));
 	}
 
 	@Test
 	public void shouldReturnLabAtRowTwoColumnZeroOneTwoWithConfoundingLa() {
 		toFind = "lab";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'l', 'l', 'a' }, { 'l', 'a', 'b' } };
-		assertThat(createTest(toSearch).scan(), is("lab: (0,2),(1,2),(2,2)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("lab: (0,2),(1,2),(2,2)"));
 	}
 
 	@Test
 	public void shouldReturnLabAtRowTwoColumnTwoOneZeroWithConfoundingLa() {
 		toFind = "lab";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'x', 'x' }, { 'b', 'a', 'l' } };
-		assertThat(createTest(toSearch).scan(), is("lab: (2,2),(1,2),(0,2)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("lab: (2,2),(1,2),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnNotFoundForCat() {
 		toFind = "cat";
 		char[][] toSearch = { { 'l', 'x', 'x' }, { 'x', 'x', 'x' }, { 'b', 'a', 'l' } };
-		assertThat(createTest(toSearch).scan(), is("not found"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("not found"));
 	}
 
 	@Test
@@ -77,7 +88,8 @@ public class HorizontalFinderTest {
 		toFind = "bill";
 		char[][] toSearch = { { 'b', 'i', 'l', 'l' }, { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' },
 				{ 'x', 'b', 'a', 'l' } };
-		assertThat(createTest(toSearch).scan(), is("bill: (0,0),(1,0),(2,0),(3,0)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("bill: (0,0),(1,0),(2,0),(3,0)"));
 	}
 
 	@Test
@@ -98,6 +110,7 @@ public class HorizontalFinderTest {
 				{ 'O', 'J', 'Y', 'E', 'U', 'L', 'N', 'C', 'C', 'L', 'Y', 'B', 'Z', 'U', 'H' },
 				{ 'W', 'Z', 'M', 'I', 'S', 'U', 'K', 'U', 'R', 'B', 'I', 'D', 'U', 'X', 'S' },
 				{ 'K', 'Y', 'L', 'B', 'Q', 'Q', 'P', 'M', 'D', 'F', 'C', 'K', 'E', 'A', 'B' } };
-		assertThat(createTest(toSearch).scan(), is("KIRK: (4,7),(3,7),(2,7),(1,7)"));
+		buildGrid(toSearch);
+		assertThat(createTest().scan(), is("KIRK: (4,7),(3,7),(2,7),(1,7)"));
 	}
 }
