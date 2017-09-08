@@ -15,9 +15,7 @@ public class WordSearch {
 	private Finder[] finders;
 
 	public String find(String toFind) {
-
 		String answerWithCoords = "empty";
-
 		buildFinders(toFind);
 		for (Finder f : finders) {
 			answerWithCoords = f.scan();
@@ -35,16 +33,16 @@ public class WordSearch {
 
 	public void buildAnswerList(List<String> listToFind) {
 		allWordsWithCoords.clear();
-		
 		for (String toFind : listToFind) {
 			String singleCoords = find(toFind);
 			allWordsWithCoords.add(singleCoords);
 		}
-
 	}
 
 	public List<String> getAllWordsWithCoords() {
 		return allWordsWithCoords;
 	}
+	
+	
 
 }

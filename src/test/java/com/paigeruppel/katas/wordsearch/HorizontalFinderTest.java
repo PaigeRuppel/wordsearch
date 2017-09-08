@@ -8,7 +8,6 @@ import org.junit.Test;
 public class HorizontalFinderTest {
 
 	private LetterGrid grid;
-
 	private HorizontalFinder underTest;
 
 	public void createTest(String toFind, char[][] toSearch) {

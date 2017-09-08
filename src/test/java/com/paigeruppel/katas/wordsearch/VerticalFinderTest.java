@@ -10,7 +10,7 @@ public class VerticalFinderTest {
 	private LetterGrid grid;
 	private VerticalFinder underTest;
 
-	public void buildGrid(String toFind, char[][] toSearch) {
+	public void createTest(String toFind, char[][] toSearch) {
 		grid = new LetterGrid(toSearch);
 		underTest = new VerticalFinder(toFind, grid);
 	}
@@ -18,49 +18,49 @@ public class VerticalFinderTest {
 	@Test
 	public void shouldReturnCatAtXOneYZeroOneTwo() {
 		char[][] toSearch = { { 'x', 'c', 'x' }, { 'x', 'a', 'x' }, { 'x', 't', 'x' } };
-		buildGrid("cat", toSearch);
+		createTest("cat", toSearch);
 		assertThat(underTest.scan(), is("cat: (1,0),(1,1),(1,2)"));
 	}
 
 	@Test
 	public void shouldReturnCatAtXZeroYZeroOneTwo() {
 		char[][] toSearch = { { 'c', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
-		buildGrid("cat", toSearch);
+		createTest("cat", toSearch);
 		assertThat(underTest.scan(), is("cat: (0,0),(0,1),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnAtAtXZeroYOneTwo() {
 		char[][] toSearch = { { 'x', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
-		buildGrid("at", toSearch);
+		createTest("at", toSearch);
 		assertThat(underTest.scan(), is("at: (0,1),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnAtAtXZeroYOneTwoWithConfoundingA() {
 		char[][] toSearch = { { 'a', 'x', 'x' }, { 'a', 'x', 'x' }, { 't', 'x', 'x' } };
-		buildGrid("at", toSearch);
+		createTest("at", toSearch);
 		assertThat(underTest.scan(), is("at: (0,1),(0,2)"));
 	}
 
 	@Test
 	public void shouldReturnAtFitXTwoYZeroOneTwoWithConfoundingFi() {
 		char[][] toSearch = { { 'x', 'f', 'f' }, { 'x', 'i', 'i' }, { 'x', 'x', 't' } };
-		buildGrid("fit", toSearch);
+		createTest("fit", toSearch);
 		assertThat(underTest.scan(), is("fit: (2,0),(2,1),(2,2)"));
 	}
 
 	@Test
 	public void shouldReturnFitAtXTwoYTwoOneZeroWithConfoundingFi() {
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
-		buildGrid("fit", toSearch);
+		createTest("fit", toSearch);
 		assertThat(underTest.scan(), is("fit: (2,2),(2,1),(2,0)"));
 	}
 
 	@Test
 	public void shouldReturnNotFoundForBit() {
 		char[][] toSearch = { { 'x', 'f', 't' }, { 'x', 'i', 'i' }, { 'x', 'x', 'f' } };
-		buildGrid("bit", toSearch);
+		createTest("bit", toSearch);
 		assertThat(underTest.scan(), is("not found"));
 	}
 
@@ -68,7 +68,7 @@ public class VerticalFinderTest {
 	public void shouldReturnNotFoundForBill() {
 		char[][] toSearch = { { 'b', 'i', 'l', 'l' }, { 'x', 'x', 'x', 'x' }, { 'x', 'x', 'x', 'x' },
 				{ 'x', 'b', 'a', 'l' } };
-		buildGrid("bill", toSearch);
+		createTest("bill", toSearch);
 		assertThat(underTest.scan(), is("not found"));
 	}
 
@@ -89,7 +89,7 @@ public class VerticalFinderTest {
 				{ 'O', 'J', 'Y', 'E', 'U', 'L', 'N', 'C', 'C', 'L', 'Y', 'B', 'Z', 'U', 'H' },
 				{ 'W', 'Z', 'M', 'I', 'S', 'U', 'K', 'U', 'R', 'B', 'I', 'D', 'U', 'X', 'S' },
 				{ 'K', 'Y', 'L', 'B', 'Q', 'Q', 'P', 'M', 'D', 'F', 'C', 'K', 'E', 'A', 'B' } };
-		buildGrid("KHAN", toSearch);
+		createTest("KHAN", toSearch);
 		assertThat(underTest.scan(), is("KHAN: (5,9),(5,8),(5,7),(5,6)"));
 	}
 }

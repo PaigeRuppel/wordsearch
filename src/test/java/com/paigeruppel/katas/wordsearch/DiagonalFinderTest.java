@@ -9,9 +9,7 @@ import org.junit.Test;
 
 public class DiagonalFinderTest {
 
-	private String toFind;
 	private LetterGrid grid;
-
 	private DiagonalFinder underTest;
 
 	public void createTest(String toFind, char[][] toSearch) {
