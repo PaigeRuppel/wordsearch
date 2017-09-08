@@ -13,13 +13,16 @@ public class AnswerBuilder {
 
 	List<String> answerList = new ArrayList<String>();
 
-	public int getLetterIndex() {
-		return letterIndex;
-	}
 
 	public int getTries() {
 		return tries;
 	}
+
+	public int getLetterIndex() {
+		return letterIndex;
+	}
+
+
 
 	public AnswerBuilder(String toFind) {
 		this.toFind = toFind;
@@ -29,10 +32,19 @@ public class AnswerBuilder {
 		letterIndex = 0;
 	}
 
+	public boolean atLastLetter() {
+		return getLetterIndex() == maxInd;
+	}
+
+	public void incrementLetterIndex() {
+		if (!atLastLetter()) {
+			letterIndex = getLetterIndex() + 1;
+		}
+	}
 	public void incrementTries() {
 		tries = getTries() + 1;
 	}
-	
+
 	public void resetTries() {
 		tries = 0;
 	}
@@ -47,11 +59,6 @@ public class AnswerBuilder {
 		return generate();
 	}
 	
-	public void incrementLetterIndex() {
-		if (letterIndex < maxInd) {
-			letterIndex = getLetterIndex() + 1;
-		}
-	}
 
 	public void buildAnswerList(int currentIndex, String coords) {
 		answerList.add(currentIndex, coords);
@@ -66,9 +73,6 @@ public class AnswerBuilder {
 		return "(" + x + "," + y + ")";
 	}
 
-	public boolean atLastLetter() {
-		return getLetterIndex() == maxInd;
-	}
 
 	public Character currentChar() {
 		return toFindHolder.charAt(getLetterIndex());
