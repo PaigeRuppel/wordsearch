@@ -18,14 +18,14 @@ public class HorizontalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int y = 0; y < grid.getYLength(); y++) {
 				for (int x = 0; x < grid.getXLength(); x++) {
-					if (grid.getCharacterAt(y, x) == answer.currentChar() && answer.atLastLetter()) {
-						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-						return answer.generate();
-					} else if (grid.getCharacterAt(y, x) == answer.currentChar()) {
+					if (!isMatch(x, y)) {
+						answer.resetAnswerAndLetterIndexToZero();	
+					}
+					if (isMatchAndAtLastLetter(x, y)) {
+						return buildAndReturnAnswer(x, y);
+					} else if (isMatch(x, y)) {
 						answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
 						answer.incrementLetterIndex();
-						// TODO still some nesting here - revisit
-						resetIfNextHorizontalCharNotPresent(x, y);
 					}
 				}
 			}
@@ -36,10 +36,17 @@ public class HorizontalFinder implements Finder {
 		return NOT_FOUND;
 	}
 
-	private void resetIfNextHorizontalCharNotPresent(int x, int y) {
-		if (grid.getNextCharacterHorizontalFrom(y, x) != answer.currentChar()) {
-			answer.resetAnswerAndLetterIndexToZero();
-		}
+	private boolean isMatch(int x, int y) {
+		return grid.getCharacterAt(y, x) == answer.currentChar();
+	}
+
+	private String buildAndReturnAnswer(int x, int y) {
+		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
+		return answer.generate();
+	}
+	
+	private boolean isMatchAndAtLastLetter(int x, int y) {
+		return isMatch(x, y) && answer.atLastLetter();
 	}
 
 }

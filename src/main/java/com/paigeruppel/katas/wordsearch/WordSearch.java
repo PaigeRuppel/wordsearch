@@ -16,7 +16,7 @@ public class WordSearch {
 
 	public WordSearch(String filename) {
 		textFileReader = new TextFileReader(getFilename(filename));
-		listToFind = textFileReader.readFirstLine();
+		listToFind = textFileReader.createListToFindFromFirstLine();
 		grid = new LetterGrid(textFileReader.buildLetterGrid());
 	}
 	

@@ -33,7 +33,7 @@ public class TextFileReaderTest {
 		listToFind.add(4, "SPOCK");
 		listToFind.add(5, "SULU");
 		listToFind.add(6, "UHURA");
-		assertThat(starTrekReader.readFirstLine(), is(listToFind));
+		assertThat(starTrekReader.createListToFindFromFirstLine(), is(listToFind));
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class TextFileReaderTest {
 		listToFind.add(7, "RUBRA");
 		listToFind.add(8, "SHUMARDII");
 		listToFind.add(9, "VELUTINA");
-		assertThat(oakSpeciesReader.readFirstLine(), is(listToFind));
+		assertThat(oakSpeciesReader.createListToFindFromFirstLine(), is(listToFind));
 	}
 
 	@Test

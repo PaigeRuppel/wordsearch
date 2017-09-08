@@ -16,7 +16,7 @@ public class TextFileReader {
 		file = new File(textFile);
 	}
 	
-	public ArrayList<String> readFirstLine() {
+	public List<String> createListToFindFromFirstLine() {
 		String firstLine = "";
 		try {
 			FileReader fileRead = new FileReader(file);
@@ -27,13 +27,14 @@ public class TextFileReader {
 		catch (IOException e) {
             e.printStackTrace();
         }
-		ArrayList<String> listToFind = new ArrayList<String>(Arrays.asList(firstLine.split(",")));
+		
+		List<String> listToFind = new ArrayList<String>(Arrays.asList(firstLine.split(",")));
 
 		return listToFind;
 	}
 
 	public char[][] buildLetterGrid() {
-		ArrayList<char[]> chars = new ArrayList<>();
+		List<char[]> chars = new ArrayList<>();
 		try {
 			FileReader fileRead = new FileReader(file);
 			BufferedReader buffRead = new BufferedReader(fileRead);
