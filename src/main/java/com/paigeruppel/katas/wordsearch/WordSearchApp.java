@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class WordSearchApp {
 
 	private static WordSearch wordSearch;
-	private static TextFileReader textFileReader;
 
 	public static void main(String[] args) throws IOException {
 		Scanner input = new Scanner(System.in);
@@ -15,23 +14,19 @@ public class WordSearchApp {
 		System.out.println(
 				"Please enter the name of the file you wish to search: \n(Note: Please save the file in src/main/resources in the proper format if you have not already done so)");
 		
-		List<String> wordsWithCoords = findWords(input.nextLine());
-		
-		printFoundWords(wordsWithCoords);
+		wordSearch = new WordSearch(input.nextLine());
+		wordSearch.buildAnswerList();
+		printFoundWords();
 		
 		input.close();
 
 	}
 
-	private static void printFoundWords(List<String> wordsWithCoords) {
-		for (String current : wordsWithCoords) {
+	private static void printFoundWords() {
+		List<String> foundWords = wordSearch.getFoundWordsWithCoords();
+		for (String current : foundWords) {
 			System.out.println(current);
 		}
 	}
 
-	public static List<String> findWords(String filename) {
-		wordSearch = new WordSearch(filename);
-		wordSearch.buildAnswerList();
-		return wordSearch.getFoundWordsWithCoords();
-	}
 }
