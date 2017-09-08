@@ -22,7 +22,7 @@ public class VerticalFinder implements Finder {
 						answer.resetAnswerAndLetterIndexToZero();	
 					}
 					if (isMatchAndAtLastLetter(x, y)) {
-						return buildAndReturnAnswer(x, y);
+						return answer.buildAndReturnAnswer(x, y);
 					} else if (isMatch(x, y)) {
 						answer.buildAnswerAndIncrementLetterIndex(x, y);
 					}
@@ -43,14 +43,7 @@ public class VerticalFinder implements Finder {
 		return isMatch(x, y) && answer.atLastLetter();
 	}
 	
-	private String buildAndReturnAnswer(int x, int y) {
-		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-		return answer.generate();
-	}
-//	
-//	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
-//		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-//		answer.incrementLetterIndex();
-//	}
+
+
 
 }

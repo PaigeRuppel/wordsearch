@@ -27,7 +27,7 @@ public class DiagonalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x++, y++) {
 				if (isMatchAndAtLastLetter(x, y)) {
-					return buildAndReturnAnswer(x, y);
+					return answer.buildAndReturnAnswer(x, y);
 				}
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
 			}
@@ -41,7 +41,7 @@ public class DiagonalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int x = 0, y = start; grid.withinEdges(x, y); x++, y++) {
 				if (isMatchAndAtLastLetter(x, y)) {
-					return buildAndReturnAnswer(x, y);
+					return answer.buildAndReturnAnswer(x, y);
 				}
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
 			}
@@ -55,7 +55,7 @@ public class DiagonalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int x = start, y = 0; grid.withinEdges(x, y); x--, y++) {
 				if (isMatchAndAtLastLetter(x, y)) {
-					return buildAndReturnAnswer(x, y);
+					return answer.buildAndReturnAnswer(x, y);
 				}
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
 			}
@@ -69,7 +69,7 @@ public class DiagonalFinder implements Finder {
 		while (answer.getTries() < 2) {
 			for (int x = grid.getXLength() - 1, y = start; grid.withinEdges(x, y); x--, y++) {
 				if (isMatchAndAtLastLetter(x, y)) {
-					return buildAndReturnAnswer(x, y);
+					return answer.buildAndReturnAnswer(x, y);
 				} 
 				checkForMatchAndResetOrContinueBuildingAnswer(x, y);
 			}
@@ -84,16 +84,6 @@ public class DiagonalFinder implements Finder {
 		} else if (isMatch(x, y)) {
 			answer.buildAnswerAndIncrementLetterIndex(x, y);
 		}
-	}
-
-//	private void buildAnswerAndIncrementLetterIndex(int x, int y) {
-//		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-//		answer.incrementLetterIndex();
-//	}
-
-	private String buildAndReturnAnswer(int x, int y) {
-		answer.buildAnswerList(answer.getLetterIndex(), answer.coords(x, y));
-		return answer.generate();
 	}
 
 	private boolean isMatchAndAtLastLetter(int x, int y) {

@@ -42,6 +42,11 @@ public class AnswerBuilder {
 		incrementLetterIndex();
 	}
 	
+	public String buildAndReturnAnswer(int x, int y) {
+		buildAnswerList(getLetterIndex(), coords(x, y));
+		return generate();
+	}
+	
 	public void incrementLetterIndex() {
 		if (letterIndex < maxInd) {
 			letterIndex = getLetterIndex() + 1;
