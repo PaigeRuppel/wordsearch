@@ -35,11 +35,11 @@ public class VerticalFinder implements Finder {
 
 	}
 
-	private boolean isMatch(int x, int y) {
-		return grid.getCharacterAt(y, x) == answer.currentChar();
+	public boolean isMatch(int x, int y) {
+		return grid.charAt(y, x) == answer.currentChar();
 	}
 
-	private boolean isMatchAndAtLastLetter(int x, int y) {
+	public boolean isMatchAndAtLastLetter(int x, int y) {
 		return isMatch(x, y) && answer.atLastLetter();
 	}
 	

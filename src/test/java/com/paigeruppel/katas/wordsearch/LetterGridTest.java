@@ -18,12 +18,12 @@ public class LetterGridTest {
 
 	@Test
 	public void shouldReturnAFromCoordsZeroZero() {
-		assertThat(underTest.getCharacterAt(0, 0), is('a'));
+		assertThat(underTest.charAt(0, 0), is('a'));
 	}
 
 	@Test
 	public void shouldReturnBFromCoordsZeroOne() {
-		assertThat(underTest.getCharacterAt(0, 1), is('b'));
+		assertThat(underTest.charAt(0, 1), is('b'));
 	}
 
 }

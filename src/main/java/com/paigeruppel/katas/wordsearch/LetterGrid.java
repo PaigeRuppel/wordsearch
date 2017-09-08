@@ -25,7 +25,7 @@ public class LetterGrid {
 
 	}
 
-	public Character getCharacterAt(int y, int x) {
+	public Character charAt(int y, int x) {
 		return toSearch[y][x];
 	}
 

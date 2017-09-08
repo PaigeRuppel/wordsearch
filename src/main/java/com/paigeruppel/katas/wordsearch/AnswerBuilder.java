@@ -11,9 +11,8 @@ public class AnswerBuilder {
 	private int tries;
 	private int letterIndex;
 
-	List<String> answerList = new ArrayList<String>();
+	private List<String> answerList = new ArrayList<String>();
 
-	private LetterGrid grid;
 	
 	public int getTries() {
 		return tries;
@@ -21,6 +20,10 @@ public class AnswerBuilder {
 
 	public int getLetterIndex() {
 		return letterIndex;
+	}
+	
+	public List<String> getAnswerList() {
+		return answerList;
 	}
 
 	public AnswerBuilder(String toFind) {
@@ -118,8 +121,5 @@ public class AnswerBuilder {
 		toFindHolder = toFind;
 	}
 	
-	public boolean isMatch(int x, int y) {
-		return grid.getCharacterAt(y, x) == currentChar();
-	}
 
 }

@@ -14,7 +14,7 @@ public class AnswerBuilderTest {
 	public void shouldBuildAnAnswerMapWithA() {
 		underTest = new AnswerBuilder("a");
 		underTest.buildAnswerList(underTest.getLetterIndex(), "(0,0)");
-		assertThat(underTest.answerList, is(notNullValue()));
+		assertThat(underTest.getAnswerList(), is(notNullValue()));
 	}
 
 	@Test

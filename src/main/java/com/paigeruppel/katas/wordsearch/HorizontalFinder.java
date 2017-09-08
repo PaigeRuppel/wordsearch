@@ -19,7 +19,7 @@ public class HorizontalFinder implements Finder {
 			for (int y = 0; y < grid.getYLength(); y++) {
 				for (int x = 0; x < grid.getXLength(); x++) {
 					if (!isMatch(x, y)) {
-						answer.resetAnswerAndLetterIndexToZero();
+						answer.resetAnswerAndLetterIndexToZero();	
 					}
 					if (isMatchAndAtLastLetter(x, y)) {
 						return answer.buildAndReturnAnswer(x, y);
@@ -35,12 +35,14 @@ public class HorizontalFinder implements Finder {
 		return NOT_FOUND;
 	}
 
-	private boolean isMatch(int x, int y) {
-		return grid.getCharacterAt(y, x) == answer.currentChar();
+	public boolean isMatch(int x, int y) {
+		return grid.charAt(y, x) == answer.currentChar();
 	}
 
-	private boolean isMatchAndAtLastLetter(int x, int y) {
+	public boolean isMatchAndAtLastLetter(int x, int y) {
 		return isMatch(x, y) && answer.atLastLetter();
 	}
+
+	
 
 }
