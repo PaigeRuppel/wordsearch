@@ -5,34 +5,31 @@ import java.util.List;
 
 public class WordSearch {
 
+	private TextFileReader textFileReader;
+	private List<String> listToFind;
 	private LetterGrid grid;
-	private List<String> allWordsWithCoords = new ArrayList<String>();
-
-	public WordSearch(LetterGrid grid) {
-		this.grid = grid;
-	}
-
+	
+	private List<String> allWordsWithCoords;
 	private Finder[] finders;
 
-	public String find(String toFind) {
-		String answerWithCoords = "empty";
-		buildFinders(toFind);
-		for (Finder f : finders) {
-			answerWithCoords = f.scan();
-			if (answerWithCoords != "not found") {
-				return answerWithCoords;
-			}
-		}
-		return answerWithCoords;
+	private static String NOT_FOUND = "not found";
+
+	public WordSearch(String filename) {
+		textFileReader = new TextFileReader(getFilename(filename));
+		listToFind = textFileReader.readFirstLine();
+		grid = new LetterGrid(textFileReader.buildLetterGrid());
+	}
+	
+	public WordSearch (LetterGrid grid) {
+		this.grid = grid;
+	}
+	
+	public static String getFilename(String fileName) {
+		return new FilePath().getFullFileName(fileName);
 	}
 
-	private void buildFinders(String toFind) {
-		finders = new Finder[] { new DiagonalFinder(toFind, grid), new HorizontalFinder(toFind, grid),
-				new VerticalFinder(toFind, grid) };
-	}
-
-	public void buildAnswerList(List<String> listToFind) {
-		allWordsWithCoords.clear();
+	public void buildAnswerList() {
+		allWordsWithCoords = new ArrayList<String>();
 		for (String toFind : listToFind) {
 			String singleCoords = find(toFind);
 			allWordsWithCoords.add(singleCoords);
@@ -42,7 +39,22 @@ public class WordSearch {
 	public List<String> getAllWordsWithCoords() {
 		return allWordsWithCoords;
 	}
-	
-	
+
+	private void buildFinders(String toFind) {
+		finders = new Finder[] { new DiagonalFinder(toFind, grid), new HorizontalFinder(toFind, grid),
+				new VerticalFinder(toFind, grid) };
+	}
+
+	public String find(String toFind) {
+		String answerWithCoords = NOT_FOUND;
+		buildFinders(toFind);
+		for (Finder f : finders) {
+			answerWithCoords = f.scan();
+			if (answerWithCoords != NOT_FOUND) {
+				return answerWithCoords;
+			}
+		}
+		return answerWithCoords;
+	}
 
 }
