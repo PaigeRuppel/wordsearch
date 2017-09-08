@@ -30,13 +30,7 @@ public class DiagonalFinder implements Finder {
 					return answer.buildAndReturnAnswer(x, y);
 				} 
 
-				if (!answer.isMatch(x, y)) {
-					answer.resetAnswerAndLetterIndexToZero();
-				}
-				
-				if (answer.isMatch(x, y)) {
-					answer.buildAnswerAndIncrementLetterIndex(x, y);
-				}
+				answer.checkForMatchAndResetOrBuildAnswer(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -51,13 +45,7 @@ public class DiagonalFinder implements Finder {
 					return answer.buildAndReturnAnswer(x, y);
 				} 
 
-				if (!answer.isMatch(x, y)) {
-					answer.resetAnswerAndLetterIndexToZero();
-				}
-				
-				if (answer.isMatch(x, y)) {
-					answer.buildAnswerAndIncrementLetterIndex(x, y);
-				}
+				answer.checkForMatchAndResetOrBuildAnswer(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -72,13 +60,7 @@ public class DiagonalFinder implements Finder {
 					return answer.buildAndReturnAnswer(x, y);
 				} 
 
-				if (!answer.isMatch(x, y)) {
-					answer.resetAnswerAndLetterIndexToZero();
-				}
-				
-				if (answer.isMatch(x, y)) {
-					answer.buildAnswerAndIncrementLetterIndex(x, y);
-				}
+				answer.checkForMatchAndResetOrBuildAnswer(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
@@ -93,26 +75,13 @@ public class DiagonalFinder implements Finder {
 					return answer.buildAndReturnAnswer(x, y);
 				} 
 
-				if (!answer.isMatch(x, y)) {
-					answer.resetAnswerAndLetterIndexToZero();
-				}
-				
-				if (answer.isMatch(x, y)) {
-					answer.buildAnswerAndIncrementLetterIndex(x, y);
-				}
+				answer.checkForMatchAndResetOrBuildAnswer(x, y);
 			}
 			incrementStartingPositionOrReverseWordAndIncrementTries();
 		}
 		return NOT_FOUND;
 	}
 
-//	private void checkForMatchAndResetOrContinueBuildingAnswer(int x, int y) {
-//		if (!answer.isMatch(x, y)) {
-//			answer.resetAnswerAndLetterIndexToZero();
-//		} else if (answer.isMatch(x, y)) {
-//			answer.buildAnswerAndIncrementLetterIndex(x, y);
-//		}
-//	}
 
 	private void incrementStartingPositionOrReverseWordAndIncrementTries() {
 		if (start == grid.getXLength() - 1) {

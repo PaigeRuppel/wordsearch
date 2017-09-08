@@ -21,7 +21,6 @@ public class VerticalFinder implements Finder {
 					if (answer.isMatchAndAtLastLetter(x, y)) {
 						return answer.buildAndReturnAnswer(x, y);
 					} 
-
 					answer.checkForMatchAndResetOrBuildAnswer(x, y);
 				}
 			}
