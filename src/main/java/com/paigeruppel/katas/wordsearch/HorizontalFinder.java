@@ -21,8 +21,7 @@ public class HorizontalFinder implements Finder {
 					if (answer.isMatchAndAtLastLetter(x, y)) {
 						return answer.buildAndReturnAnswer(x, y);
 					} 
-
-					checkForMatchAndResetOrBuildAnswer(x, y);
+					answer.checkForMatchAndResetOrBuildAnswer(x, y);
 				}
 			}
 			answer.incrementTries();
@@ -30,16 +29,6 @@ public class HorizontalFinder implements Finder {
 		}
 
 		return NOT_FOUND;
-	}
-
-	private void checkForMatchAndResetOrBuildAnswer(int x, int y) {
-		if (!answer.isMatch(x, y)) {
-			answer.resetAnswerAndLetterIndexToZero();
-		}
-		
-		if (answer.isMatch(x, y)) {
-			answer.buildAnswerAndIncrementLetterIndex(x, y);
-		}
 	}
 
 	

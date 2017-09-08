@@ -22,13 +22,7 @@ public class VerticalFinder implements Finder {
 						return answer.buildAndReturnAnswer(x, y);
 					} 
 
-					if (!answer.isMatch(x, y)) {
-						answer.resetAnswerAndLetterIndexToZero();
-					}
-					
-					if (answer.isMatch(x, y)) {
-						answer.buildAnswerAndIncrementLetterIndex(x, y);
-					}
+					answer.checkForMatchAndResetOrBuildAnswer(x, y);
 				}
 			}
 			answer.reverseWord();

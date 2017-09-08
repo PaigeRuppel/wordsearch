@@ -138,5 +138,15 @@ public class AnswerBuilder {
 	public boolean isMatchAndAtLastLetter(int x, int y) {
 		return isMatch(x, y) && atLastLetter();
 	}
+	
+	public void checkForMatchAndResetOrBuildAnswer(int x, int y) {
+		if (!isMatch(x, y)) {
+			resetAnswerAndLetterIndexToZero();
+		}
+		
+		if (isMatch(x, y)) {
+			buildAnswerAndIncrementLetterIndex(x, y);
+		}
+	}
 
 }
